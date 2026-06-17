@@ -229,7 +229,7 @@ function Hero() {
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl lg:text-[64px] leading-[1.05] font-medium max-w-3xl">
-              Krishna Prashant Nartam,
+              Krishna&nbsp;Nartam,
               <br />
               <span className="text-foreground/95">
                 AI engineer who builds useful
