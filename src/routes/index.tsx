@@ -22,9 +22,12 @@ import {
   Rocket,
 } from "lucide-react";
 import portrait from "@/assets/portrait.jpg";
+import krishnaPortraitAsset from "@/assets/krishna-portrait.png.asset.json";
 import projResume from "@/assets/proj-resume.jpg";
 import projIiot from "@/assets/proj-iiot.jpg";
 import projAgent from "@/assets/proj-agent.jpg";
+
+const krishnaPortrait = krishnaPortraitAsset.url;
 
 const EMAILJS_SERVICE_ID = "service_138mf4y";
 const EMAILJS_TEMPLATE_ID = "template_tzzd9c8";
@@ -212,38 +215,54 @@ function Hero() {
   return (
     <section id="top" className="relative px-6 pt-28 pb-16">
       <div className="max-w-6xl mx-auto">
-        <div className="relative hero-card rounded-3xl overflow-hidden p-8 sm:p-12 lg:p-16 min-h-[560px] flex flex-col justify-between">
+        <div className="relative hero-card rounded-3xl overflow-hidden p-8 sm:p-12 lg:p-16 min-h-[560px]">
           <div className="absolute inset-0 starfield opacity-50 pointer-events-none" />
           <div className="absolute -top-32 -left-20 w-[600px] h-[600px] rounded-full bg-secondary/30 blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 space-y-8 animate-fade-up">
-            <div className="inline-flex items-center gap-3 pl-1 pr-4 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-              <img
-                src={portrait}
-                alt="Krishna avatar"
-                width={28}
-                height={28}
-                className="w-7 h-7 rounded-full object-cover"
-              />
-              <span className="text-xs font-medium">Hi, there 👋</span>
+          <div className="relative z-10 grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-12 items-center h-full">
+            <div className="flex flex-col justify-between gap-10 min-h-[480px]">
+              <div className="space-y-8 animate-fade-up">
+                <div className="inline-flex items-center gap-3 pl-1 pr-4 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+                  <img
+                    src={krishnaPortrait}
+                    alt="Krishna Nartam"
+                    width={28}
+                    height={28}
+                    className="w-7 h-7 rounded-full object-cover"
+                  />
+                  <span className="text-xs font-medium">Hi, there 👋</span>
+                </div>
+
+                <h1 className="font-display text-4xl sm:text-5xl lg:text-[60px] leading-[1.05] font-medium">
+                  Krishna&nbsp;Nartam,
+                  <br />
+                  <span className="text-foreground/95">
+                    AI engineer who builds useful
+                  </span>
+                  <br />
+                  <span className="text-foreground/95">and eye-pleasing products.</span>
+                </h1>
+              </div>
+
+              <div className="flex items-center gap-2 text-xs text-muted-foreground animate-fade-up" style={{ animationDelay: "0.2s" }}>
+                <a href="#work" className="inline-flex items-center gap-2 hover:text-foreground transition-colors">
+                  Scroll down to see the portfolio
+                  <ArrowDown className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
 
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-[64px] leading-[1.05] font-medium max-w-3xl">
-              Krishna&nbsp;Nartam,
-              <br />
-              <span className="text-foreground/95">
-                AI engineer who builds useful
-              </span>
-              <br />
-              <span className="text-foreground/95">and eye-pleasing products.</span>
-            </h1>
-          </div>
-
-          <div className="relative z-10 flex items-center gap-2 text-xs text-muted-foreground mt-12 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            <a href="#work" className="inline-flex items-center gap-2 hover:text-foreground transition-colors">
-              Scroll down to see the portfolio
-              <ArrowDown className="w-3.5 h-3.5" />
-            </a>
+            <div className="relative flex justify-center lg:justify-end animate-fade-up" style={{ animationDelay: "0.15s" }}>
+              <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 via-transparent to-secondary/30 mix-blend-overlay pointer-events-none z-10" />
+                <img
+                  src={krishnaPortrait}
+                  alt="Portrait of Krishna Nartam"
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
