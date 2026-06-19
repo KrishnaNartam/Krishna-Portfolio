@@ -324,7 +324,7 @@ function BrandLogo({
 function Marquee() {
   return (
     <section className="px-6 py-10 border-y border-border/60">
-      <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-12 gap-y-4 opacity-70">
+      <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
         {BRAND_LOGOS.map((logo) => (
           <BrandLogo
             key={logo.name}
