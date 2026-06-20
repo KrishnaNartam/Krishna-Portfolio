@@ -446,19 +446,39 @@ function Meta({ label, value }: { label: string; value: string }) {
   );
 }
 
-/* ───────── Tools ───────── */
+/* ───────── Skills ───────── */
 function Tools() {
   return (
-    <section className="relative px-6 py-16">
+    <section id="skills" className="relative px-6 py-24 sm:py-32">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
-          {TOOLS.map(({ label, icon: Icon }) => (
+        <NumKicker n="03" label="Skills" />
+        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 max-w-2xl">
+          The stack I build with.
+        </h2>
+        <p className="text-muted-foreground max-w-2xl mb-14">
+          A practical toolkit spanning AI, full-stack engineering and Industrial IoT — picked
+          for shipping speed and long-term maintainability.
+        </p>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {SKILL_GROUPS.map((group) => (
             <div
-              key={label}
-              className="aspect-square rounded-2xl glass-card glass-card-hover flex flex-col items-center justify-center gap-2 group"
+              key={group.title}
+              className="glass-card glass-card-hover rounded-2xl p-6 sm:p-7"
             >
-              <Icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform" />
-              <span className="text-[11px] text-muted-foreground">{label}</span>
+              <div className="text-[11px] font-mono uppercase tracking-[0.25em] text-primary mb-4">
+                {group.title}
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-foreground/90 hover:border-primary/40 hover:text-primary transition-colors"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
