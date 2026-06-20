@@ -55,6 +55,7 @@ export const Route = createFileRoute("/")({
 
 const NAV = [
   { label: "Work", href: "#work" },
+  { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Insights", href: "#insights" },
   { label: "FAQ", href: "#faq" },
@@ -94,7 +95,15 @@ const BRAND_LOGOS = [
   },
 ];
 
-const PROJECTS = [
+const PROJECTS: {
+  name: string;
+  desc: string;
+  country: string;
+  duration: string;
+  year: string;
+  image: string;
+  link?: string;
+}[] = [
   {
     name: "AI Resume Builder",
     desc:
@@ -103,6 +112,7 @@ const PROJECTS = [
     duration: "2 months",
     year: "2025",
     image: projResume,
+    // link: "https://your-live-url.com",
   },
   {
     name: "Real-Time OEE Monitoring",
@@ -124,13 +134,13 @@ const PROJECTS = [
   },
 ];
 
-const TOOLS: { label: string; icon: typeof Brain }[] = [
-  { label: "AI / LLM", icon: Brain },
-  { label: "Next.js", icon: Code2 },
-  { label: "n8n", icon: Workflow },
-  { label: "PostgreSQL", icon: Database },
-  { label: "MQTT / IIoT", icon: Cpu },
-  { label: "AWS", icon: Cloud },
+const SKILL_GROUPS: { title: string; items: string[] }[] = [
+  { title: "Languages", items: ["Python", "TypeScript", "JavaScript", "SQL", "C++"] },
+  { title: "Frameworks", items: ["React", "Next.js", "FastAPI", "Node.js", "Tailwind CSS"] },
+  { title: "AI / ML", items: ["TensorFlow", "PyTorch", "LangChain", "OpenAI", "Anthropic", "Gemini", "Hugging Face"] },
+  { title: "Data & Backend", items: ["PostgreSQL", "Supabase", "MongoDB", "Redis", "MQTT", "REST APIs"] },
+  { title: "Cloud & DevOps", items: ["AWS", "Vercel", "Cloudflare", "Docker", "GitHub Actions"] },
+  { title: "Tools", items: ["n8n", "Git", "Figma", "Postman", "Linux"] },
 ];
 
 const EXPERIENCE = [
@@ -388,39 +398,54 @@ function Work() {
         </h2>
 
         <div className="space-y-6">
-          {PROJECTS.map((p) => (
-            <article
-              key={p.name}
-              className="group glass-card glass-card-hover rounded-3xl overflow-hidden grid md:grid-cols-[1.2fr_1fr] gap-0 items-stretch"
-            >
-              <div className="p-8 sm:p-10 flex flex-col justify-between">
-                <div>
-                  <h3 className="font-display text-2xl sm:text-3xl font-medium mb-3">
-                    {p.name}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed max-w-md">{p.desc}</p>
+          {PROJECTS.map((p) => {
+            const Wrapper: any = p.link ? "a" : "article";
+            const wrapperProps = p.link
+              ? { href: p.link, target: "_blank", rel: "noreferrer" }
+              : {};
+            return (
+              <Wrapper
+                key={p.name}
+                {...wrapperProps}
+                className={`group glass-card glass-card-hover rounded-3xl overflow-hidden grid md:grid-cols-[1.2fr_1fr] gap-0 items-stretch ${
+                  p.link ? "cursor-pointer" : ""
+                }`}
+              >
+                <div className="p-8 sm:p-10 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-display text-2xl sm:text-3xl font-medium mb-3">
+                      {p.name}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed max-w-md">{p.desc}</p>
+                  </div>
+                  <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border">
+                    <Meta label="Country" value={p.country} />
+                    <Meta label="Duration" value={p.duration} />
+                    <Meta label="Year" value={p.year} />
+                  </div>
                 </div>
-                <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border">
-                  <Meta label="Country" value={p.country} />
-                  <Meta label="Duration" value={p.duration} />
-                  <Meta label="Year" value={p.year} />
+                <div className="relative h-56 md:h-auto overflow-hidden">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    loading="lazy"
+                    width={1024}
+                    height={768}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {p.link ? (
+                    <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/60 backdrop-blur border border-white/10 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition">
+                      <ArrowUpRight className="w-4 h-4" />
+                    </div>
+                  ) : (
+                    <div className="absolute top-4 right-4 text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-background/70 backdrop-blur border border-white/10 text-muted-foreground">
+                      Coming soon
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div className="relative h-56 md:h-auto overflow-hidden">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  loading="lazy"
-                  width={1024}
-                  height={768}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/60 backdrop-blur border border-white/10 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition">
-                  <ArrowUpRight className="w-4 h-4" />
-                </div>
-              </div>
-            </article>
-          ))}
+              </Wrapper>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -436,19 +461,39 @@ function Meta({ label, value }: { label: string; value: string }) {
   );
 }
 
-/* ───────── Tools ───────── */
+/* ───────── Skills ───────── */
 function Tools() {
   return (
-    <section className="relative px-6 py-16">
+    <section id="skills" className="relative px-6 py-24 sm:py-32">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
-          {TOOLS.map(({ label, icon: Icon }) => (
+        <NumKicker n="03" label="Skills" />
+        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 max-w-2xl">
+          The stack I build with.
+        </h2>
+        <p className="text-muted-foreground max-w-2xl mb-14">
+          A practical toolkit spanning AI, full-stack engineering and Industrial IoT — picked
+          for shipping speed and long-term maintainability.
+        </p>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {SKILL_GROUPS.map((group) => (
             <div
-              key={label}
-              className="aspect-square rounded-2xl glass-card glass-card-hover flex flex-col items-center justify-center gap-2 group"
+              key={group.title}
+              className="glass-card glass-card-hover rounded-2xl p-6 sm:p-7"
             >
-              <Icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform" />
-              <span className="text-[11px] text-muted-foreground">{label}</span>
+              <div className="text-[11px] font-mono uppercase tracking-[0.25em] text-primary mb-4">
+                {group.title}
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-foreground/90 hover:border-primary/40 hover:text-primary transition-colors"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
@@ -462,7 +507,7 @@ function Experience() {
   return (
     <section id="experience" className="relative px-6 py-24 sm:py-32">
       <div className="max-w-6xl mx-auto">
-        <NumKicker n="03" label="Experience" />
+        <NumKicker n="04" label="Experience" />
         <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 max-w-3xl">
           Experience that shapes meaningful products.
         </h2>
@@ -495,7 +540,7 @@ function Insights() {
   return (
     <section id="insights" className="relative px-6 py-24 sm:py-32">
       <div className="max-w-6xl mx-auto">
-        <NumKicker n="04" label="Insights" />
+        <NumKicker n="05" label="Insights" />
         <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-14 max-w-2xl">
           Practical insights and ideas from the journey so far.
         </h2>
@@ -540,7 +585,7 @@ function Faq() {
   return (
     <section id="faq" className="relative px-6 py-24 sm:py-32">
       <div className="max-w-3xl mx-auto text-center">
-        <NumKicker n="05" label="FAQ" />
+        <NumKicker n="06" label="FAQ" />
         <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-3">
           We got you an answer.
         </h2>
@@ -630,7 +675,7 @@ function Contact() {
 
           <div className="relative grid lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
             <div>
-              <NumKicker n="06" label="Let's work" />
+              <NumKicker n="07" label="Let's work" />
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 leading-tight">
                 Have a project in mind?
                 <br />
@@ -759,7 +804,7 @@ function Footer() {
   return (
     <footer className="border-t border-border py-10 px-6">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-        <div>© {new Date().getFullYear()} Krishna Prashant Nartam — Crafted with care in Pune.</div>
+        <div>© {new Date().getFullYear()} Krishna Prashant Nartam. All rights reserved.</div>
         <div className="font-mono">AI · Full-Stack · Industrial IoT</div>
       </div>
     </footer>
