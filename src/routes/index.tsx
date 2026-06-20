@@ -94,7 +94,15 @@ const BRAND_LOGOS = [
   },
 ];
 
-const PROJECTS = [
+const PROJECTS: {
+  name: string;
+  desc: string;
+  country: string;
+  duration: string;
+  year: string;
+  image: string;
+  link?: string;
+}[] = [
   {
     name: "AI Resume Builder",
     desc:
@@ -103,6 +111,7 @@ const PROJECTS = [
     duration: "2 months",
     year: "2025",
     image: projResume,
+    // link: "https://your-live-url.com",
   },
   {
     name: "Real-Time OEE Monitoring",
@@ -124,13 +133,13 @@ const PROJECTS = [
   },
 ];
 
-const TOOLS: { label: string; icon: typeof Brain }[] = [
-  { label: "AI / LLM", icon: Brain },
-  { label: "Next.js", icon: Code2 },
-  { label: "n8n", icon: Workflow },
-  { label: "PostgreSQL", icon: Database },
-  { label: "MQTT / IIoT", icon: Cpu },
-  { label: "AWS", icon: Cloud },
+const SKILL_GROUPS: { title: string; items: string[] }[] = [
+  { title: "Languages", items: ["Python", "TypeScript", "JavaScript", "SQL", "C++"] },
+  { title: "Frameworks", items: ["React", "Next.js", "FastAPI", "Node.js", "Tailwind CSS"] },
+  { title: "AI / ML", items: ["TensorFlow", "PyTorch", "LangChain", "OpenAI", "Anthropic", "Gemini", "Hugging Face"] },
+  { title: "Data & Backend", items: ["PostgreSQL", "Supabase", "MongoDB", "Redis", "MQTT", "REST APIs"] },
+  { title: "Cloud & DevOps", items: ["AWS", "Vercel", "Cloudflare", "Docker", "GitHub Actions"] },
+  { title: "Tools", items: ["n8n", "Git", "Figma", "Postman", "Linux"] },
 ];
 
 const EXPERIENCE = [
