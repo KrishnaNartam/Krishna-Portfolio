@@ -675,7 +675,7 @@ function Contact() {
 
           <div className="relative grid lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
             <div>
-              <NumKicker n="06" label="Let's work" />
+              <NumKicker n="07" label="Let's work" />
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 leading-tight">
                 Have a project in mind?
                 <br />
