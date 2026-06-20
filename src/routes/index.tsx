@@ -540,7 +540,7 @@ function Insights() {
   return (
     <section id="insights" className="relative px-6 py-24 sm:py-32">
       <div className="max-w-6xl mx-auto">
-        <NumKicker n="04" label="Insights" />
+        <NumKicker n="05" label="Insights" />
         <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-14 max-w-2xl">
           Practical insights and ideas from the journey so far.
         </h2>
