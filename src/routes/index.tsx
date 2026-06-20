@@ -398,39 +398,54 @@ function Work() {
         </h2>
 
         <div className="space-y-6">
-          {PROJECTS.map((p) => (
-            <article
-              key={p.name}
-              className="group glass-card glass-card-hover rounded-3xl overflow-hidden grid md:grid-cols-[1.2fr_1fr] gap-0 items-stretch"
-            >
-              <div className="p-8 sm:p-10 flex flex-col justify-between">
-                <div>
-                  <h3 className="font-display text-2xl sm:text-3xl font-medium mb-3">
-                    {p.name}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed max-w-md">{p.desc}</p>
+          {PROJECTS.map((p) => {
+            const Wrapper: any = p.link ? "a" : "article";
+            const wrapperProps = p.link
+              ? { href: p.link, target: "_blank", rel: "noreferrer" }
+              : {};
+            return (
+              <Wrapper
+                key={p.name}
+                {...wrapperProps}
+                className={`group glass-card glass-card-hover rounded-3xl overflow-hidden grid md:grid-cols-[1.2fr_1fr] gap-0 items-stretch ${
+                  p.link ? "cursor-pointer" : ""
+                }`}
+              >
+                <div className="p-8 sm:p-10 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-display text-2xl sm:text-3xl font-medium mb-3">
+                      {p.name}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed max-w-md">{p.desc}</p>
+                  </div>
+                  <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border">
+                    <Meta label="Country" value={p.country} />
+                    <Meta label="Duration" value={p.duration} />
+                    <Meta label="Year" value={p.year} />
+                  </div>
                 </div>
-                <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border">
-                  <Meta label="Country" value={p.country} />
-                  <Meta label="Duration" value={p.duration} />
-                  <Meta label="Year" value={p.year} />
+                <div className="relative h-56 md:h-auto overflow-hidden">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    loading="lazy"
+                    width={1024}
+                    height={768}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {p.link ? (
+                    <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/60 backdrop-blur border border-white/10 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition">
+                      <ArrowUpRight className="w-4 h-4" />
+                    </div>
+                  ) : (
+                    <div className="absolute top-4 right-4 text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-background/70 backdrop-blur border border-white/10 text-muted-foreground">
+                      Coming soon
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div className="relative h-56 md:h-auto overflow-hidden">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  loading="lazy"
-                  width={1024}
-                  height={768}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/60 backdrop-blur border border-white/10 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition">
-                  <ArrowUpRight className="w-4 h-4" />
-                </div>
-              </div>
-            </article>
-          ))}
+              </Wrapper>
+            );
+          })}
         </div>
       </div>
     </section>
