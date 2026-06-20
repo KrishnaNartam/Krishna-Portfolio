@@ -585,7 +585,7 @@ function Faq() {
   return (
     <section id="faq" className="relative px-6 py-24 sm:py-32">
       <div className="max-w-3xl mx-auto text-center">
-        <NumKicker n="05" label="FAQ" />
+        <NumKicker n="06" label="FAQ" />
         <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-3">
           We got you an answer.
         </h2>
