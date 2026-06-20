@@ -507,7 +507,7 @@ function Experience() {
   return (
     <section id="experience" className="relative px-6 py-24 sm:py-32">
       <div className="max-w-6xl mx-auto">
-        <NumKicker n="03" label="Experience" />
+        <NumKicker n="04" label="Experience" />
         <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 max-w-3xl">
           Experience that shapes meaningful products.
         </h2>
