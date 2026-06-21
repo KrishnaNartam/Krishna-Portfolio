@@ -40,12 +40,19 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Krishna Prashant Nartam — AI Engineer building useful, eye-pleasing AI products, automation systems, and Industrial IoT solutions.",
+          "AI Engineer based in Pune, India. I build LLM-powered SaaS products, n8n automation pipelines, and Industrial IoT dashboards — from idea to production.",
       },
-      { property: "og:title", content: "Krishna Prashant Nartam — AI Engineer" },
+      { property: "og:title", content: "Krishna Prashant Nartam — AI Engineer & Full-Stack Developer" },
       {
         property: "og:description",
-        content: "Building intelligent systems, AI products and Industrial IoT solutions.",
+        content:
+          "AI Engineer based in Pune, India. I build LLM-powered SaaS products, n8n automation pipelines, and Industrial IoT dashboards — from idea to production.",
+      },
+      { name: "twitter:title", content: "Krishna Prashant Nartam — AI Engineer & Full-Stack Developer" },
+      {
+        name: "twitter:description",
+        content:
+          "AI Engineer based in Pune, India. I build LLM-powered SaaS products, n8n automation pipelines, and Industrial IoT dashboards — from idea to production.",
       },
     ],
     links: [{ rel: "canonical", href: "/" }],
