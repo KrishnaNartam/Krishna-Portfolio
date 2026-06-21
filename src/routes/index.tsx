@@ -937,7 +937,7 @@ function Footer() {
   return (
     <footer className="border-t border-border py-10 px-6">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-        <div>© {new Date().getFullYear()} Krishna Prashant Nartam. All rights reserved.</div>
+        <div>© 2025–2026 Krishna Prashant Nartam.</div>
         <div className="font-mono">AI · Full-Stack · Industrial IoT</div>
       </div>
     </footer>
