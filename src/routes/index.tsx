@@ -162,7 +162,14 @@ const EXPERIENCE = [
   { role: "AI Engineer (Freelance)", org: "Independent · Pune, India", years: "2024 — Present" },
   { role: "Full-Stack Developer", org: "Self-initiated SaaS & client work", years: "2023 — 2024" },
   { role: "Industrial IoT Builder", org: "Manufacturing pilots · OEE dashboards", years: "2023 — 2024" },
-  { role: "Mechanical Engineering", org: "SKN College of Engineering · Pune", years: "2023 — 2027" },
+];
+
+const EDUCATION = [
+  {
+    degree: "B.E. Mechanical Engineering",
+    org: "SKN College of Engineering, Pune",
+    years: "2023 — 2027",
+  },
 ];
 
 const INSIGHTS = [
