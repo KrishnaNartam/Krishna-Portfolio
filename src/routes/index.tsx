@@ -720,7 +720,7 @@ function Faq() {
       <div className="max-w-3xl mx-auto text-center">
         <NumKicker n="06" label="FAQ" />
         <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-3">
-          We got you an answer.
+          Frequently Asked Questions.
         </h2>
         <p className="text-muted-foreground mb-14">
           Everything you might want to know before we work together — answered clearly and simply.
