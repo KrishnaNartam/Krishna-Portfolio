@@ -467,7 +467,7 @@ function About() {
             </p>
           </div>
           <div className="space-y-2 text-sm text-muted-foreground/80 self-end">
-            <p>Currently freelancing & building AI products.</p>
+            <p>Available for freelance projects, AI product collaborations, and full-time roles.</p>
             <p>Based in Pune, Maharashtra · India.</p>
           </div>
         </div>
