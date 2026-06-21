@@ -821,7 +821,7 @@ function Contact() {
 
               <div className="space-y-3 text-sm">
                 <ContactItem icon={Mail} label="krishnanartam911@gmail.com" href="mailto:krishnanartam911@gmail.com" />
-                <ContactItem icon={Phone} label="+91 99212 31669" href="tel:+919921231669" />
+                
                 <ContactItem icon={MapPin} label="Pune, Maharashtra · India" />
               </div>
 
