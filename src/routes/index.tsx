@@ -203,6 +203,14 @@ const FAQS = [
     a: "Yes — short build sprints, long-form product work, and AI/automation consulting. Happy to scope a small paid pilot first.",
   },
   {
+    q: "What is your current availability?",
+    a: "I'm currently available for new freelance projects and AI product collaborations, and open to full-time roles for the right team. Typical kickoff is within 1–2 weeks.",
+  },
+  {
+    q: "What is the minimum project size you work with?",
+    a: "I usually start with a paid discovery sprint from around $500, with full builds typically ranging from $1.5k for a focused MVP to larger engagements for production systems.",
+  },
+  {
     q: "Can we work remotely?",
     a: "Always. I'm based in Pune, India, and work remotely with teams across timezones. On-site visits possible for IIoT pilots.",
   },
