@@ -104,40 +104,48 @@ const BRAND_LOGOS = [
 
 const PROJECTS: {
   name: string;
-  desc: string;
+  problem: string;
+  solution: string;
+  stack: string;
   country: string;
   duration: string;
   year: string;
   image: string;
   link?: string;
+  github?: string;
 }[] = [
   {
     name: "AI Resume Builder",
-    desc:
-      "An AI-powered SaaS that crafts ATS-friendly resumes from a single prompt — dashboard, auth, PDF export, and tailored suggestions for each role.",
+    problem: "Job seekers waste hours rewriting resumes for every role and still get filtered out by ATS.",
+    solution: "An AI SaaS that generates ATS-friendly resumes from a single prompt, with auth, dashboard and PDF export.",
+    stack: "Next.js · FastAPI · OpenAI · Supabase · Tailwind",
     country: "India",
     duration: "2 months",
     year: "2025",
     image: projResume,
-    // link: "https://your-live-url.com",
+    github: "https://github.com/KrishnaNartam",
   },
   {
     name: "Real-Time OEE Monitoring",
-    desc:
-      "Industrial IoT dashboard for live machine performance, KPI tracking and manufacturing analytics over MQTT — helping factories see what their lines actually do.",
+    problem: "Small manufacturers have no live visibility into machine performance, downtime or KPIs.",
+    solution: "Industrial IoT dashboard streaming MQTT data into real-time OEE, downtime and production analytics.",
+    stack: "React · Node.js · MQTT · PostgreSQL · Docker",
     country: "India",
     duration: "3 months",
     year: "2025",
     image: projIiot,
+    github: "https://github.com/KrishnaNartam",
   },
   {
     name: "Anti-Cringe Brand Sentinel",
-    desc:
-      "A multimodal AI auditor that scores social content for brand consistency and predicts engagement — built with Gemini, computer vision and a clean Next.js stack.",
+    problem: "Brand teams ship social content that drifts off-tone and underperforms with no early signal.",
+    solution: "Multimodal AI auditor that scores posts for brand consistency and predicts engagement before publish.",
+    stack: "Next.js · Gemini · Python · Vision API · Vercel",
     country: "India",
     duration: "1 month",
     year: "2025",
     image: projAgent,
+    github: "https://github.com/KrishnaNartam",
   },
 ];
 
