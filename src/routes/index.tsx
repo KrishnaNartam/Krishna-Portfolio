@@ -646,6 +646,31 @@ function Experience() {
   );
 }
 
+/* ───────── Education ───────── */
+function Education() {
+  return (
+    <section id="education" className="relative px-6 pb-24 sm:pb-32">
+      <div className="max-w-6xl mx-auto">
+        <NumKicker n="04b" label="Education" />
+        <div className="border-t border-border">
+          {EDUCATION.map((e) => (
+            <div
+              key={e.degree}
+              className="grid grid-cols-[1fr_auto] gap-6 items-end py-7 border-b border-border hover:bg-white/[0.015] transition-colors px-2"
+            >
+              <div>
+                <div className="font-display text-xl sm:text-2xl font-medium">{e.degree}</div>
+                <div className="text-sm text-muted-foreground mt-1">{e.org}</div>
+              </div>
+              <div className="text-primary text-sm sm:text-base font-mono whitespace-nowrap">{e.years}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ───────── Insights ───────── */
 function Insights() {
   return (
