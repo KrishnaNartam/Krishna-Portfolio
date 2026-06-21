@@ -269,6 +269,7 @@ function useActiveSection(ids: string[]) {
 /* ───────── Nav ───────── */
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const active = useActiveSection(NAV.map((n) => n.href.slice(1)));
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
@@ -282,17 +283,27 @@ function Nav() {
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-2 font-display font-semibold text-lg">
-          <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-foreground text-xs font-bold">
-            K
+          <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-foreground">
+            <Sparkles className="w-3.5 h-3.5" />
           </span>
           <span>Krishna</span>
         </a>
         <nav className="hidden md:flex items-center gap-7 text-[13px] text-muted-foreground">
-          {NAV.map((n) => (
-            <a key={n.href} href={n.href} className="hover:text-foreground transition-colors">
-              {n.label}
-            </a>
-          ))}
+          {NAV.map((n) => {
+            const isActive = active === n.href.slice(1);
+            return (
+              <a
+                key={n.href}
+                href={n.href}
+                className={`transition-colors ${
+                  isActive ? "text-foreground font-medium" : "hover:text-foreground"
+                }`}
+                aria-current={isActive ? "true" : undefined}
+              >
+                {n.label}
+              </a>
+            );
+          })}
         </nav>
         <a
           href="#contact"
