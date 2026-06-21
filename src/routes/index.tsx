@@ -487,54 +487,76 @@ function Work() {
         </h2>
 
         <div className="space-y-6">
-          {PROJECTS.map((p) => {
-            const Wrapper: any = p.link ? "a" : "article";
-            const wrapperProps = p.link
-              ? { href: p.link, target: "_blank", rel: "noreferrer" }
-              : {};
-            return (
-              <Wrapper
-                key={p.name}
-                {...wrapperProps}
-                className={`group glass-card glass-card-hover rounded-3xl overflow-hidden grid md:grid-cols-[1.2fr_1fr] gap-0 items-stretch ${
-                  p.link ? "cursor-pointer" : ""
-                }`}
-              >
-                <div className="p-8 sm:p-10 flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-display text-2xl sm:text-3xl font-medium mb-3">
-                      {p.name}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed max-w-md">{p.desc}</p>
-                  </div>
-                  <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border">
-                    <Meta label="Country" value={p.country} />
-                    <Meta label="Duration" value={p.duration} />
-                    <Meta label="Year" value={p.year} />
+          {PROJECTS.map((p) => (
+            <article
+              key={p.name}
+              className="group glass-card glass-card-hover rounded-3xl overflow-hidden grid md:grid-cols-[1.2fr_1fr] gap-0 items-stretch"
+            >
+              <div className="p-8 sm:p-10 flex flex-col justify-between">
+                <div>
+                  <h3 className="font-display text-2xl sm:text-3xl font-medium mb-4">
+                    {p.name}
+                  </h3>
+                  <ul className="space-y-2.5 text-sm leading-relaxed max-w-md">
+                    <li className="flex gap-3">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-primary mt-1 w-16 shrink-0">Problem</span>
+                      <span className="text-muted-foreground">{p.problem}</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-primary mt-1 w-16 shrink-0">Solution</span>
+                      <span className="text-muted-foreground">{p.solution}</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-primary mt-1 w-16 shrink-0">Stack</span>
+                      <span className="text-muted-foreground">{p.stack}</span>
+                    </li>
+                  </ul>
+                  <div className="mt-6 flex flex-wrap items-center gap-3">
+                    {p.link && (
+                      <a
+                        href={p.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-full bg-primary text-primary-foreground hover:opacity-90 transition"
+                      >
+                        Live demo <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                    {p.github && (
+                      <a
+                        href={p.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-full border border-border bg-white/5 hover:bg-white/10 transition"
+                      >
+                        <Github className="w-3.5 h-3.5" /> GitHub
+                      </a>
+                    )}
                   </div>
                 </div>
-                <div className="relative h-56 md:h-auto overflow-hidden">
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    loading="lazy"
-                    width={1024}
-                    height={768}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {p.link ? (
-                    <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/60 backdrop-blur border border-white/10 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition">
-                      <ArrowUpRight className="w-4 h-4" />
-                    </div>
-                  ) : (
-                    <div className="absolute top-4 right-4 text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-background/70 backdrop-blur border border-white/10 text-muted-foreground">
-                      Coming soon
-                    </div>
-                  )}
+                <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border">
+                  <Meta label="Country" value={p.country} />
+                  <Meta label="Duration" value={p.duration} />
+                  <Meta label="Year" value={p.year} />
                 </div>
-              </Wrapper>
-            );
-          })}
+              </div>
+              <div className="relative h-56 md:h-auto overflow-hidden">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  loading="lazy"
+                  width={1024}
+                  height={768}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                {!p.link && (
+                  <div className="absolute top-4 right-4 text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-background/70 backdrop-blur border border-white/10 text-muted-foreground">
+                    Live link soon
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
