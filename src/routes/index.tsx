@@ -5,7 +5,7 @@ import {
   Github,
   Linkedin,
   Mail,
-  Phone,
+  
   MapPin,
   ArrowDown,
   ArrowUpRight,
