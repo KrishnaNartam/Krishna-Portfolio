@@ -336,18 +336,31 @@ function Hero() {
                     height={28}
                     className="w-7 h-7 rounded-full object-cover"
                   />
-                  <span className="text-xs font-medium">Hi, there 👋</span>
+                  <span className="text-xs font-medium">
+                    AI Engineer. Based in Pune. I build things that actually ship.
+                  </span>
                 </div>
 
                 <h1 className="font-display text-4xl sm:text-5xl lg:text-[60px] leading-[1.05] font-medium">
-                  Krishna&nbsp;Nartam,
-                  <br />
-                  <span className="text-foreground/95">
-                    AI engineer who builds useful
-                  </span>
-                  <br />
-                  <span className="text-foreground/95">and eye-pleasing products.</span>
+                  I build AI products, automation systems, and IIoT dashboards
+                  <span className="text-muted-foreground"> — from first prompt to production.</span>
                 </h1>
+
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <a
+                    href="#work"
+                    className="inline-flex items-center gap-2 text-sm font-medium px-5 py-3 rounded-full bg-primary text-primary-foreground hover:animate-pulse-glow transition-all"
+                  >
+                    See my work
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-2 text-sm font-medium px-5 py-3 rounded-full border border-border bg-white/5 hover:bg-white/10 transition"
+                  >
+                    Get in touch
+                  </a>
+                </div>
               </div>
 
               <div className="flex items-center gap-2 text-xs text-muted-foreground animate-fade-up" style={{ animationDelay: "0.2s" }}>
@@ -358,15 +371,26 @@ function Hero() {
               </div>
             </div>
 
-            <div className="relative flex justify-center lg:justify-end animate-fade-up" style={{ animationDelay: "0.15s" }}>
-              <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 via-transparent to-secondary/30 mix-blend-overlay pointer-events-none z-10" />
-                <img
-                  src={krishnaPortrait}
-                  alt="Portrait of Krishna Nartam"
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                />
+            <div className="relative hidden lg:flex justify-end animate-fade-up" style={{ animationDelay: "0.15s" }}>
+              <div className="relative w-full max-w-[360px] aspect-square rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-primary/15 via-secondary/10 to-transparent p-8 flex flex-col justify-between">
+                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground">
+                  <span>Now</span>
+                  <span className="text-primary">2026</span>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 text-sm">
+                    <Brain className="w-4 h-4 text-primary" /> LLM-powered SaaS
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <Workflow className="w-4 h-4 text-primary" /> n8n automation
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <Cpu className="w-4 h-4 text-primary" /> Industrial IoT
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <Code2 className="w-4 h-4 text-primary" /> Full-stack web
+                  </div>
+                </div>
               </div>
             </div>
           </div>
