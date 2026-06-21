@@ -700,12 +700,9 @@ function Insights() {
               <div className="p-6 flex flex-col flex-1">
                 <h3 className="font-display text-lg font-medium leading-snug mb-2">{i.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{i.excerpt}</p>
-                <a
-                  href="#contact"
-                  className="mt-5 inline-flex items-center gap-1.5 text-sm text-primary hover:gap-2.5 transition-all"
-                >
-                  Read more <ArrowDown className="w-3.5 h-3.5 -rotate-45" />
-                </a>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                  Article coming soon
+                </span>
               </div>
             </article>
           ))}
