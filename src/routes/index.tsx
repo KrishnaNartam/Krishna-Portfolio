@@ -21,7 +21,7 @@ import {
   Cloud,
   Rocket,
 } from "lucide-react";
-import portrait from "@/assets/portrait.jpg";
+
 import krishnaPortraitAsset from "@/assets/krishna-portrait.png.asset.json";
 import projResume from "@/assets/proj-resume.jpg";
 import projIiot from "@/assets/proj-iiot.jpg";
