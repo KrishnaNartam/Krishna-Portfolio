@@ -5,7 +5,7 @@ import {
   Github,
   Linkedin,
   Mail,
-  Phone,
+  
   MapPin,
   ArrowDown,
   ArrowUpRight,
@@ -21,7 +21,7 @@ import {
   Cloud,
   Rocket,
 } from "lucide-react";
-import portrait from "@/assets/portrait.jpg";
+
 import krishnaPortraitAsset from "@/assets/krishna-portrait.png.asset.json";
 import projResume from "@/assets/proj-resume.jpg";
 import projIiot from "@/assets/proj-iiot.jpg";
@@ -40,12 +40,19 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Krishna Prashant Nartam — AI Engineer building useful, eye-pleasing AI products, automation systems, and Industrial IoT solutions.",
+          "AI Engineer based in Pune, India. I build LLM-powered SaaS products, n8n automation pipelines, and Industrial IoT dashboards — from idea to production.",
       },
-      { property: "og:title", content: "Krishna Prashant Nartam — AI Engineer" },
+      { property: "og:title", content: "Krishna Prashant Nartam — AI Engineer & Full-Stack Developer" },
       {
         property: "og:description",
-        content: "Building intelligent systems, AI products and Industrial IoT solutions.",
+        content:
+          "AI Engineer based in Pune, India. I build LLM-powered SaaS products, n8n automation pipelines, and Industrial IoT dashboards — from idea to production.",
+      },
+      { name: "twitter:title", content: "Krishna Prashant Nartam — AI Engineer & Full-Stack Developer" },
+      {
+        name: "twitter:description",
+        content:
+          "AI Engineer based in Pune, India. I build LLM-powered SaaS products, n8n automation pipelines, and Industrial IoT dashboards — from idea to production.",
       },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -97,40 +104,48 @@ const BRAND_LOGOS = [
 
 const PROJECTS: {
   name: string;
-  desc: string;
+  problem: string;
+  solution: string;
+  stack: string;
   country: string;
   duration: string;
   year: string;
   image: string;
   link?: string;
+  github?: string;
 }[] = [
   {
     name: "AI Resume Builder",
-    desc:
-      "An AI-powered SaaS that crafts ATS-friendly resumes from a single prompt — dashboard, auth, PDF export, and tailored suggestions for each role.",
+    problem: "Job seekers waste hours rewriting resumes for every role and still get filtered out by ATS.",
+    solution: "An AI SaaS that generates ATS-friendly resumes from a single prompt, with auth, dashboard and PDF export.",
+    stack: "Next.js · FastAPI · OpenAI · Supabase · Tailwind",
     country: "India",
     duration: "2 months",
     year: "2025",
     image: projResume,
-    // link: "https://your-live-url.com",
+    github: "https://github.com/KrishnaNartam",
   },
   {
     name: "Real-Time OEE Monitoring",
-    desc:
-      "Industrial IoT dashboard for live machine performance, KPI tracking and manufacturing analytics over MQTT — helping factories see what their lines actually do.",
+    problem: "Small manufacturers have no live visibility into machine performance, downtime or KPIs.",
+    solution: "Industrial IoT dashboard streaming MQTT data into real-time OEE, downtime and production analytics.",
+    stack: "React · Node.js · MQTT · PostgreSQL · Docker",
     country: "India",
     duration: "3 months",
     year: "2025",
     image: projIiot,
+    github: "https://github.com/KrishnaNartam",
   },
   {
     name: "Anti-Cringe Brand Sentinel",
-    desc:
-      "A multimodal AI auditor that scores social content for brand consistency and predicts engagement — built with Gemini, computer vision and a clean Next.js stack.",
+    problem: "Brand teams ship social content that drifts off-tone and underperforms with no early signal.",
+    solution: "Multimodal AI auditor that scores posts for brand consistency and predicts engagement before publish.",
+    stack: "Next.js · Gemini · Python · Vision API · Vercel",
     country: "India",
     duration: "1 month",
     year: "2025",
     image: projAgent,
+    github: "https://github.com/KrishnaNartam",
   },
 ];
 
@@ -147,7 +162,14 @@ const EXPERIENCE = [
   { role: "AI Engineer (Freelance)", org: "Independent · Pune, India", years: "2024 — Present" },
   { role: "Full-Stack Developer", org: "Self-initiated SaaS & client work", years: "2023 — 2024" },
   { role: "Industrial IoT Builder", org: "Manufacturing pilots · OEE dashboards", years: "2023 — 2024" },
-  { role: "Mechanical Engineering", org: "SKN College of Engineering · Pune", years: "2023 — 2027" },
+];
+
+const EDUCATION = [
+  {
+    degree: "B.E. Mechanical Engineering",
+    org: "SKN College of Engineering, Pune",
+    years: "2023 — 2027",
+  },
 ];
 
 const INSIGHTS = [
@@ -181,6 +203,14 @@ const FAQS = [
     a: "Yes — short build sprints, long-form product work, and AI/automation consulting. Happy to scope a small paid pilot first.",
   },
   {
+    q: "What is your current availability?",
+    a: "I'm currently available for new freelance projects and AI product collaborations, and open to full-time roles for the right team. Typical kickoff is within 1–2 weeks.",
+  },
+  {
+    q: "What is the minimum project size you work with?",
+    a: "I usually start with a paid discovery sprint from around $500, with full builds typically ranging from $1.5k for a focused MVP to larger engagements for production systems.",
+  },
+  {
     q: "Can we work remotely?",
     a: "Always. I'm based in Pune, India, and work remotely with teams across timezones. On-site visits possible for IIoT pilots.",
   },
@@ -204,6 +234,7 @@ function Portfolio() {
       <Work />
       <Tools />
       <Experience />
+      <Education />
       <Insights />
       <Faq />
       <Contact />
@@ -212,9 +243,33 @@ function Portfolio() {
   );
 }
 
+/* ───────── Scroll spy ───────── */
+function useActiveSection(ids: string[]) {
+  const [active, setActive] = useState<string>(ids[0] ?? "");
+  useEffect(() => {
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => !!el);
+    if (sections.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [ids.join("|")]);
+  return active;
+}
+
 /* ───────── Nav ───────── */
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const active = useActiveSection(NAV.map((n) => n.href.slice(1)));
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
@@ -228,17 +283,27 @@ function Nav() {
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-2 font-display font-semibold text-lg">
-          <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-foreground text-xs font-bold">
-            K
+          <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-foreground">
+            <Sparkles className="w-3.5 h-3.5" />
           </span>
           <span>Krishna</span>
         </a>
         <nav className="hidden md:flex items-center gap-7 text-[13px] text-muted-foreground">
-          {NAV.map((n) => (
-            <a key={n.href} href={n.href} className="hover:text-foreground transition-colors">
-              {n.label}
-            </a>
-          ))}
+          {NAV.map((n) => {
+            const isActive = active === n.href.slice(1);
+            return (
+              <a
+                key={n.href}
+                href={n.href}
+                className={`transition-colors ${
+                  isActive ? "text-foreground font-medium" : "hover:text-foreground"
+                }`}
+                aria-current={isActive ? "true" : undefined}
+              >
+                {n.label}
+              </a>
+            );
+          })}
         </nav>
         <a
           href="#contact"
@@ -271,18 +336,31 @@ function Hero() {
                     height={28}
                     className="w-7 h-7 rounded-full object-cover"
                   />
-                  <span className="text-xs font-medium">Hi, there 👋</span>
+                  <span className="text-xs font-medium">
+                    AI Engineer. Based in Pune. I build things that actually ship.
+                  </span>
                 </div>
 
                 <h1 className="font-display text-4xl sm:text-5xl lg:text-[60px] leading-[1.05] font-medium">
-                  Krishna&nbsp;Nartam,
-                  <br />
-                  <span className="text-foreground/95">
-                    AI engineer who builds useful
-                  </span>
-                  <br />
-                  <span className="text-foreground/95">and eye-pleasing products.</span>
+                  I build AI products, automation systems, and IIoT dashboards
+                  <span className="text-muted-foreground"> — from first prompt to production.</span>
                 </h1>
+
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <a
+                    href="#work"
+                    className="inline-flex items-center gap-2 text-sm font-medium px-5 py-3 rounded-full bg-primary text-primary-foreground hover:animate-pulse-glow transition-all"
+                  >
+                    See my work
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-2 text-sm font-medium px-5 py-3 rounded-full border border-border bg-white/5 hover:bg-white/10 transition"
+                  >
+                    Get in touch
+                  </a>
+                </div>
               </div>
 
               <div className="flex items-center gap-2 text-xs text-muted-foreground animate-fade-up" style={{ animationDelay: "0.2s" }}>
@@ -293,15 +371,26 @@ function Hero() {
               </div>
             </div>
 
-            <div className="relative flex justify-center lg:justify-end animate-fade-up" style={{ animationDelay: "0.15s" }}>
-              <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 via-transparent to-secondary/30 mix-blend-overlay pointer-events-none z-10" />
-                <img
-                  src={krishnaPortrait}
-                  alt="Portrait of Krishna Nartam"
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                />
+            <div className="relative hidden lg:flex justify-end animate-fade-up" style={{ animationDelay: "0.15s" }}>
+              <div className="relative w-full max-w-[360px] aspect-square rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-primary/15 via-secondary/10 to-transparent p-8 flex flex-col justify-between">
+                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground">
+                  <span>Now</span>
+                  <span className="text-primary">2026</span>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 text-sm">
+                    <Brain className="w-4 h-4 text-primary" /> LLM-powered SaaS
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <Workflow className="w-4 h-4 text-primary" /> n8n automation
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <Cpu className="w-4 h-4 text-primary" /> Industrial IoT
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <Code2 className="w-4 h-4 text-primary" /> Full-stack web
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -378,7 +467,7 @@ function About() {
             </p>
           </div>
           <div className="space-y-2 text-sm text-muted-foreground/80 self-end">
-            <p>Currently freelancing & building AI products.</p>
+            <p>Available for freelance projects, AI product collaborations, and full-time roles.</p>
             <p>Based in Pune, Maharashtra · India.</p>
           </div>
         </div>
@@ -398,54 +487,76 @@ function Work() {
         </h2>
 
         <div className="space-y-6">
-          {PROJECTS.map((p) => {
-            const Wrapper: any = p.link ? "a" : "article";
-            const wrapperProps = p.link
-              ? { href: p.link, target: "_blank", rel: "noreferrer" }
-              : {};
-            return (
-              <Wrapper
-                key={p.name}
-                {...wrapperProps}
-                className={`group glass-card glass-card-hover rounded-3xl overflow-hidden grid md:grid-cols-[1.2fr_1fr] gap-0 items-stretch ${
-                  p.link ? "cursor-pointer" : ""
-                }`}
-              >
-                <div className="p-8 sm:p-10 flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-display text-2xl sm:text-3xl font-medium mb-3">
-                      {p.name}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed max-w-md">{p.desc}</p>
-                  </div>
-                  <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border">
-                    <Meta label="Country" value={p.country} />
-                    <Meta label="Duration" value={p.duration} />
-                    <Meta label="Year" value={p.year} />
+          {PROJECTS.map((p) => (
+            <article
+              key={p.name}
+              className="group glass-card glass-card-hover rounded-3xl overflow-hidden grid md:grid-cols-[1.2fr_1fr] gap-0 items-stretch"
+            >
+              <div className="p-8 sm:p-10 flex flex-col justify-between">
+                <div>
+                  <h3 className="font-display text-2xl sm:text-3xl font-medium mb-4">
+                    {p.name}
+                  </h3>
+                  <ul className="space-y-2.5 text-sm leading-relaxed max-w-md">
+                    <li className="flex gap-3">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-primary mt-1 w-16 shrink-0">Problem</span>
+                      <span className="text-muted-foreground">{p.problem}</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-primary mt-1 w-16 shrink-0">Solution</span>
+                      <span className="text-muted-foreground">{p.solution}</span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-primary mt-1 w-16 shrink-0">Stack</span>
+                      <span className="text-muted-foreground">{p.stack}</span>
+                    </li>
+                  </ul>
+                  <div className="mt-6 flex flex-wrap items-center gap-3">
+                    {p.link && (
+                      <a
+                        href={p.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-full bg-primary text-primary-foreground hover:opacity-90 transition"
+                      >
+                        Live demo <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                    {p.github && (
+                      <a
+                        href={p.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-full border border-border bg-white/5 hover:bg-white/10 transition"
+                      >
+                        <Github className="w-3.5 h-3.5" /> GitHub
+                      </a>
+                    )}
                   </div>
                 </div>
-                <div className="relative h-56 md:h-auto overflow-hidden">
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    loading="lazy"
-                    width={1024}
-                    height={768}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {p.link ? (
-                    <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/60 backdrop-blur border border-white/10 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition">
-                      <ArrowUpRight className="w-4 h-4" />
-                    </div>
-                  ) : (
-                    <div className="absolute top-4 right-4 text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-background/70 backdrop-blur border border-white/10 text-muted-foreground">
-                      Coming soon
-                    </div>
-                  )}
+                <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border">
+                  <Meta label="Country" value={p.country} />
+                  <Meta label="Duration" value={p.duration} />
+                  <Meta label="Year" value={p.year} />
                 </div>
-              </Wrapper>
-            );
-          })}
+              </div>
+              <div className="relative h-56 md:h-auto overflow-hidden">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  loading="lazy"
+                  width={1024}
+                  height={768}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                {!p.link && (
+                  <div className="absolute top-4 right-4 text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-background/70 backdrop-blur border border-white/10 text-muted-foreground">
+                    Live link soon
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -535,6 +646,31 @@ function Experience() {
   );
 }
 
+/* ───────── Education ───────── */
+function Education() {
+  return (
+    <section id="education" className="relative px-6 pb-24 sm:pb-32">
+      <div className="max-w-6xl mx-auto">
+        <NumKicker n="04b" label="Education" />
+        <div className="border-t border-border">
+          {EDUCATION.map((e) => (
+            <div
+              key={e.degree}
+              className="grid grid-cols-[1fr_auto] gap-6 items-end py-7 border-b border-border hover:bg-white/[0.015] transition-colors px-2"
+            >
+              <div>
+                <div className="font-display text-xl sm:text-2xl font-medium">{e.degree}</div>
+                <div className="text-sm text-muted-foreground mt-1">{e.org}</div>
+              </div>
+              <div className="text-primary text-sm sm:text-base font-mono whitespace-nowrap">{e.years}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ───────── Insights ───────── */
 function Insights() {
   return (
@@ -564,12 +700,9 @@ function Insights() {
               <div className="p-6 flex flex-col flex-1">
                 <h3 className="font-display text-lg font-medium leading-snug mb-2">{i.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{i.excerpt}</p>
-                <a
-                  href="#contact"
-                  className="mt-5 inline-flex items-center gap-1.5 text-sm text-primary hover:gap-2.5 transition-all"
-                >
-                  Read more <ArrowDown className="w-3.5 h-3.5 -rotate-45" />
-                </a>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                  Article coming soon
+                </span>
               </div>
             </article>
           ))}
@@ -587,7 +720,7 @@ function Faq() {
       <div className="max-w-3xl mx-auto text-center">
         <NumKicker n="06" label="FAQ" />
         <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-3">
-          We got you an answer.
+          Frequently Asked Questions.
         </h2>
         <p className="text-muted-foreground mb-14">
           Everything you might want to know before we work together — answered clearly and simply.
@@ -688,7 +821,7 @@ function Contact() {
 
               <div className="space-y-3 text-sm">
                 <ContactItem icon={Mail} label="krishnanartam911@gmail.com" href="mailto:krishnanartam911@gmail.com" />
-                <ContactItem icon={Phone} label="+91 99212 31669" href="tel:+919921231669" />
+                
                 <ContactItem icon={MapPin} label="Pune, Maharashtra · India" />
               </div>
 
@@ -804,7 +937,7 @@ function Footer() {
   return (
     <footer className="border-t border-border py-10 px-6">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-        <div>© {new Date().getFullYear()} Krishna Prashant Nartam. All rights reserved.</div>
+        <div>© 2025–2026 Krishna Prashant Nartam.</div>
         <div className="font-mono">AI · Full-Stack · Industrial IoT</div>
       </div>
     </footer>
