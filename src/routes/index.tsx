@@ -5,21 +5,11 @@ import {
   Github,
   Linkedin,
   Mail,
-  
   MapPin,
-  ArrowDown,
   ArrowUpRight,
   Plus,
   Minus,
   Send,
-  Sparkles,
-  Brain,
-  Code2,
-  Workflow,
-  Cpu,
-  Database,
-  Cloud,
-  Rocket,
 } from "lucide-react";
 
 import krishnaPortraitAsset from "@/assets/krishna-portrait.png.asset.json";
@@ -32,6 +22,13 @@ const krishnaPortrait = krishnaPortraitAsset.url;
 const EMAILJS_SERVICE_ID = "service_138mf4y";
 const EMAILJS_TEMPLATE_ID = "template_tzzd9c8";
 const EMAILJS_PUBLIC_KEY = "XIuTaiEJ6Ll6vBf4Z";
+
+const ISSUE = "Vol. 01 · Issue 26";
+const TODAY = new Date().toLocaleDateString("en-GB", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+});
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -61,107 +58,122 @@ export const Route = createFileRoute("/")({
 });
 
 const NAV = [
-  { label: "Work", href: "#work" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Insights", href: "#insights" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "Index", href: "#top", n: "00" },
+  { label: "About", href: "#about", n: "01" },
+  { label: "Work", href: "#work", n: "02" },
+  { label: "Craft", href: "#skills", n: "03" },
+  { label: "Career", href: "#experience", n: "04" },
+  { label: "Notes", href: "#insights", n: "05" },
+  { label: "Contact", href: "#contact", n: "06" },
 ];
 
-const BRAND_LOGOS = [
-  {
-    name: "OpenAI",
-    viewBox: "0 0 256 260",
-    path: "M239.184 106.203a64.716 64.716 0 0 0-5.576-53.103C219.452 28.459 191 15.784 163.213 21.74A65.586 65.586 0 0 0 52.096 45.22a64.716 64.716 0 0 0-43.23 31.36c-14.31 24.602-11.061 55.634 8.033 76.74a64.665 64.665 0 0 0 5.525 53.102c14.174 24.65 42.644 37.324 70.446 31.36a64.72 64.72 0 0 0 48.754 21.744c28.481.025 53.714-18.361 62.414-45.481a64.767 64.767 0 0 0 43.229-31.36c14.137-24.558 10.875-55.423-8.083-76.483Zm-97.56 136.338a48.397 48.397 0 0 1-31.105-11.255l1.535-.87 51.67-29.825a8.595 8.595 0 0 0 4.247-7.367v-72.85l21.845 12.636c.218.111.37.32.409.563v60.367c-.056 26.818-21.783 48.545-48.601 48.601Zm-104.466-44.61a48.345 48.345 0 0 1-5.781-32.589l1.534.921 51.722 29.826a8.339 8.339 0 0 0 8.441 0l63.181-36.425v25.221a.87.87 0 0 1-.358.665l-52.335 30.184c-23.257 13.398-52.97 5.431-66.404-17.803ZM23.549 85.38a48.499 48.499 0 0 1 25.58-21.333v61.39a8.288 8.288 0 0 0 4.195 7.316l62.874 36.272-21.845 12.636a.819.819 0 0 1-.767 0L41.353 151.53c-23.211-13.454-31.171-43.144-17.804-66.405v.256Zm179.466 41.695-63.08-36.63L161.73 77.86a.819.819 0 0 1 .768 0l52.233 30.184a48.6 48.6 0 0 1-7.316 87.635v-61.391a8.544 8.544 0 0 0-4.4-7.213Zm21.742-32.69-1.535-.922-51.619-30.081a8.39 8.39 0 0 0-8.492 0L99.98 99.808V74.587a.716.716 0 0 1 .307-.665l52.233-30.133a48.652 48.652 0 0 1 72.236 50.391v.205ZM88.061 139.097l-21.845-12.585a.87.87 0 0 1-.41-.614V65.685a48.652 48.652 0 0 1 79.757-37.346l-1.535.87-51.67 29.825a8.595 8.595 0 0 0-4.246 7.367l-.051 72.697Zm11.868-25.58 28.138-16.217 28.188 16.218v32.434l-28.086 16.218-28.188-16.218-.052-32.434Z",
-  },
-  {
-    name: "Anthropic",
-    viewBox: "0 0 24 24",
-    path: "M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z",
-  },
-  {
-    name: "Gemini",
-    viewBox: "0 0 24 24",
-    path: "M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81",
-  },
-  {
-    name: "n8n",
-    viewBox: "0 0 24 24",
-    path: "M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632",
-  },
-  {
-    name: "Supabase",
-    viewBox: "0 0 24 24",
-    path: "M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z",
-  },
-  {
-    name: "Vercel",
-    viewBox: "0 0 24 24",
-    path: "m12 1.608 12 20.784H0Z",
-  },
+const CLIENT_MARKS = [
+  "OpenAI · GPT-4o",
+  "Anthropic · Claude",
+  "Google · Gemini",
+  "Supabase",
+  "n8n",
+  "Vercel",
+  "Cloudflare",
+  "PostgreSQL",
+  "Docker",
+  "MQTT",
 ];
 
 const PROJECTS: {
+  n: string;
   name: string;
+  tagline: string;
   problem: string;
   solution: string;
-  stack: string;
-  country: string;
-  duration: string;
+  stack: string[];
+  role: string;
   year: string;
+  duration: string;
   image: string;
   link?: string;
   github?: string;
 }[] = [
   {
-    name: "AI Resume Builder",
-    problem: "Job seekers waste hours rewriting resumes for every role and still get filtered out by ATS.",
-    solution: "An AI SaaS that generates ATS-friendly resumes from a single prompt, with auth, dashboard and PDF export.",
-    stack: "Next.js · FastAPI · OpenAI · Supabase · Tailwind",
-    country: "India",
-    duration: "2 months",
+    n: "P/01",
+    name: "Résumé, rebuilt by an AI that reads job ads",
+    tagline: "AI Resume Builder — SaaS",
+    problem:
+      "Job seekers spend hours rewriting résumés for every posting and still get filtered out by ATS keyword screens.",
+    solution:
+      "A single-prompt SaaS that composes ATS-friendly résumés, adapts tone to the role, and exports clean PDFs — with auth, saved templates, and a dashboard.",
+    stack: ["Next.js", "FastAPI", "OpenAI", "Supabase", "Tailwind"],
+    role: "Design, product, full-stack",
     year: "2025",
+    duration: "2 months",
     image: projResume,
     github: "https://github.com/KrishnaNartam",
   },
   {
-    name: "Real-Time OEE Monitoring",
-    problem: "Small manufacturers have no live visibility into machine performance, downtime or KPIs.",
-    solution: "Industrial IoT dashboard streaming MQTT data into real-time OEE, downtime and production analytics.",
-    stack: "React · Node.js · MQTT · PostgreSQL · Docker",
-    country: "India",
-    duration: "3 months",
+    n: "P/02",
+    name: "Real-time OEE for factories that never had it",
+    tagline: "Industrial IoT dashboard",
+    problem:
+      "Small manufacturers run blind — no live visibility into machine performance, downtime, or throughput KPIs.",
+    solution:
+      "An MQTT-fed dashboard that streams live OEE, downtime reasons, and shift analytics onto operator TVs and phones.",
+    stack: ["React", "Node.js", "MQTT", "PostgreSQL", "Docker"],
+    role: "Architecture, backend, dashboards",
     year: "2025",
+    duration: "3 months",
     image: projIiot,
     github: "https://github.com/KrishnaNartam",
   },
   {
-    name: "Anti-Cringe Brand Sentinel",
-    problem: "Brand teams ship social content that drifts off-tone and underperforms with no early signal.",
-    solution: "Multimodal AI auditor that scores posts for brand consistency and predicts engagement before publish.",
-    stack: "Next.js · Gemini · Python · Vision API · Vercel",
-    country: "India",
-    duration: "1 month",
+    n: "P/03",
+    name: "A quiet brand auditor for teams shipping content daily",
+    tagline: "Anti-Cringe Brand Sentinel",
+    problem:
+      "Brand teams push social posts that drift off-tone and underperform, with no early signal before publish.",
+    solution:
+      "A multimodal auditor that scores each post for brand consistency and predicts engagement before it goes live.",
+    stack: ["Next.js", "Gemini", "Python", "Vision API", "Vercel"],
+    role: "Product, prompt design, full-stack",
     year: "2025",
+    duration: "1 month",
     image: projAgent,
     github: "https://github.com/KrishnaNartam",
   },
 ];
 
 const SKILL_GROUPS: { title: string; items: string[] }[] = [
-  { title: "Languages", items: ["Python", "TypeScript", "JavaScript", "SQL", "C++"] },
-  { title: "Frameworks", items: ["React", "Next.js", "FastAPI", "Node.js", "Tailwind CSS"] },
-  { title: "AI / ML", items: ["TensorFlow", "PyTorch", "LangChain", "OpenAI", "Anthropic", "Gemini", "Hugging Face"] },
-  { title: "Data & Backend", items: ["PostgreSQL", "Supabase", "MongoDB", "Redis", "MQTT", "REST APIs"] },
+  { title: "AI Engineering", items: ["OpenAI", "Anthropic", "Gemini", "LangChain", "Hugging Face", "TensorFlow", "PyTorch"] },
+  { title: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"] },
+  { title: "Backend", items: ["Python", "FastAPI", "Node.js", "REST", "WebSockets"] },
+  { title: "Data", items: ["PostgreSQL", "Supabase", "MongoDB", "Redis", "MQTT"] },
+  { title: "Automation", items: ["n8n", "Make", "Cron", "Webhooks", "Zapier"] },
+  { title: "Industrial IoT", items: ["MQTT", "Node-RED", "Modbus", "OEE", "Sensor pipelines"] },
   { title: "Cloud & DevOps", items: ["AWS", "Vercel", "Cloudflare", "Docker", "GitHub Actions"] },
-  { title: "Tools", items: ["n8n", "Git", "Figma", "Postman", "Linux"] },
+  { title: "Tools", items: ["Git", "Figma", "Postman", "Linux", "VS Code"] },
 ];
 
 const EXPERIENCE = [
-  { role: "AI Engineer (Freelance)", org: "Independent · Pune, India", years: "2024 — Present" },
-  { role: "Full-Stack Developer", org: "Self-initiated SaaS & client work", years: "2023 — 2024" },
-  { role: "Industrial IoT Builder", org: "Manufacturing pilots · OEE dashboards", years: "2023 — 2024" },
+  {
+    role: "AI Engineer — Freelance",
+    org: "Independent · Pune, India",
+    years: "2024 — Present",
+    detail:
+      "Shipping LLM-powered SaaS, n8n automation pipelines, and multi-step AI agents for founders and small teams.",
+  },
+  {
+    role: "Full-Stack Developer",
+    org: "Self-initiated SaaS & client work",
+    years: "2023 — 2024",
+    detail:
+      "Designed and built end-to-end web products — auth, dashboards, billing surfaces, and API layers.",
+  },
+  {
+    role: "Industrial IoT Builder",
+    org: "Manufacturing pilots · OEE dashboards",
+    years: "2023 — 2024",
+    detail:
+      "Ran on-floor pilots: MQTT ingestion, real-time OEE, downtime tracking, and operator-friendly dashboards.",
+  },
 ];
 
 const EDUCATION = [
@@ -169,24 +181,28 @@ const EDUCATION = [
     degree: "B.E. Mechanical Engineering",
     org: "SKN College of Engineering, Pune",
     years: "2023 — 2027",
+    detail: "Final year. Bridging mechanical systems thinking with modern software craft.",
   },
 ];
 
 const INSIGHTS = [
   {
+    kicker: "Field notes · AI",
     title: "Why great AI products start with the right question",
     excerpt:
       "Most AI features fail not from bad models, but from fuzzy briefs. A short framework I use to scope an AI build.",
     image: projResume,
   },
   {
+    kicker: "Field notes · Automation",
     title: "Scaling automation without the chaos",
     excerpt:
       "When n8n workflows grow past a dozen nodes, structure beats speed. Patterns I lean on for maintainable automations.",
     image: projIiot,
   },
   {
-    title: "Building IIoT dashboards that operators actually use",
+    kicker: "Field notes · IIoT",
+    title: "IIoT dashboards operators actually use",
     excerpt:
       "Lessons from shipping real-time MQTT dashboards on the factory floor — UX matters more than chart count.",
     image: projAgent,
@@ -196,7 +212,7 @@ const INSIGHTS = [
 const FAQS = [
   {
     q: "What kind of projects do you take on?",
-    a: "I focus on AI products, automation systems, full-stack SaaS, and Industrial IoT dashboards — mostly with startups, scale-ups, and small manufacturers who want to ship something real.",
+    a: "AI products, automation systems, full-stack SaaS, and Industrial IoT dashboards — mostly with startups, scale-ups, and small manufacturers who want to ship something real.",
   },
   {
     q: "Do you offer freelance or consulting services?",
@@ -204,15 +220,15 @@ const FAQS = [
   },
   {
     q: "What is your current availability?",
-    a: "I'm currently available for new freelance projects and AI product collaborations, and open to full-time roles for the right team. Typical kickoff is within 1–2 weeks.",
+    a: "Available for new freelance projects and AI product collaborations, and open to full-time roles for the right team. Typical kickoff is within 1–2 weeks.",
   },
   {
     q: "What is the minimum project size you work with?",
-    a: "I usually start with a paid discovery sprint from around $500, with full builds typically ranging from $1.5k for a focused MVP to larger engagements for production systems.",
+    a: "A paid discovery sprint from around $500, with full builds typically ranging from $1.5k for a focused MVP to larger engagements for production systems.",
   },
   {
     q: "Can we work remotely?",
-    a: "Always. I'm based in Pune, India, and work remotely with teams across timezones. On-site visits possible for IIoT pilots.",
+    a: "Always. Based in Pune, India, working remotely with teams across timezones. On-site visits possible for IIoT pilots.",
   },
   {
     q: "What's your typical process?",
@@ -220,7 +236,7 @@ const FAQS = [
   },
   {
     q: "Do you also handle deployment?",
-    a: "Yes — I ship to Vercel, Cloudflare, AWS and self-hosted servers depending on the project. Hand-off includes docs and a Loom walkthrough.",
+    a: "Yes — Vercel, Cloudflare, AWS, or self-hosted, depending on the project. Hand-off includes docs and a Loom walkthrough.",
   },
 ];
 
@@ -228,13 +244,13 @@ function Portfolio() {
   return (
     <div className="min-h-screen bg-background text-foreground antialiased">
       <Nav />
+      <Masthead />
       <Hero />
       <Marquee />
       <About />
       <Work />
-      <Tools />
+      <Skills />
       <Experience />
-      <Education />
       <Insights />
       <Faq />
       <Contact />
@@ -258,7 +274,7 @@ function useActiveSection(ids: string[]) {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
         if (visible[0]) setActive(visible[0].target.id);
       },
-      { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+      { rootMargin: "-45% 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
     );
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
@@ -271,340 +287,466 @@ function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const active = useActiveSection(NAV.map((n) => n.href.slice(1)));
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "py-3 backdrop-blur-xl bg-background/70 border-b border-border" : "py-5"
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "py-3 bg-background/85 backdrop-blur-xl border-b border-rule"
+          : "py-5 bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2 font-display font-semibold text-lg">
-          <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-foreground">
-            <Sparkles className="w-3.5 h-3.5" />
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-6">
+        <a href="#top" className="flex items-center gap-3 min-w-0 group">
+          <span className="font-display text-xl leading-none">Krishna Nartam</span>
+          <span className="hidden sm:inline kicker text-[10px] shrink-0">
+            <span className="italic-accent normal-case tracking-normal text-foreground/60">est.</span> 2023
           </span>
-          <span>Krishna</span>
         </a>
-        <nav className="hidden md:flex items-center gap-7 text-[13px] text-muted-foreground">
-          {NAV.map((n) => {
+
+        <nav className="hidden md:flex items-center gap-6 text-[13px]" aria-label="Primary">
+          {NAV.slice(1, -1).map((n) => {
             const isActive = active === n.href.slice(1);
             return (
               <a
                 key={n.href}
                 href={n.href}
-                className={`transition-colors ${
-                  isActive ? "text-foreground font-medium" : "hover:text-foreground"
+                className={`relative py-1 transition-colors ${
+                  isActive
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
                 aria-current={isActive ? "true" : undefined}
               >
-                {n.label}
+                <span className={isActive ? "italic-accent" : ""}>{n.label}</span>
+                {isActive && (
+                  <span className="absolute -bottom-0.5 left-0 right-0 h-px bg-foreground" />
+                )}
               </a>
             );
           })}
         </nav>
-        <a
-          href="#contact"
-          className="hidden sm:inline-flex items-center gap-2 text-[13px] font-medium px-4 py-2 rounded-full border border-border bg-white/5 hover:bg-white/10 transition"
-        >
-          Let's talk
-        </a>
+
+        <div className="flex items-center justify-end gap-3">
+          <span className="hidden lg:inline-flex items-center gap-2 text-[11px] text-muted-foreground">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-foreground/40" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground" />
+            </span>
+            Available Q1
+          </span>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 text-[13px] font-medium px-4 py-2 rounded-full bg-foreground text-background hover:opacity-90 transition"
+          >
+            Start a project
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
       </div>
     </header>
+  );
+}
+
+/* ───────── Masthead (editorial banner) ───────── */
+function Masthead() {
+  return (
+    <div className="pt-24 border-b border-rule">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-3 flex items-center justify-between text-[10px] kicker">
+        <span>{ISSUE}</span>
+        <span className="hidden sm:inline">The Portfolio · An editorial index of work</span>
+        <span>{TODAY}</span>
+      </div>
+    </div>
   );
 }
 
 /* ───────── Hero ───────── */
 function Hero() {
   return (
-    <section id="top" className="relative px-6 pt-28 pb-16">
-      <div className="max-w-6xl mx-auto">
-        <div className="relative hero-card rounded-3xl overflow-hidden p-8 sm:p-12 lg:p-16 min-h-[560px]">
-          <div className="absolute inset-0 starfield opacity-50 pointer-events-none" />
-          <div className="absolute -top-32 -left-20 w-[600px] h-[600px] rounded-full bg-secondary/30 blur-3xl pointer-events-none" />
+    <section id="top" className="relative border-b border-rule">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10 pb-16 lg:pt-16 lg:pb-24">
+        {/* Above-fold caption row */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-[11px] kicker mb-10 lg:mb-16">
+          <div>Feature — 01</div>
+          <div className="hidden lg:block">Pune, India · UTC+5:30</div>
+          <div className="hidden lg:block text-right">Words &amp; systems by Krishna</div>
+          <div className="text-right">4 min read</div>
+        </div>
 
-          <div className="relative z-10 grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-12 items-center h-full">
-            <div className="flex flex-col justify-between gap-10 min-h-[480px]">
-              <div className="space-y-8 animate-fade-up">
-                <div className="inline-flex items-center gap-3 pl-1 pr-4 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-                  <img
-                    src={krishnaPortrait}
-                    alt="Krishna Nartam"
-                    width={28}
-                    height={28}
-                    className="w-7 h-7 rounded-full object-cover"
-                  />
-                  <span className="text-xs font-medium">
-                    AI Engineer. Based in Pune. I build things that actually ship.
-                  </span>
-                </div>
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          {/* Left column — kicker + display headline */}
+          <div className="lg:col-span-8 animate-fade-up">
+            <p className="kicker mb-6">Portfolio / AI Engineer &amp; Full-Stack Developer</p>
+            <h1 className="display-xl">
+              I build <span className="italic-accent">quiet</span> software
+              <br />
+              for loud problems<span className="text-muted-foreground">.</span>
+            </h1>
+            <p className="mt-8 max-w-xl text-base sm:text-lg leading-relaxed text-foreground/80">
+              I&apos;m Krishna — an AI engineer and full-stack developer in Pune, shipping
+              <span className="italic-accent"> LLM-powered SaaS</span>, n8n automation pipelines,
+              and Industrial IoT dashboards. From first prompt to production, with taste.
+            </p>
 
-                <h1 className="font-display text-4xl sm:text-5xl lg:text-[60px] leading-[1.05] font-medium">
-                  I build AI products, automation systems, and IIoT dashboards
-                  <span className="text-muted-foreground"> — from first prompt to production.</span>
-                </h1>
-
-                <div className="flex flex-wrap items-center gap-3 pt-2">
-                  <a
-                    href="#work"
-                    className="inline-flex items-center gap-2 text-sm font-medium px-5 py-3 rounded-full bg-primary text-primary-foreground hover:animate-pulse-glow transition-all"
-                  >
-                    See my work
-                    <ArrowUpRight className="w-4 h-4" />
-                  </a>
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-2 text-sm font-medium px-5 py-3 rounded-full border border-border bg-white/5 hover:bg-white/10 transition"
-                  >
-                    Get in touch
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2 text-xs text-muted-foreground animate-fade-up" style={{ animationDelay: "0.2s" }}>
-                <a href="#work" className="inline-flex items-center gap-2 hover:text-foreground transition-colors">
-                  Scroll down to see the portfolio
-                  <ArrowDown className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
-
-            <div className="relative hidden lg:flex justify-end animate-fade-up" style={{ animationDelay: "0.15s" }}>
-              <div className="relative w-full max-w-[360px] aspect-square rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-primary/15 via-secondary/10 to-transparent p-8 flex flex-col justify-between">
-                <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground">
-                  <span>Now</span>
-                  <span className="text-primary">2026</span>
-                </div>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 text-sm">
-                    <Brain className="w-4 h-4 text-primary" /> LLM-powered SaaS
-                  </div>
-                  <div className="flex items-center gap-3 text-sm">
-                    <Workflow className="w-4 h-4 text-primary" /> n8n automation
-                  </div>
-                  <div className="flex items-center gap-3 text-sm">
-                    <Cpu className="w-4 h-4 text-primary" /> Industrial IoT
-                  </div>
-                  <div className="flex items-center gap-3 text-sm">
-                    <Code2 className="w-4 h-4 text-primary" /> Full-stack web
-                  </div>
-                </div>
-              </div>
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <a
+                href="#work"
+                className="group inline-flex items-center gap-2 text-sm font-medium px-5 py-3 rounded-full bg-foreground text-background hover:opacity-90 transition"
+              >
+                See selected work
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 text-sm font-medium px-5 py-3 rounded-full border border-foreground/25 hover:border-foreground hover:bg-foreground/[0.04] transition"
+              >
+                Start a project
+              </a>
+              <a
+                href="https://github.com/KrishnaNartam"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-sm px-4 py-3 text-muted-foreground hover:text-foreground transition"
+              >
+                <Github className="w-4 h-4" /> GitHub
+              </a>
+              <a
+                href="https://linkedin.com/in/krishnanartam"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-sm px-2 py-3 text-muted-foreground hover:text-foreground transition"
+              >
+                <Linkedin className="w-4 h-4" /> LinkedIn
+              </a>
             </div>
           </div>
+
+          {/* Right column — portrait card */}
+          <aside className="lg:col-span-4 animate-fade-up" style={{ animationDelay: "0.15s" }}>
+            <figure className="relative">
+              <div className="aspect-[4/5] overflow-hidden bg-surface">
+                <img
+                  src={krishnaPortrait}
+                  alt="Portrait of Krishna Nartam"
+                  className="w-full h-full object-cover grayscale contrast-[1.05]"
+                  loading="eager"
+                />
+              </div>
+              <figcaption className="mt-3 flex items-start justify-between gap-4 text-[11px] kicker">
+                <span>Fig. 01 — Krishna, at desk</span>
+                <span>Pune, MH</span>
+              </figcaption>
+            </figure>
+
+            <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-rule pt-6">
+              <Stat n="03+" label="Years shipping" />
+              <Stat n="12+" label="Projects delivered" />
+              <Stat n="24h" label="Reply window" />
+            </dl>
+          </aside>
         </div>
       </div>
     </section>
   );
 }
 
-/* ───────── Logo marquee ───────── */
-function BrandLogo({
-  viewBox,
-  path,
-}: {
-  viewBox: string;
-  path: string;
-}) {
+function Stat({ n, label }: { n: string; label: string }) {
   return (
-    <svg
-      viewBox={viewBox}
-      fill="currentColor"
-      className="h-6 sm:h-7 w-auto text-muted-foreground/80 hover:text-foreground transition-colors duration-300"
-      aria-hidden="true"
-    >
-      <path d={path} />
-    </svg>
+    <div>
+      <div className="font-display text-3xl leading-none">{n}</div>
+      <div className="text-[10px] kicker mt-2">{label}</div>
+    </div>
   );
 }
 
+/* ───────── Marquee — text-only, editorial ───────── */
 function Marquee() {
+  const list = [...CLIENT_MARKS, ...CLIENT_MARKS];
   return (
-    <section className="px-6 py-10 border-y border-border/60">
-      <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
-        {BRAND_LOGOS.map((logo) => (
-          <BrandLogo
-            key={logo.name}
-            viewBox={logo.viewBox}
-            path={logo.path}
-          />
+    <section className="border-b border-rule overflow-hidden py-5">
+      <div className="flex animate-marquee whitespace-nowrap gap-10 text-sm">
+        {list.map((m, i) => (
+          <span key={i} className="flex items-center gap-10 text-muted-foreground">
+            <span className="italic-accent">{m}</span>
+            <span className="text-foreground/20">✦</span>
+          </span>
         ))}
       </div>
     </section>
   );
 }
 
-/* ───────── Section number kicker ───────── */
-function NumKicker({ n, label }: { n: string; label: string }) {
+/* ───────── Section header ───────── */
+function SectionHead({
+  n,
+  kicker,
+  title,
+  lede,
+}: {
+  n: string;
+  kicker: string;
+  title: React.ReactNode;
+  lede?: string;
+}) {
   return (
-    <div className="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.25em] text-muted-foreground mb-6">
-      <span className="text-primary">{n}</span>
-      <span className="w-6 h-px bg-border" />
-      <span>{label}</span>
-    </div>
+    <header className="grid lg:grid-cols-12 gap-6 lg:gap-10 mb-14 lg:mb-20">
+      <div className="lg:col-span-3 flex items-start gap-4">
+        <span className="font-display text-4xl leading-none text-foreground/30">{n}</span>
+        <span className="kicker mt-2">{kicker}</span>
+      </div>
+      <div className="lg:col-span-9">
+        <h2 className="display-lg max-w-3xl">{title}</h2>
+        {lede && (
+          <p className="mt-5 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
+            {lede}
+          </p>
+        )}
+      </div>
+    </header>
   );
 }
 
 /* ───────── About ───────── */
 function About() {
   return (
-    <section id="about" className="relative px-6 py-24 sm:py-32">
-      <div className="max-w-6xl mx-auto">
-        <NumKicker n="01" label="Get to know me" />
-        <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-20">
-          <div className="space-y-6 max-w-2xl">
-            <p className="text-lg sm:text-xl leading-relaxed text-foreground/90">
-              I'm a mechanical engineer turned AI builder. Over the last two years I've shipped
-              AI products, automation pipelines and Industrial IoT dashboards — collaborating
-              with founders and small teams who want to move fast without breaking trust.
+    <section id="about" className="border-b border-rule">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        <SectionHead
+          n="01"
+          kicker="On the record"
+          title={
+            <>
+              A mechanical engineer <span className="italic-accent">who fell in love</span> with software.
+            </>
+          }
+        />
+
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10">
+          <div className="lg:col-start-4 lg:col-span-6 space-y-6 text-lg leading-relaxed">
+            <p className="first-letter:font-display first-letter:text-6xl first-letter:leading-none first-letter:pr-3 first-letter:float-left first-letter:mt-1">
+              I started in mechanics — gears, tolerances, thermal cycles — and slowly
+              followed the wire back to software. Today I build AI products, automation
+              systems, and IIoT dashboards for founders and small teams who want to
+              move quickly without breaking trust.
             </p>
-            <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
-              I consider myself a versatile, practical engineer — equally comfortable wiring an
-              MQTT pipeline as I am orchestrating multi-step LLM agents. I care about clean
-              architecture, sharp UX, and products that actually get used.
+            <p className="text-muted-foreground">
+              Engineering taught me to respect constraints. Software taught me to move
+              fast anyway. I care about clean architecture, sharp UX, and shipping
+              things people actually open on Monday morning.
+            </p>
+            <p className="text-muted-foreground">
+              When I&apos;m not building, I&apos;m usually reverse-engineering a workflow
+              or writing about the seams between AI, automation, and physical systems.
             </p>
           </div>
-          <div className="space-y-2 text-sm text-muted-foreground/80 self-end">
-            <p>Available for freelance projects, AI product collaborations, and full-time roles.</p>
-            <p>Based in Pune, Maharashtra · India.</p>
-          </div>
+
+          <aside className="lg:col-span-3 lg:col-start-10 space-y-4 text-sm">
+            <FactRow k="Based in" v="Pune, MH · India" />
+            <FactRow k="Role" v="AI Engineer / Full-Stack" />
+            <FactRow k="Studying" v="B.E. Mechanical, 2023–27" />
+            <FactRow k="Availability" v="Freelance · Full-time" />
+            <FactRow k="Reply time" v="Within 24 hours" />
+          </aside>
         </div>
       </div>
     </section>
   );
 }
 
-/* ───────── Work ───────── */
-function Work() {
+function FactRow({ k, v }: { k: string; v: string }) {
   return (
-    <section id="work" className="relative px-6 py-24 sm:py-32">
-      <div className="max-w-6xl mx-auto">
-        <NumKicker n="02" label="Work" />
-        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-14 max-w-2xl">
-          A glimpse into my latest work.
-        </h2>
-
-        <div className="space-y-6">
-          {PROJECTS.map((p) => (
-            <article
-              key={p.name}
-              className="group glass-card glass-card-hover rounded-3xl overflow-hidden grid md:grid-cols-[1.2fr_1fr] gap-0 items-stretch"
-            >
-              <div className="p-8 sm:p-10 flex flex-col justify-between">
-                <div>
-                  <h3 className="font-display text-2xl sm:text-3xl font-medium mb-4">
-                    {p.name}
-                  </h3>
-                  <ul className="space-y-2.5 text-sm leading-relaxed max-w-md">
-                    <li className="flex gap-3">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-primary mt-1 w-16 shrink-0">Problem</span>
-                      <span className="text-muted-foreground">{p.problem}</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-primary mt-1 w-16 shrink-0">Solution</span>
-                      <span className="text-muted-foreground">{p.solution}</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-primary mt-1 w-16 shrink-0">Stack</span>
-                      <span className="text-muted-foreground">{p.stack}</span>
-                    </li>
-                  </ul>
-                  <div className="mt-6 flex flex-wrap items-center gap-3">
-                    {p.link && (
-                      <a
-                        href={p.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-full bg-primary text-primary-foreground hover:opacity-90 transition"
-                      >
-                        Live demo <ArrowUpRight className="w-3.5 h-3.5" />
-                      </a>
-                    )}
-                    {p.github && (
-                      <a
-                        href={p.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 text-xs font-medium px-4 py-2 rounded-full border border-border bg-white/5 hover:bg-white/10 transition"
-                      >
-                        <Github className="w-3.5 h-3.5" /> GitHub
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border">
-                  <Meta label="Country" value={p.country} />
-                  <Meta label="Duration" value={p.duration} />
-                  <Meta label="Year" value={p.year} />
-                </div>
-              </div>
-              <div className="relative h-56 md:h-auto overflow-hidden">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  loading="lazy"
-                  width={1024}
-                  height={768}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                {!p.link && (
-                  <div className="absolute top-4 right-4 text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-background/70 backdrop-blur border border-white/10 text-muted-foreground">
-                    Live link soon
-                  </div>
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Meta({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <div className="text-primary text-sm font-medium">{value}</div>
-      <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">{label}</div>
+    <div className="grid grid-cols-[auto_1fr] gap-4 border-b border-rule pb-3">
+      <span className="kicker">{k}</span>
+      <span className="text-right text-foreground">{v}</span>
     </div>
   );
 }
 
-/* ───────── Skills ───────── */
-function Tools() {
+/* ───────── Work — magazine feature layout ───────── */
+function Work() {
+  const [feature, ...rest] = PROJECTS;
   return (
-    <section id="skills" className="relative px-6 py-24 sm:py-32">
-      <div className="max-w-6xl mx-auto">
-        <NumKicker n="03" label="Skills" />
-        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 max-w-2xl">
-          The stack I build with.
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mb-14">
-          A practical toolkit spanning AI, full-stack engineering and Industrial IoT — picked
-          for shipping speed and long-term maintainability.
-        </p>
+    <section id="work" className="border-b border-rule">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        <SectionHead
+          n="02"
+          kicker="Selected work"
+          title={
+            <>
+              Three shipped systems, <span className="italic-accent">from prompt to production.</span>
+            </>
+          }
+          lede="Each piece below solves a specific operational problem. Same author, three different registers."
+        />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {SKILL_GROUPS.map((group) => (
-            <div
-              key={group.title}
-              className="glass-card glass-card-hover rounded-2xl p-6 sm:p-7"
-            >
-              <div className="text-[11px] font-mono uppercase tracking-[0.25em] text-primary mb-4">
-                {group.title}
+        {/* Featured cover story */}
+        <ProjectFeature p={feature} />
+
+        {/* Rest as alternating editorial rows */}
+        <div className="mt-16 lg:mt-24 border-t border-rule">
+          {rest.map((p, i) => (
+            <ProjectRow key={p.n} p={p} flipped={i % 2 === 1} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProjectFeature({ p }: { p: (typeof PROJECTS)[number] }) {
+  return (
+    <article className="group grid lg:grid-cols-12 gap-8 lg:gap-10 items-end">
+      <figure className="lg:col-span-8 relative overflow-hidden bg-surface">
+        <div className="aspect-[16/10] overflow-hidden">
+          <img
+            src={p.image}
+            alt={p.name}
+            className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.03]"
+            loading="eager"
+          />
+        </div>
+        <figcaption className="absolute top-4 left-4 kicker bg-background/85 backdrop-blur px-3 py-1.5">
+          Cover story · {p.n}
+        </figcaption>
+      </figure>
+
+      <div className="lg:col-span-4 space-y-5">
+        <div className="kicker">{p.tagline}</div>
+        <h3 className="font-display text-3xl sm:text-4xl leading-[1.05]">
+          {p.name}
+        </h3>
+        <p className="text-muted-foreground leading-relaxed">{p.problem}</p>
+        <p className="leading-relaxed">
+          <span className="italic-accent text-foreground">The build. </span>
+          <span className="text-foreground/80">{p.solution}</span>
+        </p>
+        <div className="flex flex-wrap gap-1.5 pt-2">
+          {p.stack.map((s) => (
+            <span key={s} className="text-[11px] px-2.5 py-1 border border-foreground/15 rounded-full text-foreground/70">
+              {s}
+            </span>
+          ))}
+        </div>
+        <div className="pt-4 flex flex-wrap items-center gap-3 border-t border-rule">
+          {p.link && (
+            <a href={p.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium">
+              Read the case <ArrowUpRight className="w-4 h-4" />
+            </a>
+          )}
+          {p.github && (
+            <a href={p.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition">
+              <Github className="w-4 h-4" /> Source
+            </a>
+          )}
+          <span className="ml-auto kicker">{p.year} · {p.duration}</span>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function ProjectRow({ p, flipped }: { p: (typeof PROJECTS)[number]; flipped: boolean }) {
+  return (
+    <article className="group grid lg:grid-cols-12 gap-8 lg:gap-10 py-12 lg:py-16 border-b border-rule">
+      <figure
+        className={`lg:col-span-6 relative overflow-hidden bg-surface ${flipped ? "lg:order-2" : ""}`}
+      >
+        <div className="aspect-[4/3] overflow-hidden">
+          <img
+            src={p.image}
+            alt={p.name}
+            loading="lazy"
+            className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.03]"
+          />
+        </div>
+      </figure>
+
+      <div className="lg:col-span-6 flex flex-col justify-center">
+        <div className="flex items-center gap-4 mb-4">
+          <span className="font-display text-2xl text-foreground/30">{p.n}</span>
+          <span className="kicker">{p.tagline}</span>
+        </div>
+        <h3 className="font-display text-2xl sm:text-3xl lg:text-[38px] leading-[1.05] mb-5 max-w-lg">
+          {p.name}
+        </h3>
+
+        <dl className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-x-8 gap-y-3 text-sm max-w-xl">
+          <dt className="kicker pt-0.5">Problem</dt>
+          <dd className="text-muted-foreground leading-relaxed">{p.problem}</dd>
+
+          <dt className="kicker pt-0.5">Approach</dt>
+          <dd className="text-foreground/85 leading-relaxed">{p.solution}</dd>
+
+          <dt className="kicker pt-0.5">Role</dt>
+          <dd className="text-foreground/85">{p.role}</dd>
+
+          <dt className="kicker pt-0.5">Stack</dt>
+          <dd className="flex flex-wrap gap-1.5">
+            {p.stack.map((s) => (
+              <span key={s} className="text-[11px] px-2.5 py-1 border border-foreground/15 rounded-full text-foreground/70">
+                {s}
+              </span>
+            ))}
+          </dd>
+        </dl>
+
+        <div className="mt-6 pt-4 border-t border-rule flex flex-wrap items-center gap-4">
+          {p.link ? (
+            <a href={p.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium">
+              Live demo <ArrowUpRight className="w-4 h-4" />
+            </a>
+          ) : (
+            <span className="kicker">In production · demo on request</span>
+          )}
+          {p.github && (
+            <a href={p.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition">
+              <Github className="w-4 h-4" /> Source
+            </a>
+          )}
+          <span className="ml-auto kicker">{p.year} · {p.duration}</span>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/* ───────── Skills — typographic index ───────── */
+function Skills() {
+  return (
+    <section id="skills" className="border-b border-rule">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        <SectionHead
+          n="03"
+          kicker="Craft"
+          title={
+            <>
+              An honest inventory of tools <span className="italic-accent">I actually reach for.</span>
+            </>
+          }
+          lede="No progress bars. Just the stack I use week to week, grouped by the kind of problem it solves."
+        />
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12">
+          {SKILL_GROUPS.map((group, i) => (
+            <div key={group.title} className="border-t border-foreground pt-4">
+              <div className="flex items-baseline justify-between mb-4">
+                <h3 className="font-display text-xl">{group.title}</h3>
+                <span className="kicker text-[10px]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <ul className="space-y-2 text-sm">
                 {group.items.map((item) => (
-                  <span
-                    key={item}
-                    className="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-foreground/90 hover:border-primary/40 hover:text-primary transition-colors"
-                  >
-                    {item}
-                  </span>
+                  <li key={item} className="flex items-center justify-between border-b border-rule py-1.5">
+                    <span>{item}</span>
+                    <span className="text-foreground/25 text-xs">·</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           ))}
         </div>
@@ -613,97 +755,106 @@ function Tools() {
   );
 }
 
-/* ───────── Experience ───────── */
+/* ───────── Experience + Education (timeline) ───────── */
 function Experience() {
   return (
-    <section id="experience" className="relative px-6 py-24 sm:py-32">
-      <div className="max-w-6xl mx-auto">
-        <NumKicker n="04" label="Experience" />
-        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 max-w-3xl">
-          Experience that shapes meaningful products.
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mb-14">
-          A mix of mechanical engineering fundamentals and modern AI / software craft — from
-          factory-floor pilots to LLM-powered SaaS.
-        </p>
+    <section id="experience" className="border-b border-rule">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        <SectionHead
+          n="04"
+          kicker="Career log"
+          title={
+            <>
+              Where the hours have gone, <span className="italic-accent">in reverse.</span>
+            </>
+          }
+        />
 
-        <div className="border-t border-border">
-          {EXPERIENCE.map((e) => (
-            <div
-              key={e.role}
-              className="grid grid-cols-[1fr_auto] gap-6 items-end py-7 border-b border-border group hover:bg-white/[0.015] transition-colors px-2"
-            >
-              <div>
-                <div className="font-display text-xl sm:text-2xl font-medium">{e.role}</div>
-                <div className="text-sm text-muted-foreground mt-1">{e.org}</div>
-              </div>
-              <div className="text-primary text-sm sm:text-base font-mono whitespace-nowrap">{e.years}</div>
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10">
+          <div className="lg:col-span-8">
+            <div className="border-t-2 border-foreground">
+              {EXPERIENCE.map((e) => (
+                <div
+                  key={e.role}
+                  className="grid grid-cols-[auto_1fr] sm:grid-cols-[140px_1fr_auto] gap-x-6 gap-y-2 py-8 border-b border-rule group"
+                >
+                  <div className="kicker pt-1.5 sm:pt-2">{e.years}</div>
+                  <div className="col-span-1 sm:col-auto">
+                    <h3 className="font-display text-xl sm:text-2xl">{e.role}</h3>
+                    <div className="text-sm text-muted-foreground mt-0.5">{e.org}</div>
+                    <p className="text-sm text-foreground/80 mt-3 max-w-xl leading-relaxed">
+                      {e.detail}
+                    </p>
+                  </div>
+                  <ArrowUpRight className="hidden sm:block w-4 h-4 text-foreground/30 mt-2 group-hover:text-foreground transition" />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          <aside className="lg:col-span-4">
+            <div className="border-t-2 border-foreground">
+              <div className="py-6 border-b border-rule">
+                <span className="kicker">Education</span>
+              </div>
+              {EDUCATION.map((e) => (
+                <div key={e.degree} className="py-6 border-b border-rule">
+                  <div className="kicker mb-2">{e.years}</div>
+                  <h3 className="font-display text-xl">{e.degree}</h3>
+                  <div className="text-sm text-muted-foreground mt-0.5">{e.org}</div>
+                  <p className="text-sm text-foreground/80 mt-3 leading-relaxed">{e.detail}</p>
+                </div>
+              ))}
+              <a
+                href="mailto:krishnanartam911@gmail.com?subject=Résumé request"
+                className="mt-6 inline-flex items-center gap-2 text-sm border border-foreground/25 px-4 py-2.5 rounded-full hover:bg-foreground hover:text-background transition"
+              >
+                Request résumé <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
   );
 }
 
-/* ───────── Education ───────── */
-function Education() {
-  return (
-    <section id="education" className="relative px-6 pb-24 sm:pb-32">
-      <div className="max-w-6xl mx-auto">
-        <NumKicker n="04b" label="Education" />
-        <div className="border-t border-border">
-          {EDUCATION.map((e) => (
-            <div
-              key={e.degree}
-              className="grid grid-cols-[1fr_auto] gap-6 items-end py-7 border-b border-border hover:bg-white/[0.015] transition-colors px-2"
-            >
-              <div>
-                <div className="font-display text-xl sm:text-2xl font-medium">{e.degree}</div>
-                <div className="text-sm text-muted-foreground mt-1">{e.org}</div>
-              </div>
-              <div className="text-primary text-sm sm:text-base font-mono whitespace-nowrap">{e.years}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ───────── Insights ───────── */
+/* ───────── Insights (magazine grid) ───────── */
 function Insights() {
   return (
-    <section id="insights" className="relative px-6 py-24 sm:py-32">
-      <div className="max-w-6xl mx-auto">
-        <NumKicker n="05" label="Insights" />
-        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-14 max-w-2xl">
-          Practical insights and ideas from the journey so far.
-        </h2>
+    <section id="insights" className="border-b border-rule">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        <SectionHead
+          n="05"
+          kicker="Notes from the workshop"
+          title={
+            <>
+              Short writing on <span className="italic-accent">AI, automation, and factories.</span>
+            </>
+          }
+          lede="Working notes, not thought leadership. Full essays landing soon."
+        />
 
-        <div className="grid md:grid-cols-3 gap-5">
-          {INSIGHTS.map((i) => (
-            <article
-              key={i.title}
-              className="glass-card glass-card-hover rounded-2xl overflow-hidden group flex flex-col"
-            >
-              <div className="aspect-[16/10] overflow-hidden">
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
+          {INSIGHTS.map((i, idx) => (
+            <article key={i.title} className="group border-t-2 border-foreground pt-5">
+              <div className="flex items-center justify-between mb-4">
+                <span className="kicker">{i.kicker}</span>
+                <span className="kicker text-[10px]">N/0{idx + 1}</span>
+              </div>
+              <div className="aspect-[4/3] overflow-hidden bg-surface mb-5">
                 <img
                   src={i.image}
                   alt={i.title}
                   loading="lazy"
-                  width={640}
-                  height={400}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover grayscale contrast-[1.05] transition-transform duration-700 group-hover:scale-[1.03]"
                 />
               </div>
-              <div className="p-6 flex flex-col flex-1">
-                <h3 className="font-display text-lg font-medium leading-snug mb-2">{i.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{i.excerpt}</p>
-                <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-foreground">
-                  Article coming soon
-                </span>
-              </div>
+              <h3 className="font-display text-2xl leading-[1.1] mb-3">{i.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-5">{i.excerpt}</p>
+              <span className="inline-flex items-center gap-2 text-xs kicker">
+                Essay in edit
+              </span>
             </article>
           ))}
         </div>
@@ -716,53 +867,61 @@ function Insights() {
 function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="relative px-6 py-24 sm:py-32">
-      <div className="max-w-3xl mx-auto text-center">
-        <NumKicker n="06" label="FAQ" />
-        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-3">
-          Frequently Asked Questions.
-        </h2>
-        <p className="text-muted-foreground mb-14">
-          Everything you might want to know before we work together — answered clearly and simply.
-        </p>
-      </div>
+    <section id="faq" className="border-b border-rule">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        <SectionHead
+          n="06"
+          kicker="Before you write"
+          title={
+            <>
+              Answers to the <span className="italic-accent">usual questions.</span>
+            </>
+          }
+        />
 
-      <div className="max-w-4xl mx-auto border-t border-border">
-        {FAQS.map((f, i) => {
-          const isOpen = open === i;
-          return (
-            <div key={f.q} className="border-b border-border">
-              <button
-                onClick={() => setOpen(isOpen ? null : i)}
-                className="w-full flex items-start justify-between gap-6 py-6 text-left group"
-              >
-                <span className={`font-display text-base sm:text-lg font-medium transition-colors ${isOpen ? "text-foreground" : "text-foreground/85 group-hover:text-foreground"}`}>
-                  {f.q}
-                </span>
-                <span className="mt-1 w-6 h-6 flex items-center justify-center text-muted-foreground shrink-0">
-                  {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                </span>
-              </button>
-              <div
-                className={`grid transition-all duration-300 ease-out ${
-                  isOpen ? "grid-rows-[1fr] opacity-100 pb-6" : "grid-rows-[0fr] opacity-0"
-                }`}
-              >
-                <div className="overflow-hidden">
-                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl">
-                    {f.a}
-                  </p>
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10">
+          <div className="lg:col-start-3 lg:col-span-8 border-t-2 border-foreground">
+            {FAQS.map((f, i) => {
+              const isOpen = open === i;
+              return (
+                <div key={f.q} className="border-b border-rule">
+                  <button
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    className="w-full flex items-start justify-between gap-6 py-6 text-left group"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="flex items-baseline gap-4">
+                      <span className="kicker text-[10px] pt-1">Q/{String(i + 1).padStart(2, "0")}</span>
+                      <span className={`font-display text-xl sm:text-2xl transition-colors ${isOpen ? "text-foreground" : "text-foreground/70 group-hover:text-foreground"}`}>
+                        {f.q}
+                      </span>
+                    </span>
+                    <span className="mt-2 w-6 h-6 flex items-center justify-center text-foreground/60 shrink-0">
+                      {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                    </span>
+                  </button>
+                  <div
+                    className={`grid transition-all duration-300 ease-out ${
+                      isOpen ? "grid-rows-[1fr] opacity-100 pb-6" : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="text-base text-muted-foreground leading-relaxed max-w-2xl pl-[68px]">
+                        {f.a}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
-/* ───────── Contact / Newsletter-style CTA card ───────── */
+/* ───────── Contact ───────── */
 function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -801,108 +960,99 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="relative px-6 pb-24">
-      <div className="max-w-6xl mx-auto">
-        <div className="relative cta-card rounded-3xl overflow-hidden p-8 sm:p-12 lg:p-16">
-          <div className="absolute inset-0 starfield opacity-40 pointer-events-none" />
+    <section id="contact" className="border-b border-rule bg-foreground text-background">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        <div className="grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-6">
+            <p className="kicker mb-8" style={{ color: "oklch(0.75 0.005 60)" }}>
+              07 — Correspondence
+            </p>
+            <h2 className="display-lg">
+              Tell me about the <span className="italic-accent">problem worth solving.</span>
+            </h2>
+            <p className="mt-6 max-w-md text-base leading-relaxed" style={{ color: "oklch(0.82 0.005 60)" }}>
+              AI products, automation systems, IIoT pilots, or a small paid discovery
+              sprint — start with a sentence or two. I reply within 24 hours, always.
+            </p>
 
-          <div className="relative grid lg:grid-cols-[1fr_1.1fr] gap-12 items-center">
+            <div className="mt-10 space-y-4 text-sm">
+              <ContactRow icon={Mail} label="krishnanartam911@gmail.com" href="mailto:krishnanartam911@gmail.com" />
+              <ContactRow icon={MapPin} label="Pune, Maharashtra · India" />
+              <ContactRow icon={Github} label="github.com/KrishnaNartam" href="https://github.com/KrishnaNartam" />
+              <ContactRow icon={Linkedin} label="linkedin.com/in/krishnanartam" href="https://linkedin.com/in/krishnanartam" />
+            </div>
+          </div>
+
+          <form
+            ref={formRef}
+            onSubmit={submit}
+            className="lg:col-span-6 lg:col-start-8 space-y-5 self-start"
+          >
+            <Field name="from_name" label="Your name" placeholder="Jane Doe" />
+            <Field name="from_email" type="email" label="Email" placeholder="jane@company.com" />
             <div>
-              <NumKicker n="07" label="Let's work" />
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-medium mb-4 leading-tight">
-                Have a project in mind?
-                <br />
-                Let's build it together.
-              </h2>
-              <p className="text-muted-foreground max-w-md mb-8">
-                Open to internships, freelance projects, AI product collaborations and Industrial
-                IoT pilots. I usually reply within 24 hours.
-              </p>
-
-              <div className="space-y-3 text-sm">
-                <ContactItem icon={Mail} label="krishnanartam911@gmail.com" href="mailto:krishnanartam911@gmail.com" />
-                
-                <ContactItem icon={MapPin} label="Pune, Maharashtra · India" />
-              </div>
-
-              <div className="flex items-center gap-2 mt-8">
-                <Social href="https://github.com/KrishnaNartam" label="GitHub"><Github className="w-4 h-4" /></Social>
-                <Social href="https://linkedin.com/in/krishnanartam" label="LinkedIn"><Linkedin className="w-4 h-4" /></Social>
-                <Social href="mailto:krishnanartam911@gmail.com" label="Email"><Mail className="w-4 h-4" /></Social>
-              </div>
+              <label className="text-[11px] font-mono uppercase tracking-[0.22em]" style={{ color: "oklch(0.75 0.005 60)" }}>
+                The brief
+              </label>
+              <textarea
+                name="message"
+                rows={5}
+                required
+                maxLength={2000}
+                placeholder="What are you building, and where's it stuck?"
+                className="mt-2 w-full bg-transparent border-b border-background/25 px-0 py-3 text-base focus:outline-none focus:border-background transition resize-none placeholder:text-background/40"
+              />
             </div>
 
-            <form
-              ref={formRef}
-              onSubmit={submit}
-              className="glass-card rounded-2xl p-6 sm:p-8 space-y-4 bg-background/40 backdrop-blur-xl"
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-background text-foreground font-medium hover:opacity-90 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              <Field name="from_name" label="Your name" placeholder="Jane Doe" />
-              <Field name="from_email" type="email" label="Email" placeholder="jane@company.com" />
-              <div>
-                <label className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground">Message</label>
-                <textarea
-                  name="message"
-                  rows={4}
-                  required
-                  maxLength={2000}
-                  placeholder="Tell me about your project…"
-                  className="mt-1.5 w-full rounded-xl bg-background/60 border border-border px-4 py-3 text-sm focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/20 transition resize-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={status === "sending"}
-                className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-primary text-primary-foreground font-medium hover:animate-pulse-glow transition-all disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {status === "sending" ? (
-                  <>Sending…</>
-                ) : status === "sent" ? (
-                  <><Sparkles className="w-4 h-4" /> Message sent</>
-                ) : (
-                  <>Send message <Send className="w-4 h-4" /></>
-                )}
-              </button>
-
-              {status === "sent" && (
-                <p className="text-xs text-success text-center">Thanks — I'll reply within 24 hours.</p>
+              {status === "sending" ? (
+                <>Sending…</>
+              ) : status === "sent" ? (
+                <>Message received <ArrowUpRight className="w-4 h-4" /></>
+              ) : (
+                <>Send the brief <Send className="w-4 h-4" /></>
               )}
-              {status === "error" && (
-                <p className="text-xs text-destructive text-center">{errorMsg || "Something went wrong."}</p>
-              )}
-            </form>
-          </div>
+            </button>
+
+            {status === "sent" && (
+              <p className="text-xs" style={{ color: "oklch(0.82 0.14 145)" }}>
+                Thanks — I&apos;ll reply within 24 hours.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="text-xs" style={{ color: "oklch(0.78 0.19 27)" }}>
+                {errorMsg || "Something went wrong."}
+              </p>
+            )}
+          </form>
         </div>
       </div>
     </section>
   );
 }
 
-function ContactItem({ icon: Icon, label, href }: { icon: typeof Mail; label: string; href?: string }) {
-  const cls = "group flex items-center gap-3 text-foreground/90 hover:text-primary transition-colors";
+function ContactRow({ icon: Icon, label, href }: { icon: typeof Mail; label: string; href?: string }) {
+  const cls = "group flex items-center gap-4 hover:opacity-100 transition-opacity";
   const inner = (
     <>
-      <span className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-primary">
+      <span className="w-9 h-9 rounded-full border border-background/25 flex items-center justify-center">
         <Icon className="w-4 h-4" />
       </span>
-      {label}
+      <span className="border-b border-transparent group-hover:border-background pb-0.5 transition-all">
+        {label}
+      </span>
     </>
   );
-  return href ? <a href={href} className={cls}>{inner}</a> : <div className={cls}>{inner}</div>;
-}
-
-function Social({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
-  return (
-    <a
-      href={href}
-      aria-label={label}
-      target="_blank"
-      rel="noreferrer"
-      className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition"
-    >
-      {children}
+  return href ? (
+    <a href={href} className={cls} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+      {inner}
     </a>
+  ) : (
+    <div className={cls}>{inner}</div>
   );
 }
 
@@ -919,14 +1069,16 @@ function Field({
 }) {
   return (
     <div>
-      <label className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground">{label}</label>
+      <label className="text-[11px] font-mono uppercase tracking-[0.22em]" style={{ color: "oklch(0.75 0.005 60)" }}>
+        {label}
+      </label>
       <input
         name={name}
         type={type}
         required
         maxLength={255}
         placeholder={placeholder}
-        className="mt-1.5 w-full rounded-xl bg-background/60 border border-border px-4 py-3 text-sm focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/20 transition"
+        className="mt-2 w-full bg-transparent border-b border-background/25 px-0 py-3 text-base focus:outline-none focus:border-background transition placeholder:text-background/40"
       />
     </div>
   );
@@ -935,10 +1087,48 @@ function Field({
 /* ───────── Footer ───────── */
 function Footer() {
   return (
-    <footer className="border-t border-border py-10 px-6">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-        <div>© 2025–2026 Krishna Prashant Nartam.</div>
-        <div className="font-mono">AI · Full-Stack · Industrial IoT</div>
+    <footer className="bg-background">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-16">
+        <div className="grid lg:grid-cols-12 gap-10 pb-12 border-b border-rule">
+          <div className="lg:col-span-5">
+            <div className="font-display text-3xl leading-none">Krishna Nartam</div>
+            <p className="mt-4 text-muted-foreground max-w-sm text-sm leading-relaxed">
+              Independent AI engineer &amp; full-stack developer building quiet software for
+              loud operational problems.
+            </p>
+          </div>
+          <div className="lg:col-span-3">
+            <div className="kicker mb-4">Sitemap</div>
+            <ul className="space-y-2 text-sm">
+              {NAV.slice(1).map((n) => (
+                <li key={n.href}>
+                  <a href={n.href} className="hover:italic-accent transition">
+                    {n.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="lg:col-span-2">
+            <div className="kicker mb-4">Elsewhere</div>
+            <ul className="space-y-2 text-sm">
+              <li><a href="https://github.com/KrishnaNartam" target="_blank" rel="noreferrer" className="hover:italic-accent">GitHub</a></li>
+              <li><a href="https://linkedin.com/in/krishnanartam" target="_blank" rel="noreferrer" className="hover:italic-accent">LinkedIn</a></li>
+              <li><a href="mailto:krishnanartam911@gmail.com" className="hover:italic-accent">Email</a></li>
+            </ul>
+          </div>
+          <div className="lg:col-span-2">
+            <div className="kicker mb-4">Colophon</div>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Set in Instrument Serif &amp; Work Sans.
+            </p>
+          </div>
+        </div>
+
+        <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-muted-foreground">
+          <div>© 2025–2026 Krishna Prashant Nartam. All work, one author.</div>
+          <div className="kicker">{ISSUE} · {TODAY}</div>
+        </div>
       </div>
     </footer>
   );
