@@ -51,8 +51,10 @@ export const Route = createFileRoute("/")({
         content:
           "AI Engineer based in Pune, India. I build LLM-powered SaaS products, n8n automation pipelines, and Industrial IoT dashboards — from idea to production.",
       },
+      { property: "og:url", content: "https://krishnanartam.lovable.app/" },
+      { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://krishnanartam.lovable.app/" }],
   }),
   component: Portfolio,
 });
