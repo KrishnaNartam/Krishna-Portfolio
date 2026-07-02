@@ -55,6 +55,39 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
     ],
     links: [{ rel: "canonical", href: "https://krishnanartam.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Krishna Prashant Nartam",
+          url: "https://krishnanartam.lovable.app/",
+          jobTitle: "AI Engineer & Full-Stack Developer",
+          description:
+            "AI Engineer based in Pune, India. Builds LLM-powered SaaS products, n8n automation pipelines, and Industrial IoT dashboards.",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Pune",
+            addressRegion: "Maharashtra",
+            addressCountry: "IN",
+          },
+          alumniOf: {
+            "@type": "CollegeOrUniversity",
+            name: "SKN College of Engineering, Pune",
+          },
+          knowsAbout: [
+            "Artificial Intelligence",
+            "Large Language Models",
+            "Prompt Engineering",
+            "n8n Automation",
+            "Industrial IoT",
+            "Full-Stack Development",
+            "React",
+          ],
+        }),
+      },
+    ],
   }),
   component: Portfolio,
 });
