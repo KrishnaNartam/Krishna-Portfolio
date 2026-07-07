@@ -23,33 +23,29 @@ const EMAILJS_SERVICE_ID = "service_138mf4y";
 const EMAILJS_TEMPLATE_ID = "template_tzzd9c8";
 const EMAILJS_PUBLIC_KEY = "XIuTaiEJ6Ll6vBf4Z";
 
-const ISSUE = "Vol. 01 · Issue 26";
-const TODAY = new Date().toLocaleDateString("en-GB", {
-  day: "2-digit",
-  month: "long",
-  year: "numeric",
-});
+const ISSUE = "Vol. 01 · Issue 01";
+const TODAY = "Winter 2026";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Krishna Prashant Nartam — AI Engineer & Full-Stack Developer" },
+      { title: "Fox Founder AI — AI Products, Automation & IIoT Studio" },
       {
         name: "description",
         content:
-          "AI Engineer based in Pune, India. I build LLM-powered SaaS products, n8n automation pipelines, and Industrial IoT dashboards — from idea to production.",
+          "Fox Founder AI is a boutique studio building AI products, n8n automation systems, and Industrial IoT dashboards — from first prompt to production. Founded by Krishna Nartam in Pune, India.",
       },
-      { property: "og:title", content: "Krishna Prashant Nartam — AI Engineer & Full-Stack Developer" },
+      { property: "og:title", content: "Fox Founder AI — AI Products, Automation & IIoT Studio" },
       {
         property: "og:description",
         content:
-          "AI Engineer based in Pune, India. I build LLM-powered SaaS products, n8n automation pipelines, and Industrial IoT dashboards — from idea to production.",
+          "A boutique studio building AI products, automation systems, and Industrial IoT dashboards. Founded by Krishna Nartam in Pune, India.",
       },
-      { name: "twitter:title", content: "Krishna Prashant Nartam — AI Engineer & Full-Stack Developer" },
+      { name: "twitter:title", content: "Fox Founder AI — AI Products, Automation & IIoT Studio" },
       {
         name: "twitter:description",
         content:
-          "AI Engineer based in Pune, India. I build LLM-powered SaaS products, n8n automation pipelines, and Industrial IoT dashboards — from idea to production.",
+          "A boutique studio building AI products, automation systems, and Industrial IoT dashboards. Founded by Krishna Nartam in Pune, India.",
       },
       { property: "og:url", content: "https://krishnanartam.lovable.app/" },
       { property: "og:type", content: "website" },
@@ -60,22 +56,28 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Person",
-          name: "Krishna Prashant Nartam",
+          "@type": "Organization",
+          name: "Fox Founder AI",
+          alternateName: "Fox Founder AI Studio",
           url: "https://krishnanartam.lovable.app/",
-          jobTitle: "AI Engineer & Full-Stack Developer",
           description:
-            "AI Engineer based in Pune, India. Builds LLM-powered SaaS products, n8n automation pipelines, and Industrial IoT dashboards.",
+            "Boutique studio building AI products, automation systems, and Industrial IoT dashboards.",
+          founder: {
+            "@type": "Person",
+            name: "Krishna Prashant Nartam",
+            jobTitle: "Founder & Lead AI Engineer",
+            alumniOf: {
+              "@type": "CollegeOrUniversity",
+              name: "SKN College of Engineering, Pune",
+            },
+          },
           address: {
             "@type": "PostalAddress",
             addressLocality: "Pune",
             addressRegion: "Maharashtra",
             addressCountry: "IN",
           },
-          alumniOf: {
-            "@type": "CollegeOrUniversity",
-            name: "SKN College of Engineering, Pune",
-          },
+          areaServed: "Worldwide",
           knowsAbout: [
             "Artificial Intelligence",
             "Large Language Models",
@@ -83,7 +85,10 @@ export const Route = createFileRoute("/")({
             "n8n Automation",
             "Industrial IoT",
             "Full-Stack Development",
-            "React",
+          ],
+          sameAs: [
+            "https://github.com/KrishnaNartam",
+            "https://linkedin.com/in/krishnanartam",
           ],
         }),
       },
@@ -281,6 +286,7 @@ function Portfolio() {
       <Nav />
       <Masthead />
       <Hero />
+      <FounderRibbon />
       <Marquee />
       <About />
       <Work />
@@ -336,9 +342,9 @@ function Nav() {
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-6">
         <a href="#top" className="flex items-center gap-3 min-w-0 group">
-          <span className="font-display text-xl leading-none">Krishna Nartam</span>
+          <span className="font-display text-xl leading-none">Fox Founder AI</span>
           <span className="hidden sm:inline kicker text-[10px] shrink-0">
-            <span className="italic-accent normal-case tracking-normal text-foreground/60">est.</span> 2023
+            <span className="italic-accent normal-case tracking-normal text-foreground/60">a studio by</span> Krishna
           </span>
         </a>
 
@@ -392,7 +398,7 @@ function Masthead() {
     <div className="pt-24 border-b border-rule">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-3 flex items-center justify-between text-[10px] kicker">
         <span>{ISSUE}</span>
-        <span className="hidden sm:inline">The Portfolio · An editorial index of work</span>
+        <span className="hidden sm:inline">Fox Founder AI · The Studio Journal</span>
         <span>{TODAY}</span>
       </div>
     </div>
@@ -408,23 +414,24 @@ function Hero() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-[11px] kicker mb-10 lg:mb-16">
           <div>Feature — 01</div>
           <div className="hidden lg:block">Pune, India · UTC+5:30</div>
-          <div className="hidden lg:block text-right">Words &amp; systems by Krishna</div>
+          <div className="hidden lg:block text-right">Studio dispatch</div>
           <div className="text-right">4 min read</div>
         </div>
 
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* Left column — kicker + display headline */}
           <div className="lg:col-span-8 animate-fade-up">
-            <p className="kicker mb-6">Portfolio / AI Engineer &amp; Full-Stack Developer</p>
+            <p className="kicker mb-6">Fox Founder AI · An AI automation studio</p>
             <h1 className="display-xl">
-              I build <span className="italic-accent">quiet</span> software
+              We build <span className="italic-accent">quiet</span> software
               <br />
               for loud problems<span className="text-muted-foreground">.</span>
             </h1>
             <p className="mt-8 max-w-xl text-base sm:text-lg leading-relaxed text-foreground/80">
-              I&apos;m Krishna — an AI engineer and full-stack developer in Pune, shipping
-              <span className="italic-accent"> LLM-powered SaaS</span>, n8n automation pipelines,
-              and Industrial IoT dashboards. From first prompt to production, with taste.
+              Fox Founder AI is a boutique studio shipping
+              <span className="italic-accent"> AI products</span>, n8n automation systems,
+              and Industrial IoT dashboards. From first prompt to production — with taste,
+              for founders and teams who want it done right the first time.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
@@ -472,7 +479,7 @@ function Hero() {
                 />
               </div>
               <figcaption className="mt-3 flex items-start justify-between gap-4 text-[11px] kicker">
-                <span>Fig. 01 — Krishna, at desk</span>
+                <span>Fig. 01 — Krishna, founder</span>
                 <span>Pune, MH</span>
               </figcaption>
             </figure>
@@ -495,6 +502,33 @@ function Stat({ n, label }: { n: string; label: string }) {
       <div className="font-display text-3xl leading-none">{n}</div>
       <div className="text-[10px] kicker mt-2">{label}</div>
     </div>
+  );
+}
+
+/* ───────── Founder ribbon ───────── */
+function FounderRibbon() {
+  return (
+    <section aria-label="Founder" className="border-b border-rule bg-surface/60">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <img
+          src={krishnaPortrait}
+          alt="Krishna Nartam, founder of Fox Founder AI"
+          className="w-10 h-10 rounded-full object-cover grayscale contrast-[1.05]"
+          loading="lazy"
+        />
+        <p className="text-sm text-foreground/80 leading-snug">
+          <span className="kicker mr-3">Founder</span>
+          Founded and led by <span className="italic-accent text-foreground">Krishna Prashant Nartam</span>,
+          AI Engineer based in Pune. Every project is scoped, built, and shipped by the studio principal.
+        </p>
+        <a
+          href="#about"
+          className="ml-auto inline-flex items-center gap-2 text-xs kicker text-foreground/70 hover:text-foreground transition"
+        >
+          Read the founder note <ArrowUpRight className="w-3.5 h-3.5" />
+        </a>
+      </div>
+    </section>
   );
 }
 
@@ -545,17 +579,17 @@ function SectionHead({
   );
 }
 
-/* ───────── About ───────── */
+/* ───────── About — Founder note ───────── */
 function About() {
   return (
     <section id="about" className="border-b border-rule">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
         <SectionHead
           n="01"
-          kicker="On the record"
+          kicker="The founder"
           title={
             <>
-              A mechanical engineer <span className="italic-accent">who fell in love</span> with software.
+              A mechanical engineer <span className="italic-accent">who fell in love</span> with software — and turned it into a studio.
             </>
           }
         />
@@ -563,27 +597,27 @@ function About() {
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-10">
           <div className="lg:col-start-4 lg:col-span-6 space-y-6 text-lg leading-relaxed">
             <p className="first-letter:font-display first-letter:text-6xl first-letter:leading-none first-letter:pr-3 first-letter:float-left first-letter:mt-1">
-              I started in mechanics — gears, tolerances, thermal cycles — and slowly
-              followed the wire back to software. Today I build AI products, automation
-              systems, and IIoT dashboards for founders and small teams who want to
-              move quickly without breaking trust.
+              I&apos;m Krishna. I started in mechanics — gears, tolerances, thermal cycles —
+              and followed the wire back to software. Fox Founder AI is the studio I run
+              today: AI products, automation systems, and IIoT dashboards for founders and
+              small teams who want to move quickly without breaking trust.
             </p>
             <p className="text-muted-foreground">
               Engineering taught me to respect constraints. Software taught me to move
-              fast anyway. I care about clean architecture, sharp UX, and shipping
-              things people actually open on Monday morning.
+              fast anyway. The studio ships with clean architecture, sharp UX, and a bias
+              for the thing people actually open on Monday morning.
             </p>
             <p className="text-muted-foreground">
-              When I&apos;m not building, I&apos;m usually reverse-engineering a workflow
-              or writing about the seams between AI, automation, and physical systems.
+              Every engagement is scoped and led by me personally — no juniors, no
+              hand-offs, no drop-shipped agency layer between you and the work.
             </p>
           </div>
 
           <aside className="lg:col-span-3 lg:col-start-10 space-y-4 text-sm">
+            <FactRow k="Studio" v="Fox Founder AI · 2026" />
+            <FactRow k="Founder" v="Krishna P. Nartam" />
             <FactRow k="Based in" v="Pune, MH · India" />
-            <FactRow k="Role" v="AI Engineer / Full-Stack" />
-            <FactRow k="Studying" v="B.E. Mechanical, 2023–27" />
-            <FactRow k="Availability" v="Freelance · Full-time" />
+            <FactRow k="Serves" v="Founders & small teams" />
             <FactRow k="Reply time" v="Within 24 hours" />
           </aside>
         </div>
@@ -1126,10 +1160,10 @@ function Footer() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-16">
         <div className="grid lg:grid-cols-12 gap-10 pb-12 border-b border-rule">
           <div className="lg:col-span-5">
-            <div className="font-display text-3xl leading-none">Krishna Nartam</div>
+            <div className="font-display text-3xl leading-none">Fox Founder AI</div>
             <p className="mt-4 text-muted-foreground max-w-sm text-sm leading-relaxed">
-              Independent AI engineer &amp; full-stack developer building quiet software for
-              loud operational problems.
+              A boutique studio building AI products, automation systems, and Industrial
+              IoT dashboards. Founded and led by Krishna Prashant Nartam in Pune, India.
             </p>
           </div>
           <div className="lg:col-span-3">
@@ -1161,7 +1195,7 @@ function Footer() {
         </div>
 
         <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-muted-foreground">
-          <div>© 2025–2026 Krishna Prashant Nartam. All work, one author.</div>
+          <div>© 2025–2026 Fox Founder AI · Krishna Prashant Nartam. All rights reserved.</div>
           <div className="kicker">{ISSUE} · {TODAY}</div>
         </div>
       </div>
