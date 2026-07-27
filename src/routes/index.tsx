@@ -7,9 +7,12 @@ import {
   Mail,
   MapPin,
   ArrowUpRight,
+  ArrowRight,
+  ArrowUp,
   Plus,
   Minus,
   Send,
+  Download,
 } from "lucide-react";
 
 import krishnaPortraitAsset from "@/assets/krishna-portrait.png.asset.json";
@@ -23,8 +26,9 @@ const EMAILJS_SERVICE_ID = "service_138mf4y";
 const EMAILJS_TEMPLATE_ID = "template_tzzd9c8";
 const EMAILJS_PUBLIC_KEY = "XIuTaiEJ6Ll6vBf4Z";
 
-const ISSUE = "Vol. 01 · Issue 01";
-const TODAY = "Winter 2026";
+const EMAIL = "krishnanartam911@gmail.com";
+const GITHUB = "https://github.com/KrishnaNartam";
+const LINKEDIN = "https://linkedin.com/in/krishnanartam";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -86,10 +90,7 @@ export const Route = createFileRoute("/")({
             "Industrial IoT",
             "Full-Stack Development",
           ],
-          sameAs: [
-            "https://github.com/KrishnaNartam",
-            "https://linkedin.com/in/krishnanartam",
-          ],
+          sameAs: [GITHUB, LINKEDIN],
         }),
       },
     ],
@@ -97,87 +98,90 @@ export const Route = createFileRoute("/")({
   component: Portfolio,
 });
 
+/* ───────── Data ───────── */
+
 const NAV = [
-  { label: "Index", href: "#top", n: "00" },
-  { label: "About", href: "#about", n: "01" },
-  { label: "Work", href: "#work", n: "02" },
-  { label: "Craft", href: "#skills", n: "03" },
-  { label: "Career", href: "#experience", n: "04" },
-  { label: "Notes", href: "#insights", n: "05" },
-  { label: "Contact", href: "#contact", n: "06" },
+  { label: "Home", href: "#top" },
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Works", href: "#work" },
+  { label: "Skills", href: "#skills" },
+  { label: "Contact", href: "#contact" },
 ];
 
-const CLIENT_MARKS = [
-  "OpenAI · GPT-4o",
-  "Anthropic · Claude",
-  "Google · Gemini",
-  "Supabase",
-  "n8n",
-  "Vercel",
-  "Cloudflare",
-  "PostgreSQL",
-  "Docker",
-  "MQTT",
-];
-
-const PROJECTS: {
-  n: string;
-  name: string;
-  tagline: string;
-  problem: string;
-  solution: string;
-  stack: string[];
-  role: string;
-  year: string;
-  duration: string;
-  image: string;
-  link?: string;
-  github?: string;
-}[] = [
+const SERVICES = [
   {
-    n: "P/01",
-    name: "Résumé, rebuilt by an AI that reads job ads",
-    tagline: "AI Resume Builder — SaaS",
+    n: "01",
+    title: "AI Products",
+    tags: ["LLM apps", "RAG", "Agents"],
+    body: "Production LLM software — chat surfaces, retrieval pipelines, and multi-step agents wired into your data.",
+    image: projAgent,
+  },
+  {
+    n: "02",
+    title: "Automation Systems",
+    tags: ["n8n", "Webhooks", "Ops"],
+    body: "n8n and API pipelines that quietly remove the manual hours your team keeps re-spending every week.",
+    image: projResume,
+  },
+  {
+    n: "03",
+    title: "IIoT Dashboards",
+    tags: ["MQTT", "Realtime", "OEE"],
+    body: "Factory-floor telemetry, live OEE, and downtime analytics on screens operators actually read.",
+    image: projIiot,
+  },
+  {
+    n: "04",
+    title: "Full-Stack Builds",
+    tags: ["React", "FastAPI", "Cloud"],
+    body: "End-to-end product engineering — auth, dashboards, billing surfaces, and the deploy pipeline behind them.",
+    image: projResume,
+  },
+];
+
+const PROJECTS = [
+  {
+    n: "01",
+    name: "AI Resume Builder",
+    tagline: "SaaS · ATS-ready résumés from one prompt",
     problem:
-      "Job seekers spend hours rewriting résumés for every posting and still get filtered out by ATS keyword screens.",
+      "Job seekers rewrite résumés for every posting and still get filtered out by ATS keyword screens.",
     solution:
-      "A single-prompt SaaS that composes ATS-friendly résumés, adapts tone to the role, and exports clean PDFs — with auth, saved templates, and a dashboard.",
-    stack: ["Next.js", "FastAPI", "OpenAI", "Supabase", "Tailwind"],
-    role: "Design, product, full-stack",
+      "A single-prompt SaaS that composes ATS-friendly résumés, adapts tone to the role, and exports clean PDFs.",
+    stack: ["Next.js", "FastAPI", "OpenAI", "Supabase"],
     year: "2025",
     duration: "2 months",
     image: projResume,
-    github: "https://github.com/KrishnaNartam",
+    github: GITHUB,
   },
   {
-    n: "P/02",
-    name: "Real-time OEE for factories that never had it",
-    tagline: "Industrial IoT dashboard",
+    n: "02",
+    name: "Realtime OEE Dashboard",
+    tagline: "Industrial IoT · Live factory telemetry",
     problem:
-      "Small manufacturers run blind — no live visibility into machine performance, downtime, or throughput KPIs.",
+      "Small manufacturers run blind — no live visibility into machine performance, downtime, or throughput.",
     solution:
-      "An MQTT-fed dashboard that streams live OEE, downtime reasons, and shift analytics onto operator TVs and phones.",
-    stack: ["React", "Node.js", "MQTT", "PostgreSQL", "Docker"],
-    role: "Architecture, backend, dashboards",
+      "An MQTT-fed dashboard streaming live OEE, downtime reasons, and shift analytics to operator TVs and phones.",
+    stack: ["React", "Node.js", "MQTT", "PostgreSQL"],
     year: "2025",
     duration: "3 months",
     image: projIiot,
-    github: "https://github.com/KrishnaNartam",
+    github: GITHUB,
   },
   {
-    n: "P/03",
-    name: "A quiet brand auditor for teams shipping content daily",
-    tagline: "Anti-Cringe Brand Sentinel",
+    n: "03",
+    name: "Brand Sentinel",
+    tagline: "Multimodal · Pre-publish brand auditing",
     problem:
-      "Brand teams push social posts that drift off-tone and underperform, with no early signal before publish.",
+      "Brand teams push social posts that drift off-tone, with no early signal before they publish.",
     solution:
       "A multimodal auditor that scores each post for brand consistency and predicts engagement before it goes live.",
-    stack: ["Next.js", "Gemini", "Python", "Vision API", "Vercel"],
-    role: "Product, prompt design, full-stack",
+    stack: ["Next.js", "Gemini", "Python", "Vercel"],
     year: "2025",
     duration: "1 month",
     image: projAgent,
-    github: "https://github.com/KrishnaNartam",
+    github: GITHUB,
   },
 ];
 
@@ -192,28 +196,12 @@ const SKILL_GROUPS: { title: string; items: string[] }[] = [
   { title: "Tools", items: ["Git", "Figma", "Postman", "Linux", "VS Code"] },
 ];
 
-const EXPERIENCE = [
-  {
-    role: "AI Engineer — Freelance",
-    org: "Independent · Pune, India",
-    years: "2024 — Present",
-    detail:
-      "Shipping LLM-powered SaaS, n8n automation pipelines, and multi-step AI agents for founders and small teams.",
-  },
-  {
-    role: "Full-Stack Developer",
-    org: "Self-initiated SaaS & client work",
-    years: "2023 — 2024",
-    detail:
-      "Designed and built end-to-end web products — auth, dashboards, billing surfaces, and API layers.",
-  },
-  {
-    role: "Industrial IoT Builder",
-    org: "Manufacturing pilots · OEE dashboards",
-    years: "2023 — 2024",
-    detail:
-      "Ran on-floor pilots: MQTT ingestion, real-time OEE, downtime tracking, and operator-friendly dashboards.",
-  },
+const MILESTONES = [
+  { n: "01", org: "Fox Founder AI", what: "Studio founded — AI & automation", year: "2026" },
+  { n: "02", org: "Manufacturing pilot", what: "Realtime OEE rollout on factory floor", year: "2025" },
+  { n: "03", org: "Independent clients", what: "LLM product builds & n8n pipelines", year: "2025" },
+  { n: "04", org: "Self-initiated SaaS", what: "Full-stack product engineering", year: "2024" },
+  { n: "05", org: "SKN College of Engineering", what: "B.E. Mechanical Engineering, Pune", year: "2023" },
 ];
 
 const EDUCATION = [
@@ -225,28 +213,9 @@ const EDUCATION = [
   },
 ];
 
-const INSIGHTS = [
-  {
-    kicker: "Field notes · AI",
-    title: "Why great AI products start with the right question",
-    excerpt:
-      "Most AI features fail not from bad models, but from fuzzy briefs. A short framework I use to scope an AI build.",
-    image: projResume,
-  },
-  {
-    kicker: "Field notes · Automation",
-    title: "Scaling automation without the chaos",
-    excerpt:
-      "When n8n workflows grow past a dozen nodes, structure beats speed. Patterns I lean on for maintainable automations.",
-    image: projIiot,
-  },
-  {
-    kicker: "Field notes · IIoT",
-    title: "IIoT dashboards operators actually use",
-    excerpt:
-      "Lessons from shipping real-time MQTT dashboards on the factory floor — UX matters more than chart count.",
-    image: projAgent,
-  },
+const STACK_WALL = [
+  "OpenAI", "Anthropic", "Gemini", "n8n", "Supabase", "Vercel",
+  "Cloudflare", "PostgreSQL", "Docker", "MQTT", "FastAPI", "React",
 ];
 
 const FAQS = [
@@ -274,25 +243,23 @@ const FAQS = [
     q: "What's your typical process?",
     a: "Discovery call → tight written brief → prototype within a week → iterate weekly with a working demo. No 40-page decks.",
   },
-  {
-    q: "Do you also handle deployment?",
-    a: "Yes — Vercel, Cloudflare, AWS, or self-hosted, depending on the project. Hand-off includes docs and a Loom walkthrough.",
-  },
 ];
+
+/* ───────── Shell ───────── */
 
 function Portfolio() {
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased">
+    <div className="min-h-screen bg-background text-foreground antialiased overflow-x-hidden">
+      <CursorDot />
       <Nav />
-      <Masthead />
       <Hero />
-      <FounderRibbon />
-      <Marquee />
+      <MarqueeBand words={["Services", "Services", "Services", "Services"]} />
+      <Services />
       <About />
       <Work />
+      <Milestones />
       <Skills />
-      <Experience />
-      <Insights />
+      <StackWall />
       <Faq />
       <Contact />
       <Footer />
@@ -300,631 +267,625 @@ function Portfolio() {
   );
 }
 
-/* ───────── Scroll spy ───────── */
-function useActiveSection(ids: string[]) {
-  const [active, setActive] = useState<string>(ids[0] ?? "");
+/* ───────── Motion helpers ───────── */
+
+function useReveal() {
   useEffect(() => {
-    const sections = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => !!el);
-    if (sections.length === 0) return;
-    const observer = new IntersectionObserver(
+    const nodes = Array.from(document.querySelectorAll("[data-reveal]"));
+    if (nodes.length === 0) return;
+    const io = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) setActive(visible[0].target.id);
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            const el = e.target as HTMLElement;
+            const delay = Number(el.dataset.delay ?? 0);
+            window.setTimeout(() => el.classList.add("is-in"), delay);
+            io.unobserve(el);
+          }
+        });
       },
-      { rootMargin: "-45% 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
     );
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
-  }, [ids.join("|")]);
-  return active;
+    nodes.forEach((n) => io.observe(n));
+    return () => io.disconnect();
+  }, []);
 }
 
-/* ───────── Nav ───────── */
-function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  const active = useActiveSection(NAV.map((n) => n.href.slice(1)));
+function CursorDot() {
+  const ref = useRef<HTMLDivElement>(null);
+  useReveal();
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    const el = ref.current;
+    if (!el) return;
+    let x = 0, y = 0, cx = 0, cy = 0, raf = 0;
+    const move = (e: MouseEvent) => {
+      x = e.clientX;
+      y = e.clientY;
+      const t = e.target as HTMLElement | null;
+      const interactive = !!t?.closest("a,button,input,textarea");
+      el.style.width = interactive ? "34px" : "12px";
+      el.style.height = interactive ? "34px" : "12px";
+    };
+    const loop = () => {
+      cx += (x - cx) * 0.18;
+      cy += (y - cy) * 0.18;
+      el.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate(-50%, -50%)`;
+      raf = requestAnimationFrame(loop);
+    };
+    window.addEventListener("mousemove", move);
+    raf = requestAnimationFrame(loop);
+    return () => {
+      window.removeEventListener("mousemove", move);
+      cancelAnimationFrame(raf);
+    };
   }, []);
+  return <div ref={ref} className="cursor-dot hidden md:block" aria-hidden="true" />;
+}
+
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+  as: Tag = "div",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+  as?: "div" | "section" | "article" | "li" | "span";
+}) {
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "py-3 bg-background/85 backdrop-blur-xl border-b border-rule"
-          : "py-5 bg-transparent"
-      }`}
-    >
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-6">
-        <a href="#top" className="flex items-center gap-3 min-w-0 group">
-          <span className="font-display text-xl leading-none">Fox Founder AI</span>
-          <span className="hidden sm:inline kicker text-[10px] shrink-0">
-            <span className="italic-accent normal-case tracking-normal text-foreground/60">a studio by</span> Krishna
-          </span>
-        </a>
-
-        <nav className="hidden md:flex items-center gap-6 text-[13px]" aria-label="Primary">
-          {NAV.slice(1, -1).map((n) => {
-            const isActive = active === n.href.slice(1);
-            return (
-              <a
-                key={n.href}
-                href={n.href}
-                className={`relative py-1 transition-colors ${
-                  isActive
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-                aria-current={isActive ? "true" : undefined}
-              >
-                <span className={isActive ? "italic-accent" : ""}>{n.label}</span>
-                {isActive && (
-                  <span className="absolute -bottom-0.5 left-0 right-0 h-px bg-foreground" />
-                )}
-              </a>
-            );
-          })}
-        </nav>
-
-        <div className="flex items-center justify-end gap-3">
-          <span className="hidden lg:inline-flex items-center gap-2 text-[11px] text-muted-foreground">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-foreground/40" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground" />
-            </span>
-            Available Q1
-          </span>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 text-[13px] font-medium px-4 py-2 rounded-full bg-foreground text-background hover:opacity-90 transition"
-          >
-            Start a project
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
-        </div>
-      </div>
-    </header>
+    <Tag data-reveal="" data-delay={delay} className={`reveal ${className}`}>
+      {children}
+    </Tag>
   );
 }
 
-/* ───────── Masthead (editorial banner) ───────── */
-function Masthead() {
+function MaskLine({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
-    <div className="pt-24 border-b border-rule">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-3 flex items-center justify-between text-[10px] kicker">
-        <span>{ISSUE}</span>
-        <span className="hidden sm:inline">Fox Founder AI · The Studio Journal</span>
-        <span>{TODAY}</span>
+    <span data-reveal="" data-delay={delay} className={`reveal-mask ${className}`}>
+      <span>{children}</span>
+    </span>
+  );
+}
+
+/* ───────── Nav ───────── */
+
+function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <header className="fixed top-0 inset-x-0 z-50 px-3 sm:px-5 pt-3 sm:pt-5">
+      <div
+        className={`mx-auto max-w-[1500px] flex items-center justify-between gap-4 rounded-full px-3 sm:px-4 py-2.5 transition-all duration-500 ${
+          scrolled ? "bg-surface/85 backdrop-blur-xl border border-rule" : "bg-transparent border border-transparent"
+        }`}
+      >
+        <a href="#top" className="flex items-center gap-2.5 rounded-full bg-paper text-background pl-2.5 pr-4 py-2">
+          <span className="w-5 h-5 rounded-full bg-ember" />
+          <span className="font-display text-sm tracking-tight leading-none pt-0.5">FOX FOUNDER</span>
+        </a>
+
+        <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
+          {NAV.map((n) => (
+            <a
+              key={n.href}
+              href={n.href}
+              className="px-4 py-2 rounded-full text-[13px] text-muted-foreground hover:text-foreground hover:bg-elevated transition-colors"
+            >
+              {n.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-2">
+          <a
+            href={`mailto:${EMAIL}?subject=Résumé request`}
+            className="btn-ember hidden sm:inline-flex items-center gap-2 text-[13px] px-4 py-2.5"
+          >
+            <Download className="w-3.5 h-3.5" /> Download CV
+          </a>
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            className="lg:hidden w-10 h-10 rounded-full border border-rule flex flex-col items-center justify-center gap-1.5 bg-surface"
+          >
+            <span className={`block w-4 h-px bg-foreground transition-transform ${open ? "translate-y-[3px] rotate-45" : ""}`} />
+            <span className={`block w-4 h-px bg-foreground transition-transform ${open ? "-translate-y-[3px] -rotate-45" : ""}`} />
+          </button>
+        </div>
       </div>
-    </div>
+
+      {open && (
+        <div className="lg:hidden mx-auto max-w-[1500px] mt-2 rounded-3xl border border-rule bg-surface/95 backdrop-blur-xl p-3">
+          {NAV.map((n) => (
+            <a
+              key={n.href}
+              href={n.href}
+              onClick={() => setOpen(false)}
+              className="block px-4 py-3 rounded-2xl text-sm text-muted-foreground hover:text-foreground hover:bg-elevated"
+            >
+              {n.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
   );
 }
 
 /* ───────── Hero ───────── */
+
 function Hero() {
   return (
-    <section id="top" className="relative border-b border-rule">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-10 pb-16 lg:pt-16 lg:pb-24">
-        {/* Above-fold caption row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-[11px] kicker mb-10 lg:mb-16">
-          <div>Feature — 01</div>
-          <div className="hidden lg:block">Pune, India · UTC+5:30</div>
-          <div className="hidden lg:block text-right">Studio dispatch</div>
-          <div className="text-right">4 min read</div>
-        </div>
-
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          {/* Left column — kicker + display headline */}
-          <div className="lg:col-span-8 animate-fade-up">
-            <p className="kicker mb-6">Fox Founder AI · An AI automation studio</p>
-            <h1 className="display-xl">
-              We build <span className="italic-accent">quiet</span> software
-              <br />
-              for loud problems<span className="text-muted-foreground">.</span>
+    <section id="top" className="relative pt-28 sm:pt-32 pb-10">
+      <div className="absolute inset-0 grid-lines opacity-70 pointer-events-none" aria-hidden="true" />
+      <div className="relative mx-auto max-w-[1500px] px-3 sm:px-5">
+        <div className="relative overflow-hidden rounded-[2rem] bg-surface border border-rule">
+          {/* Giant word */}
+          <div className="pt-10 sm:pt-14 px-4 sm:px-8">
+            <h1 className="display-mega text-center leading-none">
+              <MaskLine>AI ENGINEER</MaskLine>
             </h1>
-            <p className="mt-8 max-w-xl text-base sm:text-lg leading-relaxed text-foreground/80">
-              Fox Founder AI is a boutique studio shipping
-              <span className="italic-accent"> AI products</span>, n8n automation systems,
-              and Industrial IoT dashboards. From first prompt to production — with taste,
-              for founders and teams who want it done right the first time.
-            </p>
+          </div>
 
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <a
-                href="#work"
-                className="group inline-flex items-center gap-2 text-sm font-medium px-5 py-3 rounded-full bg-foreground text-background hover:opacity-90 transition"
-              >
-                See selected work
-                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 text-sm font-medium px-5 py-3 rounded-full border border-foreground/25 hover:border-foreground hover:bg-foreground/[0.04] transition"
-              >
-                Start a project
-              </a>
-              <a
-                href="https://github.com/KrishnaNartam"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 text-sm px-4 py-3 text-muted-foreground hover:text-foreground transition"
-              >
-                <Github className="w-4 h-4" /> GitHub
-              </a>
-              <a
-                href="https://linkedin.com/in/krishnanartam"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 text-sm px-2 py-3 text-muted-foreground hover:text-foreground transition"
-              >
-                <Linkedin className="w-4 h-4" /> LinkedIn
-              </a>
+          {/* Portrait overlapping the type */}
+          <div className="relative -mt-[8vw] sm:-mt-[7vw] flex justify-center">
+            <div data-reveal="" className="reveal-clip w-[62%] sm:w-[42%] max-w-[440px]">
+              <img
+                src={krishnaPortrait}
+                alt="Krishna Nartam, founder of Fox Founder AI"
+                className="w-full h-auto object-cover grayscale contrast-[1.08]"
+                loading="eager"
+              />
             </div>
           </div>
 
-          {/* Right column — portrait card */}
-          <aside className="lg:col-span-4 animate-fade-up" style={{ animationDelay: "0.15s" }}>
-            <figure className="relative">
-              <div className="aspect-[4/5] overflow-hidden bg-surface">
-                <img
-                  src={krishnaPortrait}
-                  alt="Portrait of Krishna Nartam"
-                  className="w-full h-full object-cover grayscale contrast-[1.05]"
-                  loading="eager"
-                />
-              </div>
-              <figcaption className="mt-3 flex items-start justify-between gap-4 text-[11px] kicker">
-                <span>Fig. 01 — Krishna, founder</span>
-                <span>Pune, MH</span>
-              </figcaption>
-            </figure>
+          {/* Bottom rail */}
+          <div className="relative grid gap-6 md:grid-cols-[1fr_auto] items-end px-5 sm:px-8 pb-8 -mt-16 sm:-mt-24">
+            <Reveal delay={220} className="max-w-xs">
+              <p className="kicker mb-3">Hello — I&apos;m Krishna</p>
+              <p className="font-display text-lg sm:text-xl leading-[1.05]">
+                AI Engineer &amp; founder of Fox&nbsp;Founder&nbsp;AI, building products that actually ship.
+              </p>
+              <a href="#work" className="mt-4 inline-flex items-center gap-2 text-xs kicker text-foreground hover:text-ember transition-colors">
+                <ArrowRight className="w-3.5 h-3.5" /> Studio / Development
+              </a>
+            </Reveal>
 
-            <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-rule pt-6">
-              <Stat n="03+" label="Years shipping" />
-              <Stat n="12+" label="Projects delivered" />
-              <Stat n="24h" label="Reply window" />
-            </dl>
-          </aside>
+            <Reveal delay={340} className="flex flex-wrap gap-3">
+              <StatCard n="98%" label="Client satisfaction" tone="light" />
+              <StatCard n="12+" label="Projects shipped" tone="dark" />
+              <StatCard n="24h" label="Reply window" tone="ember" />
+            </Reveal>
+          </div>
         </div>
+
+        {/* CTA row */}
+        <Reveal delay={120} className="mt-5 flex flex-wrap items-center gap-3">
+          <a href="#contact" className="btn-volt inline-flex items-center gap-2 px-6 py-3.5 text-sm">
+            Start a project <ArrowUpRight className="w-4 h-4" />
+          </a>
+          <a
+            href="#work"
+            className="inline-flex items-center gap-2 px-6 py-3.5 text-sm rounded-full border border-rule hover:border-foreground hover:bg-surface transition-colors"
+          >
+            See selected work
+          </a>
+          <span className="chip ml-auto">
+            <span className="w-1.5 h-1.5 rounded-full bg-volt" /> Pune, India · UTC+5:30
+          </span>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-function Stat({ n, label }: { n: string; label: string }) {
+function StatCard({ n, label, tone }: { n: string; label: string; tone: "light" | "dark" | "ember" }) {
+  const cls =
+    tone === "light"
+      ? "bg-paper text-background"
+      : tone === "ember"
+        ? "bg-ember text-foreground"
+        : "bg-background text-foreground border border-rule";
   return (
-    <div>
+    <div className={`rounded-2xl px-5 py-4 min-w-[128px] ${cls}`}>
       <div className="font-display text-3xl leading-none">{n}</div>
-      <div className="text-[10px] kicker mt-2">{label}</div>
+      <div className="mt-2 text-[10px] font-mono uppercase tracking-[0.18em] opacity-70">{label}</div>
     </div>
   );
 }
 
-/* ───────── Founder ribbon ───────── */
-function FounderRibbon() {
-  return (
-    <section aria-label="Founder" className="border-b border-rule bg-surface/60">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-5 flex flex-wrap items-center gap-x-6 gap-y-3">
-        <img
-          src={krishnaPortrait}
-          alt="Krishna Nartam, founder of Fox Founder AI"
-          className="w-10 h-10 rounded-full object-cover grayscale contrast-[1.05]"
-          loading="lazy"
-        />
-        <p className="text-sm text-foreground/80 leading-snug">
-          <span className="kicker mr-3">Founder</span>
-          Founded and led by <span className="italic-accent text-foreground">Krishna Prashant Nartam</span>,
-          AI Engineer based in Pune. Every project is scoped, built, and shipped by the studio principal.
-        </p>
-        <a
-          href="#about"
-          className="ml-auto inline-flex items-center gap-2 text-xs kicker text-foreground/70 hover:text-foreground transition"
-        >
-          Read the founder note <ArrowUpRight className="w-3.5 h-3.5" />
-        </a>
-      </div>
-    </section>
-  );
-}
+/* ───────── Marquee band ───────── */
 
-/* ───────── Marquee — text-only, editorial ───────── */
-function Marquee() {
-  const list = [...CLIENT_MARKS, ...CLIENT_MARKS];
+function MarqueeBand({ words, tone = "dark" }: { words: string[]; tone?: "dark" | "light" }) {
+  const row = [...words, ...words, ...words, ...words];
   return (
-    <section className="border-b border-rule overflow-hidden py-5">
-      <div className="flex animate-marquee whitespace-nowrap gap-10 text-sm">
-        {list.map((m, i) => (
-          <span key={i} className="flex items-center gap-10 text-muted-foreground">
-            <span className="italic-accent">{m}</span>
-            <span className="text-foreground/20">✦</span>
+    <div
+      className={`overflow-hidden py-6 sm:py-8 border-y border-rule ${
+        tone === "light" ? "bg-paper text-background" : "bg-background"
+      }`}
+    >
+      <div className="flex w-max animate-marquee whitespace-nowrap">
+        {row.map((w, i) => (
+          <span key={i} className="flex items-center">
+            <span className={`display-lg px-6 ${i % 2 === 1 ? "outline-type" : ""}`}>{w}</span>
+            <span className="text-ember text-3xl">—</span>
           </span>
         ))}
       </div>
-    </section>
+    </div>
   );
 }
 
-/* ───────── Section header ───────── */
+/* ───────── Section head ───────── */
+
 function SectionHead({
-  n,
   kicker,
   title,
   lede,
+  right,
 }: {
-  n: string;
   kicker: string;
   title: React.ReactNode;
   lede?: string;
+  right?: React.ReactNode;
 }) {
   return (
-    <header className="grid lg:grid-cols-12 gap-6 lg:gap-10 mb-14 lg:mb-20">
-      <div className="lg:col-span-3 flex items-start gap-4">
-        <span className="font-display text-4xl leading-none text-foreground/30">{n}</span>
-        <span className="kicker mt-2">{kicker}</span>
-      </div>
-      <div className="lg:col-span-9">
-        <h2 className="display-lg max-w-3xl">{title}</h2>
+    <header className="mb-12 lg:mb-16 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+      <div>
+        <Reveal className="chip mb-5 inline-flex">
+          <span className="w-1.5 h-1.5 rounded-full bg-ember" /> {kicker}
+        </Reveal>
+        <h2 className="display-xl max-w-4xl">
+          <MaskLine delay={80}>{title}</MaskLine>
+        </h2>
         {lede && (
-          <p className="mt-5 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
+          <Reveal delay={180} className="mt-5 max-w-xl text-sm sm:text-base text-muted-foreground leading-relaxed">
             {lede}
-          </p>
+          </Reveal>
         )}
       </div>
+      {right && <Reveal delay={220}>{right}</Reveal>}
     </header>
   );
 }
 
-/* ───────── About — Founder note ───────── */
-function About() {
+/* ───────── Services ───────── */
+
+function Services() {
   return (
-    <section id="about" className="border-b border-rule">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+    <section id="services" className="py-20 lg:py-28">
+      <div className="mx-auto max-w-[1500px] px-3 sm:px-5">
         <SectionHead
-          n="01"
-          kicker="The founder"
-          title={
-            <>
-              A mechanical engineer <span className="italic-accent">who fell in love</span> with software — and turned it into a studio.
-            </>
+          kicker="What we do"
+          title="Services"
+          lede="Four ways the studio plugs into your roadmap — scoped tight, shipped fast, handed over with docs."
+          right={
+            <a href="#contact" className="btn-ember inline-flex items-center gap-2 px-5 py-3 text-sm">
+              Book a call <ArrowUpRight className="w-4 h-4" />
+            </a>
           }
         />
 
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10">
-          <div className="lg:col-start-4 lg:col-span-6 space-y-6 text-lg leading-relaxed">
-            <p className="first-letter:font-display first-letter:text-6xl first-letter:leading-none first-letter:pr-3 first-letter:float-left first-letter:mt-1">
-              I&apos;m Krishna. I started in mechanics — gears, tolerances, thermal cycles —
-              and followed the wire back to software. Fox Founder AI is the studio I run
-              today: AI products, automation systems, and IIoT dashboards for founders and
-              small teams who want to move quickly without breaking trust.
-            </p>
-            <p className="text-muted-foreground">
-              Engineering taught me to respect constraints. Software taught me to move
-              fast anyway. The studio ships with clean architecture, sharp UX, and a bias
-              for the thing people actually open on Monday morning.
-            </p>
-            <p className="text-muted-foreground">
-              Every engagement is scoped and led by me personally — no juniors, no
-              hand-offs, no drop-shipped agency layer between you and the work.
-            </p>
-          </div>
+        <div className="space-y-4">
+          {SERVICES.map((s, i) => (
+            <Reveal key={s.n} delay={i * 90}>
+              <article className="panel panel-hover group grid md:grid-cols-[auto_1fr_auto] items-center gap-6 p-4 sm:p-5">
+                <div className="flex items-center gap-4 md:w-40">
+                  <span className="font-mono text-xs text-ember">{s.n}</span>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground transition-transform duration-500 group-hover:translate-x-1 group-hover:text-ember" />
+                </div>
 
-          <aside className="lg:col-span-3 lg:col-start-10 space-y-4 text-sm">
-            <FactRow k="Studio" v="Fox Founder AI · 2026" />
-            <FactRow k="Founder" v="Krishna P. Nartam" />
-            <FactRow k="Based in" v="Pune, MH · India" />
-            <FactRow k="Serves" v="Founders & small teams" />
-            <FactRow k="Reply time" v="Within 24 hours" />
-          </aside>
+                <div className="min-w-0">
+                  <h3 className="font-display text-2xl sm:text-4xl transition-colors group-hover:text-ember">
+                    {s.title}
+                  </h3>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {s.tags.map((t) => (
+                      <span key={t} className="chip">{t}</span>
+                    ))}
+                  </div>
+                  <p className="mt-3 max-w-xl text-sm text-muted-foreground leading-relaxed">{s.body}</p>
+                </div>
+
+                <div className="w-full md:w-56 h-32 rounded-2xl overflow-hidden bg-elevated">
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-[900ms] group-hover:scale-105"
+                  />
+                </div>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function FactRow({ k, v }: { k: string; v: string }) {
+/* ───────── About ───────── */
+
+function About() {
   return (
-    <div className="grid grid-cols-[auto_1fr] gap-4 border-b border-rule pb-3">
+    <section id="about" className="py-20 lg:py-28 border-t border-rule">
+      <div className="mx-auto max-w-[1500px] px-3 sm:px-5">
+        <SectionHead kicker="The founder" title={<>About the studio</>} />
+
+        <div className="grid lg:grid-cols-12 gap-5 items-stretch">
+          <Reveal className="lg:col-span-5">
+            <div className="relative h-full min-h-[320px] rounded-[2rem] overflow-hidden bg-surface border border-rule">
+              <img
+                src={krishnaPortrait}
+                alt="Krishna Nartam"
+                loading="lazy"
+                className="w-full h-full object-cover grayscale contrast-[1.08]"
+              />
+              <div className="absolute -bottom-6 -right-6 w-40 h-40 rounded-full bg-ember flex flex-col items-center justify-center text-center">
+                <span className="font-display text-4xl leading-none">3+</span>
+                <span className="mt-1 text-[9px] font-mono uppercase tracking-[0.2em] opacity-80">
+                  Years of<br />experience
+                </span>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={140} className="lg:col-span-7">
+            <div className="panel h-full p-6 sm:p-10 flex flex-col justify-between gap-8">
+              <div className="space-y-5">
+                <p className="text-lg sm:text-xl leading-relaxed">
+                  I&apos;m <span className="text-ember">Krishna</span> — a mechanical engineer who followed
+                  the wire back to software. Fox Founder AI is the studio I run today: AI products,
+                  automation systems, and IIoT dashboards for founders and small teams.
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Engineering taught me to respect constraints. Software taught me to move fast anyway.
+                  Every engagement is scoped and led by me personally — no juniors, no hand-offs, no
+                  agency layer between you and the work.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-x-10 gap-y-3">
+                <Fact k="Studio" v="Fox Founder AI · 2026" />
+                <Fact k="Founder" v="Krishna P. Nartam" />
+                <Fact k="Based in" v="Pune, MH · India" />
+                <Fact k="Reply time" v="Within 24 hours" />
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <a href={GITHUB} target="_blank" rel="noreferrer" className="chip hover:text-foreground hover:border-foreground transition-colors">
+                  <Github className="w-3.5 h-3.5" /> GitHub
+                </a>
+                <a href={LINKEDIN} target="_blank" rel="noreferrer" className="chip hover:text-foreground hover:border-foreground transition-colors">
+                  <Linkedin className="w-3.5 h-3.5" /> LinkedIn
+                </a>
+                <a href={`mailto:${EMAIL}`} className="chip hover:text-foreground hover:border-foreground transition-colors">
+                  <Mail className="w-3.5 h-3.5" /> Email
+                </a>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Education */}
+        <div className="mt-5 grid md:grid-cols-2 gap-5">
+          {EDUCATION.map((e, i) => (
+            <Reveal key={e.degree} delay={i * 100}>
+              <div className="panel p-6 sm:p-8">
+                <div className="kicker mb-3">Education · {e.years}</div>
+                <h3 className="font-display text-2xl">{e.degree}</h3>
+                <div className="mt-1 text-sm text-muted-foreground">{e.org}</div>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{e.detail}</p>
+              </div>
+            </Reveal>
+          ))}
+          <Reveal delay={100}>
+            <div className="panel p-6 sm:p-8 flex flex-col justify-between gap-6 h-full">
+              <div>
+                <div className="kicker mb-3">Availability</div>
+                <h3 className="font-display text-2xl">Open for Q1 builds</h3>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                  Taking on two new engagements this quarter — AI products, automation, or an IIoT pilot.
+                </p>
+              </div>
+              <a href="#contact" className="btn-volt inline-flex w-fit items-center gap-2 px-5 py-3 text-sm">
+                Start a project <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Fact({ k, v }: { k: string; v: string }) {
+  return (
+    <div className="flex items-center justify-between gap-4 border-b border-rule pb-2.5">
       <span className="kicker">{k}</span>
-      <span className="text-right text-foreground">{v}</span>
+      <span className="text-sm">{v}</span>
     </div>
   );
 }
 
-/* ───────── Work — magazine feature layout ───────── */
+/* ───────── Work ───────── */
+
 function Work() {
-  const [feature, ...rest] = PROJECTS;
   return (
-    <section id="work" className="border-b border-rule">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+    <section id="work" className="relative py-20 lg:py-28 border-t border-rule overflow-hidden">
+      <div className="mx-auto max-w-[1500px] px-3 sm:px-5">
         <SectionHead
-          n="02"
           kicker="Selected work"
-          title={
-            <>
-              Three shipped systems, <span className="italic-accent">from prompt to production.</span>
-            </>
-          }
-          lede="Each piece below solves a specific operational problem. Same author, three different registers."
+          title="Works"
+          lede="Three shipped systems. Each solves a specific operational problem — hover a card for the detail."
         />
 
-        {/* Featured cover story */}
-        <ProjectFeature p={feature} />
-
-        {/* Rest as alternating editorial rows */}
-        <div className="mt-16 lg:mt-24 border-t border-rule">
-          {rest.map((p, i) => (
-            <ProjectRow key={p.n} p={p} flipped={i % 2 === 1} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProjectFeature({ p }: { p: (typeof PROJECTS)[number] }) {
-  return (
-    <article className="group grid lg:grid-cols-12 gap-8 lg:gap-10 items-end">
-      <figure className="lg:col-span-8 relative overflow-hidden bg-surface">
-        <div className="aspect-[16/10] overflow-hidden">
-          <img
-            src={p.image}
-            alt={p.name}
-            className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.03]"
-            loading="eager"
-          />
-        </div>
-        <figcaption className="absolute top-4 left-4 kicker bg-background/85 backdrop-blur px-3 py-1.5">
-          Cover story · {p.n}
-        </figcaption>
-      </figure>
-
-      <div className="lg:col-span-4 space-y-5">
-        <div className="kicker">{p.tagline}</div>
-        <h3 className="font-display text-3xl sm:text-4xl leading-[1.05]">
-          {p.name}
-        </h3>
-        <p className="text-muted-foreground leading-relaxed">{p.problem}</p>
-        <p className="leading-relaxed">
-          <span className="italic-accent text-foreground">The build. </span>
-          <span className="text-foreground/80">{p.solution}</span>
-        </p>
-        <div className="flex flex-wrap gap-1.5 pt-2">
-          {p.stack.map((s) => (
-            <span key={s} className="text-[11px] px-2.5 py-1 border border-foreground/15 rounded-full text-foreground/70">
-              {s}
-            </span>
-          ))}
-        </div>
-        <div className="pt-4 flex flex-wrap items-center gap-3 border-t border-rule">
-          {p.link && (
-            <a href={p.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium">
-              Read the case <ArrowUpRight className="w-4 h-4" />
-            </a>
-          )}
-          {p.github && (
-            <a href={p.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition">
-              <Github className="w-4 h-4" /> Source
-            </a>
-          )}
-          <span className="ml-auto kicker">{p.year} · {p.duration}</span>
-        </div>
-      </div>
-    </article>
-  );
-}
-
-function ProjectRow({ p, flipped }: { p: (typeof PROJECTS)[number]; flipped: boolean }) {
-  return (
-    <article className="group grid lg:grid-cols-12 gap-8 lg:gap-10 py-12 lg:py-16 border-b border-rule">
-      <figure
-        className={`lg:col-span-6 relative overflow-hidden bg-surface ${flipped ? "lg:order-2" : ""}`}
-      >
-        <div className="aspect-[4/3] overflow-hidden">
-          <img
-            src={p.image}
-            alt={p.name}
-            loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.03]"
-          />
-        </div>
-      </figure>
-
-      <div className="lg:col-span-6 flex flex-col justify-center">
-        <div className="flex items-center gap-4 mb-4">
-          <span className="font-display text-2xl text-foreground/30">{p.n}</span>
-          <span className="kicker">{p.tagline}</span>
-        </div>
-        <h3 className="font-display text-2xl sm:text-3xl lg:text-[38px] leading-[1.05] mb-5 max-w-lg">
-          {p.name}
-        </h3>
-
-        <dl className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-x-8 gap-y-3 text-sm max-w-xl">
-          <dt className="kicker pt-0.5">Problem</dt>
-          <dd className="text-muted-foreground leading-relaxed">{p.problem}</dd>
-
-          <dt className="kicker pt-0.5">Approach</dt>
-          <dd className="text-foreground/85 leading-relaxed">{p.solution}</dd>
-
-          <dt className="kicker pt-0.5">Role</dt>
-          <dd className="text-foreground/85">{p.role}</dd>
-
-          <dt className="kicker pt-0.5">Stack</dt>
-          <dd className="flex flex-wrap gap-1.5">
-            {p.stack.map((s) => (
-              <span key={s} className="text-[11px] px-2.5 py-1 border border-foreground/15 rounded-full text-foreground/70">
-                {s}
-              </span>
-            ))}
-          </dd>
-        </dl>
-
-        <div className="mt-6 pt-4 border-t border-rule flex flex-wrap items-center gap-4">
-          {p.link ? (
-            <a href={p.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium">
-              Live demo <ArrowUpRight className="w-4 h-4" />
-            </a>
-          ) : (
-            <span className="kicker">In production · demo on request</span>
-          )}
-          {p.github && (
-            <a href={p.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition">
-              <Github className="w-4 h-4" /> Source
-            </a>
-          )}
-          <span className="ml-auto kicker">{p.year} · {p.duration}</span>
-        </div>
-      </div>
-    </article>
-  );
-}
-
-/* ───────── Skills — typographic index ───────── */
-function Skills() {
-  return (
-    <section id="skills" className="border-b border-rule">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
-        <SectionHead
-          n="03"
-          kicker="Craft"
-          title={
-            <>
-              An honest inventory of tools <span className="italic-accent">I actually reach for.</span>
-            </>
-          }
-          lede="No progress bars. Just the stack I use week to week, grouped by the kind of problem it solves."
-        />
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12">
-          {SKILL_GROUPS.map((group, i) => (
-            <div key={group.title} className="border-t border-foreground pt-4">
-              <div className="flex items-baseline justify-between mb-4">
-                <h3 className="font-display text-xl">{group.title}</h3>
-                <span className="kicker text-[10px]">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-              <ul className="space-y-2 text-sm">
-                {group.items.map((item) => (
-                  <li key={item} className="flex items-center justify-between border-b border-rule py-1.5">
-                    <span>{item}</span>
-                    <span className="text-foreground/25 text-xs">·</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ───────── Experience + Education (timeline) ───────── */
-function Experience() {
-  return (
-    <section id="experience" className="border-b border-rule">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
-        <SectionHead
-          n="04"
-          kicker="Career log"
-          title={
-            <>
-              Where the hours have gone, <span className="italic-accent">in reverse.</span>
-            </>
-          }
-        />
-
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10">
-          <div className="lg:col-span-8">
-            <div className="border-t-2 border-foreground">
-              {EXPERIENCE.map((e) => (
-                <div
-                  key={e.role}
-                  className="grid grid-cols-[auto_1fr] sm:grid-cols-[140px_1fr_auto] gap-x-6 gap-y-2 py-8 border-b border-rule group"
-                >
-                  <div className="kicker pt-1.5 sm:pt-2">{e.years}</div>
-                  <div className="col-span-1 sm:col-auto">
-                    <h3 className="font-display text-xl sm:text-2xl">{e.role}</h3>
-                    <div className="text-sm text-muted-foreground mt-0.5">{e.org}</div>
-                    <p className="text-sm text-foreground/80 mt-3 max-w-xl leading-relaxed">
-                      {e.detail}
-                    </p>
-                  </div>
-                  <ArrowUpRight className="hidden sm:block w-4 h-4 text-foreground/30 mt-2 group-hover:text-foreground transition" />
-                </div>
-              ))}
-            </div>
+        <div className="relative">
+          <div
+            className="pointer-events-none absolute inset-x-0 top-1/3 display-mega outline-type text-center select-none opacity-60"
+            aria-hidden="true"
+          >
+            WORKS
           </div>
 
-          <aside className="lg:col-span-4">
-            <div className="border-t-2 border-foreground">
-              <div className="py-6 border-b border-rule">
-                <span className="kicker">Education</span>
-              </div>
-              {EDUCATION.map((e) => (
-                <div key={e.degree} className="py-6 border-b border-rule">
-                  <div className="kicker mb-2">{e.years}</div>
-                  <h3 className="font-display text-xl">{e.degree}</h3>
-                  <div className="text-sm text-muted-foreground mt-0.5">{e.org}</div>
-                  <p className="text-sm text-foreground/80 mt-3 leading-relaxed">{e.detail}</p>
-                </div>
-              ))}
-              <a
-                href="mailto:krishnanartam911@gmail.com?subject=Résumé request"
-                className="mt-6 inline-flex items-center gap-2 text-sm border border-foreground/25 px-4 py-2.5 rounded-full hover:bg-foreground hover:text-background transition"
-              >
-                Request résumé <ArrowUpRight className="w-4 h-4" />
-              </a>
-            </div>
-          </aside>
+          <div className="relative grid gap-5">
+            {PROJECTS.map((p, i) => (
+              <Reveal key={p.n} delay={i * 110}>
+                <article className="panel panel-hover group grid lg:grid-cols-12 gap-6 p-4 sm:p-5 overflow-hidden">
+                  <div className="lg:col-span-5 relative rounded-2xl overflow-hidden bg-elevated aspect-[16/10]">
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-[1100ms] group-hover:scale-[1.06]"
+                    />
+                    {p.github && (
+                      <a
+                        href={p.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      >
+                        <span className="w-20 h-20 rounded-full bg-paper text-background flex items-center justify-center text-xs font-mono uppercase tracking-[0.16em]">
+                          View
+                        </span>
+                      </a>
+                    )}
+                  </div>
+
+                  <div className="lg:col-span-7 flex flex-col justify-center gap-4 lg:pr-4">
+                    <div className="flex items-center gap-4">
+                      <span className="font-mono text-xs text-ember">{p.n}</span>
+                      <span className="kicker">{p.tagline}</span>
+                      <span className="ml-auto kicker">{p.year} · {p.duration}</span>
+                    </div>
+
+                    <h3 className="font-display text-3xl sm:text-5xl transition-colors group-hover:text-ember">
+                      {p.name}
+                    </h3>
+
+                    <dl className="grid sm:grid-cols-[90px_1fr] gap-x-6 gap-y-2 text-sm">
+                      <dt className="kicker pt-1">Problem</dt>
+                      <dd className="text-muted-foreground leading-relaxed">{p.problem}</dd>
+                      <dt className="kicker pt-1">Approach</dt>
+                      <dd className="leading-relaxed">{p.solution}</dd>
+                    </dl>
+
+                    <div className="flex flex-wrap items-center gap-2 pt-1">
+                      {p.stack.map((s) => (
+                        <span key={s} className="chip">{s}</span>
+                      ))}
+                      {p.github && (
+                        <a
+                          href={p.github}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="ml-auto inline-flex items-center gap-2 text-sm hover:text-ember transition-colors"
+                        >
+                          <Github className="w-4 h-4" /> Source
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-/* ───────── Insights (magazine grid) ───────── */
-function Insights() {
+/* ───────── Milestones (awards-style table) ───────── */
+
+function Milestones() {
   return (
-    <section id="insights" className="border-b border-rule">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
+    <section className="py-20 lg:py-28 border-t border-rule">
+      <div className="mx-auto max-w-[1500px] px-3 sm:px-5">
+        <SectionHead kicker="Track record" title="Milestones" />
+
+        <div className="border-t border-rule">
+          {MILESTONES.map((m, i) => (
+            <Reveal key={m.n} delay={i * 70}>
+              <div className="group grid grid-cols-[36px_1fr_auto] sm:grid-cols-[60px_1.2fr_2fr_auto] items-center gap-4 py-5 border-b border-rule transition-colors hover:bg-surface px-2 sm:px-4 rounded-2xl">
+                <span className="font-mono text-xs text-muted-foreground group-hover:text-ember transition-colors">{m.n}</span>
+                <span className="text-sm sm:text-base">{m.org}</span>
+                <span className="hidden sm:block text-sm text-muted-foreground">{m.what}</span>
+                <span className="font-mono text-xs text-muted-foreground">{m.year}</span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ───────── Skills ───────── */
+
+function Skills() {
+  return (
+    <section id="skills" className="py-20 lg:py-28 border-t border-rule">
+      <div className="mx-auto max-w-[1500px] px-3 sm:px-5">
         <SectionHead
-          n="05"
-          kicker="Notes from the workshop"
-          title={
-            <>
-              Short writing on <span className="italic-accent">AI, automation, and factories.</span>
-            </>
-          }
-          lede="Working notes, not thought leadership. Full essays landing soon."
+          kicker="Capabilities"
+          title="Skills"
+          lede="No progress bars. Just the stack I reach for week to week, grouped by the kind of problem it solves."
         />
 
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
-          {INSIGHTS.map((i, idx) => (
-            <article key={i.title} className="group border-t-2 border-foreground pt-5">
-              <div className="flex items-center justify-between mb-4">
-                <span className="kicker">{i.kicker}</span>
-                <span className="kicker text-[10px]">N/0{idx + 1}</span>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {SKILL_GROUPS.map((g, i) => (
+            <Reveal key={g.title} delay={i * 70}>
+              <div className="panel panel-hover h-full p-6">
+                <div className="flex items-baseline justify-between mb-5">
+                  <h3 className="font-display text-xl">{g.title}</h3>
+                  <span className="font-mono text-[10px] text-ember">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <ul className="flex flex-wrap gap-2">
+                  {g.items.map((item) => (
+                    <li key={item} className="chip">{item}</li>
+                  ))}
+                </ul>
               </div>
-              <div className="aspect-[4/3] overflow-hidden bg-surface mb-5">
-                <img
-                  src={i.image}
-                  alt={i.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover grayscale contrast-[1.05] transition-transform duration-700 group-hover:scale-[1.03]"
-                />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ───────── Stack wall (light band) ───────── */
+
+function StackWall() {
+  return (
+    <section className="py-16 lg:py-24 bg-paper text-background">
+      <div className="mx-auto max-w-[1500px] px-3 sm:px-5">
+        <div className="flex justify-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-background/15 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.24em]">
+            <span className="w-1.5 h-1.5 rounded-full bg-ember" /> Built with tools teams trust
+          </span>
+        </div>
+
+        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          {STACK_WALL.map((s, i) => (
+            <Reveal key={s} delay={i * 45}>
+              <div className="rounded-2xl bg-background/[0.05] hover:bg-background/[0.1] transition-colors py-8 flex items-center justify-center">
+                <span className="font-display text-lg sm:text-xl">{s}</span>
               </div>
-              <h3 className="font-display text-2xl leading-[1.1] mb-3">{i.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-5">{i.excerpt}</p>
-              <span className="inline-flex items-center gap-2 text-xs kicker">
-                Essay in edit
-              </span>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -933,54 +894,51 @@ function Insights() {
 }
 
 /* ───────── FAQ ───────── */
+
 function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="border-b border-rule">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
-        <SectionHead
-          n="06"
-          kicker="Before you write"
-          title={
-            <>
-              Answers to the <span className="italic-accent">usual questions.</span>
-            </>
-          }
-        />
+    <section id="faq" className="py-20 lg:py-28 border-t border-rule">
+      <div className="mx-auto max-w-[1500px] px-3 sm:px-5">
+        <SectionHead kicker="Before you write" title="Questions" />
 
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10">
-          <div className="lg:col-start-3 lg:col-span-8 border-t-2 border-foreground">
+        <div className="grid lg:grid-cols-12 gap-5">
+          <div className="lg:col-span-8 lg:col-start-3 space-y-3">
             {FAQS.map((f, i) => {
               const isOpen = open === i;
               return (
-                <div key={f.q} className="border-b border-rule">
-                  <button
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    className="w-full flex items-start justify-between gap-6 py-6 text-left group"
-                    aria-expanded={isOpen}
-                  >
-                    <span className="flex items-baseline gap-4">
-                      <span className="kicker text-[10px] pt-1">Q/{String(i + 1).padStart(2, "0")}</span>
-                      <span className={`font-display text-xl sm:text-2xl transition-colors ${isOpen ? "text-foreground" : "text-foreground/70 group-hover:text-foreground"}`}>
-                        {f.q}
+                <Reveal key={f.q} delay={i * 60}>
+                  <div className={`panel overflow-hidden ${isOpen ? "border-ember" : ""}`}>
+                    <button
+                      onClick={() => setOpen(isOpen ? null : i)}
+                      aria-expanded={isOpen}
+                      className="w-full flex items-center justify-between gap-6 text-left p-5 sm:p-6"
+                    >
+                      <span className="flex items-baseline gap-4">
+                        <span className="font-mono text-[10px] text-ember">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className={`font-display text-lg sm:text-2xl transition-colors ${isOpen ? "text-ember" : ""}`}>
+                          {f.q}
+                        </span>
                       </span>
-                    </span>
-                    <span className="mt-2 w-6 h-6 flex items-center justify-center text-foreground/60 shrink-0">
-                      {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                    </span>
-                  </button>
-                  <div
-                    className={`grid transition-all duration-300 ease-out ${
-                      isOpen ? "grid-rows-[1fr] opacity-100 pb-6" : "grid-rows-[0fr] opacity-0"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <p className="text-base text-muted-foreground leading-relaxed max-w-2xl pl-[68px]">
-                        {f.a}
-                      </p>
+                      <span className="shrink-0 w-9 h-9 rounded-full border border-rule flex items-center justify-center">
+                        {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                      </span>
+                    </button>
+                    <div
+                      className={`grid transition-all duration-500 ease-out ${
+                        isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="px-5 sm:px-6 pb-6 text-sm text-muted-foreground leading-relaxed max-w-2xl sm:pl-16">
+                          {f.a}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Reveal>
               );
             })}
           </div>
@@ -991,6 +949,7 @@ function Faq() {
 }
 
 /* ───────── Contact ───────── */
+
 function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -1005,11 +964,21 @@ function Contact() {
     const email = String(fd.get("from_email") || "").trim();
     const message = String(fd.get("message") || "").trim();
 
-    if (!name || name.length > 100) return setStatus("error"), setErrorMsg("Please enter a valid name.");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255)
-      return setStatus("error"), setErrorMsg("Please enter a valid email.");
-    if (!message || message.length > 2000)
-      return setStatus("error"), setErrorMsg("Message looks empty or too long.");
+    if (!name || name.length > 100) {
+      setStatus("error");
+      setErrorMsg("Please enter a valid name.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255) {
+      setStatus("error");
+      setErrorMsg("Please enter a valid email.");
+      return;
+    }
+    if (!message || message.length > 2000) {
+      setStatus("error");
+      setErrorMsg("Message looks empty or too long.");
+      return;
+    }
 
     setStatus("sending");
     setErrorMsg("");
@@ -1029,75 +998,78 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="border-b border-rule bg-foreground text-background">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-20 lg:py-28">
-        <div className="grid lg:grid-cols-12 gap-10">
-          <div className="lg:col-span-6">
-            <p className="kicker mb-8" style={{ color: "oklch(0.75 0.005 60)" }}>
-              07 — Correspondence
-            </p>
-            <h2 className="display-lg">
-              Tell me about the <span className="italic-accent">problem worth solving.</span>
-            </h2>
-            <p className="mt-6 max-w-md text-base leading-relaxed" style={{ color: "oklch(0.82 0.005 60)" }}>
-              AI products, automation systems, IIoT pilots, or a small paid discovery
-              sprint — start with a sentence or two. I reply within 24 hours, always.
-            </p>
+    <section id="contact" className="py-20 lg:py-28 border-t border-rule">
+      <div className="mx-auto max-w-[1500px] px-3 sm:px-5">
+        <SectionHead
+          kicker="Correspondence"
+          title="Let's build"
+          lede="AI products, automation systems, IIoT pilots, or a small paid discovery sprint — start with a sentence or two."
+        />
 
-            <div className="mt-10 space-y-4 text-sm">
-              <ContactRow icon={Mail} label="krishnanartam911@gmail.com" href="mailto:krishnanartam911@gmail.com" />
-              <ContactRow icon={MapPin} label="Pune, Maharashtra · India" />
-              <ContactRow icon={Github} label="github.com/KrishnaNartam" href="https://github.com/KrishnaNartam" />
-              <ContactRow icon={Linkedin} label="linkedin.com/in/krishnanartam" href="https://linkedin.com/in/krishnanartam" />
+        <div className="grid lg:grid-cols-12 gap-5">
+          <Reveal className="lg:col-span-4">
+            <div className="panel h-full p-6 sm:p-8 flex flex-col gap-6">
+              <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-elevated">
+                <img
+                  src={krishnaPortrait}
+                  alt="Krishna Nartam"
+                  loading="lazy"
+                  className="w-full h-full object-cover grayscale contrast-[1.08]"
+                />
+              </div>
+              <div>
+                <div className="font-display text-2xl">Krishna Nartam</div>
+                <div className="text-sm text-muted-foreground mt-1">AI Engineer · Founder</div>
+              </div>
+              <div className="space-y-3 text-sm">
+                <ContactRow icon={Mail} label={EMAIL} href={`mailto:${EMAIL}`} />
+                <ContactRow icon={MapPin} label="Pune, Maharashtra · India" />
+                <ContactRow icon={Github} label="github.com/KrishnaNartam" href={GITHUB} />
+                <ContactRow icon={Linkedin} label="linkedin.com/in/krishnanartam" href={LINKEDIN} />
+              </div>
             </div>
-          </div>
+          </Reveal>
 
-          <form
-            ref={formRef}
-            onSubmit={submit}
-            className="lg:col-span-6 lg:col-start-8 space-y-5 self-start"
-          >
-            <Field name="from_name" label="Your name" placeholder="Jane Doe" />
-            <Field name="from_email" type="email" label="Email" placeholder="jane@company.com" />
-            <div>
-              <label className="text-[11px] font-mono uppercase tracking-[0.22em]" style={{ color: "oklch(0.75 0.005 60)" }}>
-                The brief
-              </label>
-              <textarea
-                name="message"
-                rows={5}
-                required
-                maxLength={2000}
-                placeholder="What are you building, and where's it stuck?"
-                className="mt-2 w-full bg-transparent border-b border-background/25 px-0 py-3 text-base focus:outline-none focus:border-background transition resize-none placeholder:text-background/40"
-              />
-            </div>
+          <Reveal delay={140} className="lg:col-span-8">
+            <form ref={formRef} onSubmit={submit} className="panel h-full p-6 sm:p-10 space-y-6">
+              <div className="grid sm:grid-cols-2 gap-6">
+                <Field name="from_name" label="Your name" placeholder="Jane Doe" />
+                <Field name="from_email" type="email" label="Email" placeholder="jane@company.com" />
+              </div>
+              <div>
+                <label className="kicker">The brief</label>
+                <textarea
+                  name="message"
+                  rows={6}
+                  required
+                  maxLength={2000}
+                  placeholder="What are you building, and where's it stuck?"
+                  className="mt-2 w-full bg-transparent border-b border-rule px-0 py-3 text-base focus:outline-none focus:border-ember transition-colors resize-none placeholder:text-muted-foreground/60"
+                />
+              </div>
 
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-background text-foreground font-medium hover:opacity-90 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {status === "sending" ? (
-                <>Sending…</>
-              ) : status === "sent" ? (
-                <>Message received <ArrowUpRight className="w-4 h-4" /></>
-              ) : (
-                <>Send the brief <Send className="w-4 h-4" /></>
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="btn-volt w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-sm disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {status === "sending" ? (
+                  <>Sending…</>
+                ) : status === "sent" ? (
+                  <>Message received <ArrowUpRight className="w-4 h-4" /></>
+                ) : (
+                  <>Submit message <Send className="w-4 h-4" /></>
+                )}
+              </button>
+
+              {status === "sent" && (
+                <p className="text-xs text-success">Thanks — I&apos;ll reply within 24 hours.</p>
               )}
-            </button>
-
-            {status === "sent" && (
-              <p className="text-xs" style={{ color: "oklch(0.82 0.14 145)" }}>
-                Thanks — I&apos;ll reply within 24 hours.
-              </p>
-            )}
-            {status === "error" && (
-              <p className="text-xs" style={{ color: "oklch(0.78 0.19 27)" }}>
-                {errorMsg || "Something went wrong."}
-              </p>
-            )}
-          </form>
+              {status === "error" && (
+                <p className="text-xs text-destructive">{errorMsg || "Something went wrong."}</p>
+              )}
+            </form>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -1105,15 +1077,13 @@ function Contact() {
 }
 
 function ContactRow({ icon: Icon, label, href }: { icon: typeof Mail; label: string; href?: string }) {
-  const cls = "group flex items-center gap-4 hover:opacity-100 transition-opacity";
+  const cls = "group flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors";
   const inner = (
     <>
-      <span className="w-9 h-9 rounded-full border border-background/25 flex items-center justify-center">
-        <Icon className="w-4 h-4" />
+      <span className="w-8 h-8 rounded-full border border-rule flex items-center justify-center shrink-0 group-hover:border-ember transition-colors">
+        <Icon className="w-3.5 h-3.5" />
       </span>
-      <span className="border-b border-transparent group-hover:border-background pb-0.5 transition-all">
-        {label}
-      </span>
+      <span className="truncate">{label}</span>
     </>
   );
   return href ? (
@@ -1138,65 +1108,63 @@ function Field({
 }) {
   return (
     <div>
-      <label className="text-[11px] font-mono uppercase tracking-[0.22em]" style={{ color: "oklch(0.75 0.005 60)" }}>
-        {label}
-      </label>
+      <label className="kicker">{label}</label>
       <input
         name={name}
         type={type}
         required
         maxLength={255}
         placeholder={placeholder}
-        className="mt-2 w-full bg-transparent border-b border-background/25 px-0 py-3 text-base focus:outline-none focus:border-background transition placeholder:text-background/40"
+        className="mt-2 w-full bg-transparent border-b border-rule px-0 py-3 text-base focus:outline-none focus:border-ember transition-colors placeholder:text-muted-foreground/60"
       />
     </div>
   );
 }
 
 /* ───────── Footer ───────── */
+
 function Footer() {
   return (
-    <footer className="bg-background">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-16">
-        <div className="grid lg:grid-cols-12 gap-10 pb-12 border-b border-rule">
-          <div className="lg:col-span-5">
-            <div className="font-display text-3xl leading-none">Fox Founder AI</div>
-            <p className="mt-4 text-muted-foreground max-w-sm text-sm leading-relaxed">
-              A boutique studio building AI products, automation systems, and Industrial
-              IoT dashboards. Founded and led by Krishna Prashant Nartam in Pune, India.
-            </p>
-          </div>
-          <div className="lg:col-span-3">
-            <div className="kicker mb-4">Sitemap</div>
-            <ul className="space-y-2 text-sm">
-              {NAV.slice(1).map((n) => (
+    <footer className="pt-16 border-t border-rule overflow-hidden">
+      <div className="mx-auto max-w-[1500px] px-3 sm:px-5">
+        <div className="grid gap-8 sm:grid-cols-3 pb-10">
+          <div>
+            <div className="kicker mb-4">Quick links</div>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              {NAV.map((n) => (
                 <li key={n.href}>
-                  <a href={n.href} className="hover:italic-accent transition">
-                    {n.label}
-                  </a>
+                  <a href={n.href} className="hover:text-ember transition-colors">{n.label}</a>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="lg:col-span-2">
-            <div className="kicker mb-4">Elsewhere</div>
-            <ul className="space-y-2 text-sm">
-              <li><a href="https://github.com/KrishnaNartam" target="_blank" rel="noreferrer" className="hover:italic-accent">GitHub</a></li>
-              <li><a href="https://linkedin.com/in/krishnanartam" target="_blank" rel="noreferrer" className="hover:italic-accent">LinkedIn</a></li>
-              <li><a href="mailto:krishnanartam911@gmail.com" className="hover:italic-accent">Email</a></li>
-            </ul>
+
+          <div className="flex sm:justify-center">
+            <a
+              href="#top"
+              aria-label="Back to top"
+              className="w-14 h-14 rounded-full bg-ember flex items-center justify-center hover:-translate-y-1 transition-transform"
+            >
+              <ArrowUp className="w-5 h-5" />
+            </a>
           </div>
-          <div className="lg:col-span-2">
-            <div className="kicker mb-4">Colophon</div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Set in Instrument Serif &amp; Work Sans.
+
+          <div className="sm:text-right">
+            <div className="kicker mb-4">Fox Founder AI</div>
+            <p className="text-sm text-muted-foreground leading-relaxed sm:ml-auto sm:max-w-xs">
+              A boutique studio building AI products, automation systems, and Industrial IoT
+              dashboards. Founded in Pune, India.
+            </p>
+            <p className="mt-4 text-xs text-muted-foreground">
+              © 2025–2026 Fox Founder AI · Krishna Prashant Nartam
             </p>
           </div>
         </div>
 
-        <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-muted-foreground">
-          <div>© 2025–2026 Fox Founder AI · Krishna Prashant Nartam. All rights reserved.</div>
-          <div className="kicker">{ISSUE} · {TODAY}</div>
+        <div className="relative select-none" aria-hidden="true">
+          <div className="display-mega text-center leading-[0.78] translate-y-[12%]">
+            FOX FOUNDER
+          </div>
         </div>
       </div>
     </footer>
