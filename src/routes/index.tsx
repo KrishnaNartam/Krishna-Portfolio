@@ -284,12 +284,28 @@ function useReveal() {
           }
         });
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0 },
     );
     nodes.forEach((n) => io.observe(n));
-    return () => io.disconnect();
+
+    // Safety net: anything already within the first viewport reveals regardless.
+    const t = window.setTimeout(() => {
+      nodes.forEach((n) => {
+        const r = n.getBoundingClientRect();
+        if (r.top < window.innerHeight) {
+          n.classList.add("is-in");
+          io.unobserve(n);
+        }
+      });
+    }, 900);
+
+    return () => {
+      window.clearTimeout(t);
+      io.disconnect();
+    };
   }, []);
 }
+
 
 function CursorDot() {
   const ref = useRef<HTMLDivElement>(null);
