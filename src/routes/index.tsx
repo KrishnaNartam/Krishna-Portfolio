@@ -53,8 +53,22 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:url", content: "https://krishnanartam.lovable.app/" },
       { property: "og:type", content: "website" },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4612f96e-caff-4b60-818c-5da948c80fc3/id-preview-e359a325--fa7c7f44-5d5b-4094-af00-7406250592e2.lovable.app-1781935966903.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4612f96e-caff-4b60-818c-5da948c80fc3/id-preview-e359a325--fa7c7f44-5d5b-4094-af00-7406250592e2.lovable.app-1781935966903.png",
+      },
     ],
-    links: [{ rel: "canonical", href: "https://krishnanartam.lovable.app/" }],
+    links: [
+      { rel: "canonical", href: "https://krishnanartam.lovable.app/" },
+      // LCP hero portrait — fetch it in parallel with the HTML parse.
+      { rel: "preload", as: "image", href: krishnaPortrait, fetchpriority: "high" },
+    ],
     scripts: [
       {
         type: "application/ld+json",
@@ -252,16 +266,18 @@ function Portfolio() {
     <div className="min-h-screen bg-background text-foreground antialiased overflow-x-hidden">
       <CursorDot />
       <Nav />
-      <Hero />
-      <MarqueeBand words={["Services", "Services", "Services", "Services"]} />
-      <Services />
-      <About />
-      <Work />
-      <Milestones />
-      <Skills />
-      <StackWall />
-      <Faq />
-      <Contact />
+      <main id="main">
+        <Hero />
+        <MarqueeBand words={["Services", "Services", "Services", "Services"]} />
+        <Services />
+        <About />
+        <Work />
+        <Milestones />
+        <Skills />
+        <StackWall />
+        <Faq />
+        <Contact />
+      </main>
       <Footer />
     </div>
   );
@@ -459,8 +475,13 @@ function Hero() {
                 src={krishnaPortrait}
                 alt="Krishna Nartam, founder of Fox Founder AI"
                 className="w-full h-auto object-cover grayscale contrast-[1.08]"
+                width={1123}
+                height={1401}
                 loading="eager"
+                decoding="async"
+                fetchPriority="high"
               />
+
             </div>
           </div>
 
@@ -1053,8 +1074,11 @@ function Contact() {
                 <Field name="from_email" type="email" label="Email" placeholder="jane@company.com" />
               </div>
               <div>
-                <label className="kicker">The brief</label>
+                <label htmlFor="contact-message" className="kicker">
+                  The brief
+                </label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   rows={6}
                   required
@@ -1063,6 +1087,7 @@ function Contact() {
                   className="mt-2 w-full bg-transparent border-b border-rule px-0 py-3 text-base focus:outline-none focus:border-ember transition-colors resize-none placeholder:text-muted-foreground/60"
                 />
               </div>
+
 
               <button
                 type="submit"
@@ -1122,10 +1147,14 @@ function Field({
   placeholder?: string;
   type?: string;
 }) {
+  const id = `contact-${name}`;
   return (
     <div>
-      <label className="kicker">{label}</label>
+      <label htmlFor={id} className="kicker">
+        {label}
+      </label>
       <input
+        id={id}
         name={name}
         type={type}
         required

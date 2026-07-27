@@ -1,0 +1,24 @@
+# Fox Founder AI
+
+> A boutique studio founded by Krishna Nartam in Pune, India, building AI products, n8n automation systems, and Industrial IoT dashboards — from first prompt to production.
+
+Fox Founder AI designs and ships production software for startups, scale-ups, and small manufacturers. Work spans LLM applications (chat surfaces, retrieval pipelines, multi-step agents), workflow and ops automation built on n8n, real-time Industrial IoT telemetry dashboards, and full-stack product development.
+
+Founder: Krishna Prashant Nartam — AI Engineer, mechanical engineering background, based in Pune, Maharashtra, India. Works remotely with teams across timezones.
+
+## Pages
+
+- [Home](/): Studio overview, services, selected work, skills, FAQ, and contact form.
+
+## Sections on the home page
+
+- [Services](/#services): AI products, automation systems, Industrial IoT dashboards, and full-stack product work.
+- [About](/#about): Background, approach, and how projects are scoped and delivered.
+- [Selected work](/#work): Shipped systems including an AI resume builder, a realtime OEE dashboard for factory telemetry, and a multimodal brand auditing tool.
+- [Skills](/#skills): Languages, frameworks, AI/ML tooling, data, cloud, and infrastructure.
+- [FAQ](/#faq): Project types, engagement models, availability, minimum project size, and process.
+- [Contact](/#contact): Inquiry form and direct contact details.
+
+## Optional
+
+- [Sitemap](/sitemap.xml): Machine-readable list of public URLs.
