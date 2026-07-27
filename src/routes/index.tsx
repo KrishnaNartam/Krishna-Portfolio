@@ -500,17 +500,20 @@ function Hero() {
                 </span>
               </Reveal>
 
-              <h1 className="font-display uppercase text-[clamp(2.9rem,6vw,5.6rem)] leading-[0.86] tracking-[-0.02em]">
+              <h1 className="font-display uppercase text-[clamp(3rem,6.4vw,6rem)] leading-[0.95] tracking-[-0.02em]">
                 <MaskLine>AI ENGINEER</MaskLine>
                 <span className="block">
                   <MaskLine delay={100}>
-                    <span className="text-muted-foreground">&amp;</span>{" "}
-                    <span className="bg-gradient-to-r from-ember to-[oklch(0.78_0.17_65)] bg-clip-text text-transparent">
-                      FOUNDER
+                    <span className="inline-flex items-baseline gap-[0.22em]">
+                      <span className="text-muted-foreground">&amp;</span>
+                      <span className="bg-gradient-to-r from-ember to-[oklch(0.78_0.17_65)] bg-clip-text text-transparent">
+                        FOUNDER
+                      </span>
                     </span>
                   </MaskLine>
                 </span>
               </h1>
+
 
 
               <Reveal delay={200} className="mt-7 max-w-md text-base sm:text-lg text-muted-foreground leading-relaxed">
