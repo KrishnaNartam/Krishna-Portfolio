@@ -13,6 +13,12 @@ import {
   Minus,
   Send,
   Download,
+  Sparkles,
+  Code2,
+  Box,
+  Eye,
+  TrendingUp,
+  Zap,
 } from "lucide-react";
 
 import krishnaPortraitAsset from "@/assets/krishna-portrait.png.asset.json";
