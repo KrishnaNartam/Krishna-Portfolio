@@ -471,8 +471,13 @@ function Hero() {
                 src={krishnaPortrait}
                 alt="Krishna Nartam, founder of Fox Founder AI"
                 className="w-full h-auto object-cover grayscale contrast-[1.08]"
+                width={1123}
+                height={1401}
                 loading="eager"
+                decoding="async"
+                fetchPriority="high"
               />
+
             </div>
           </div>
 
@@ -1065,8 +1070,11 @@ function Contact() {
                 <Field name="from_email" type="email" label="Email" placeholder="jane@company.com" />
               </div>
               <div>
-                <label className="kicker">The brief</label>
+                <label htmlFor="contact-message" className="kicker">
+                  The brief
+                </label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   rows={6}
                   required
@@ -1075,6 +1083,7 @@ function Contact() {
                   className="mt-2 w-full bg-transparent border-b border-rule px-0 py-3 text-base focus:outline-none focus:border-ember transition-colors resize-none placeholder:text-muted-foreground/60"
                 />
               </div>
+
 
               <button
                 type="submit"
