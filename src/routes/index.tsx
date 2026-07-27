@@ -13,6 +13,12 @@ import {
   Minus,
   Send,
   Download,
+  Sparkles,
+  Code2,
+  Box,
+  Eye,
+  TrendingUp,
+  Zap,
 } from "lucide-react";
 
 import krishnaPortraitAsset from "@/assets/krishna-portrait.png.asset.json";
@@ -399,10 +405,13 @@ function Nav() {
           scrolled ? "bg-surface/85 backdrop-blur-xl border border-rule" : "bg-transparent border border-transparent"
         }`}
       >
-        <a href="#top" className="flex items-center gap-2.5 rounded-full bg-paper text-background pl-2.5 pr-4 py-2">
-          <span className="w-5 h-5 rounded-full bg-ember" />
-          <span className="font-display text-sm tracking-tight leading-none pt-0.5">FOX FOUNDER</span>
+        <a href="#top" className="flex items-center gap-2.5 pl-1 pr-3 py-1.5">
+          <FoxMark className="w-7 h-7 text-ember" />
+          <span className="font-display text-base sm:text-lg tracking-tight leading-none pt-0.5">
+            FOX<span className="text-muted-foreground">FOUNDER</span>
+          </span>
         </a>
+
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
           {NAV.map((n) => (
@@ -455,90 +464,171 @@ function Nav() {
 
 /* ───────── Hero ───────── */
 
+function FoxMark({ className = "w-7 h-7" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 32 32" className={className} fill="none" aria-hidden="true">
+      <path d="M3 4l7 3.5L16 5l6 2.5L29 4l-2.5 9.5C25 21 21 26.5 16 29 11 26.5 7 21 5.5 13.5L3 4z" fill="currentColor" opacity="0.18" />
+      <path d="M4 5.5l6.5 3.2L16 6.4l5.5 2.3L28 5.5l-2.3 8.6C24.3 20.7 20.7 25.6 16 28c-4.7-2.4-8.3-7.3-9.7-13.9L4 5.5z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M12 14.5l2.5 1.5M20 14.5L17.5 16M16 19.5l-1.6 1.6M16 19.5l1.6 1.6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 function Hero() {
   return (
-    <section id="top" className="relative pt-28 sm:pt-32 pb-10">
-      <div className="absolute inset-0 grid-lines opacity-70 pointer-events-none" aria-hidden="true" />
+    <section id="top" className="relative pt-24 sm:pt-28 pb-8">
+      <div className="absolute inset-0 grid-lines opacity-50 pointer-events-none" aria-hidden="true" />
       <div className="relative mx-auto max-w-[1500px] px-3 sm:px-5">
         <div className="relative overflow-hidden rounded-[2rem] bg-surface border border-rule">
-          {/* Giant word */}
-          <div className="pt-10 sm:pt-14 px-4 sm:px-8">
-            <h1 className="display-mega text-center leading-none">
-              <MaskLine>AI ENGINEER</MaskLine>
-            </h1>
-          </div>
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.35]"
+            aria-hidden="true"
+            style={{
+              backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)",
+              backgroundSize: "22px 22px",
+              color: "var(--color-rule)",
+            }}
+          />
 
-          {/* Portrait overlapping the type */}
-          <div className="relative -mt-[8vw] sm:-mt-[7vw] flex justify-center">
-            <div data-reveal="" className="reveal-clip w-[62%] sm:w-[42%] max-w-[440px]">
-              <img
-                src={krishnaPortrait}
-                alt="Krishna Nartam, founder of Fox Founder AI"
-                className="w-full h-auto object-cover grayscale contrast-[1.08]"
-                width={1123}
-                height={1401}
-                loading="eager"
-                decoding="async"
-                fetchPriority="high"
-              />
+          <div className="relative grid gap-10 lg:grid-cols-[1.05fr_0.95fr] items-center px-5 sm:px-10 py-10 sm:py-14">
+            {/* Left column */}
+            <div>
+              <Reveal className="flex items-center gap-2.5 mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-ember" />
+                <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                  Hello, I&apos;m <span className="text-ember">Krishna</span>
+                </span>
+              </Reveal>
 
+              <h1 className="font-display uppercase text-[clamp(2.9rem,6vw,5.6rem)] leading-[0.86] tracking-[-0.02em]">
+                <MaskLine>AI ENGINEER</MaskLine>
+                <span className="block">
+                  <MaskLine delay={100}>
+                    <span className="text-muted-foreground">&amp;</span>{" "}
+                    <span className="bg-gradient-to-r from-ember to-[oklch(0.78_0.17_65)] bg-clip-text text-transparent">
+                      FOUNDER
+                    </span>
+                  </MaskLine>
+                </span>
+              </h1>
+
+
+              <Reveal delay={200} className="mt-7 max-w-md text-base sm:text-lg text-muted-foreground leading-relaxed">
+                AI Engineer &amp; Founder of Fox Founder AI, building products that actually ship and
+                solve real-world problems.
+              </Reveal>
+
+              <Reveal delay={280} className="mt-7 flex flex-wrap gap-3">
+                {[
+                  { icon: <Sparkles className="w-3.5 h-3.5 text-ember" />, label: "AI & Automation" },
+                  { icon: <Code2 className="w-3.5 h-3.5 text-[oklch(0.72_0.14_240)]" />, label: "Full-stack Dev" },
+                  { icon: <Box className="w-3.5 h-3.5 text-volt" />, label: "Product Builder" },
+                ].map((c) => (
+                  <span
+                    key={c.label}
+                    className="inline-flex items-center gap-2 rounded-xl border border-rule bg-background/60 px-3.5 py-2.5 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.16em] text-muted-foreground"
+                  >
+                    {c.icon} {c.label}
+                  </span>
+                ))}
+              </Reveal>
+
+              <Reveal delay={360} className="mt-8 flex flex-wrap items-center gap-3">
+                <a href="#contact" className="btn-ember inline-flex items-center gap-3 px-6 py-3.5 text-sm">
+                  Start a Project <ArrowUpRight className="w-4 h-4" />
+                </a>
+                <a
+                  href="#work"
+                  className="inline-flex items-center gap-3 px-6 py-3.5 text-sm rounded-full border border-rule hover:border-foreground hover:bg-elevated transition-colors"
+                >
+                  See My Work <Eye className="w-4 h-4" />
+                </a>
+              </Reveal>
+            </div>
+
+            {/* Right column — portrait + stats */}
+            <div className="relative">
+              <div data-reveal="" className="reveal-clip relative">
+                <div
+                  className="absolute -inset-2 sm:-inset-3 bg-ember/70 pointer-events-none"
+                  style={{ clipPath: "polygon(14% 0, 100% 0, 100% 86%, 86% 100%, 0 100%, 0 14%)" }}
+                  aria-hidden="true"
+                >
+                  <div
+                    className="absolute inset-px bg-surface"
+                    style={{ clipPath: "polygon(14% 0, 100% 0, 100% 86%, 86% 100%, 0 100%, 0 14%)" }}
+                  />
+                </div>
+                <div
+                  className="relative overflow-hidden bg-background"
+                  style={{ clipPath: "polygon(14% 0, 100% 0, 100% 86%, 86% 100%, 0 100%, 0 14%)" }}
+                >
+
+                  <img
+                    src={krishnaPortrait}
+                    alt="Krishna Nartam, founder of Fox Founder AI"
+                    className="w-full h-[clamp(320px,48vw,560px)] object-cover object-[center_18%] grayscale contrast-[1.1]"
+                    width={1123}
+                    height={1401}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                  />
+                </div>
+
+                {/* Rotating seal */}
+                <div className="absolute right-3 sm:right-5 bottom-6 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-background/90 backdrop-blur border border-rule grid place-items-center">
+                  <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full animate-[spin_18s_linear_infinite]" aria-hidden="true">
+                    <defs>
+                      <path id="sealpath" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0" />
+                    </defs>
+                    <text className="fill-muted-foreground" style={{ fontSize: "9px", letterSpacing: "2.4px" }}>
+                      <textPath href="#sealpath">AI ENGINEER · PRODUCT BUILDER · FOUNDER ·</textPath>
+                    </text>
+                  </svg>
+                  <FoxMark className="w-9 h-9 text-ember" />
+                </div>
+              </div>
+
+              {/* Stats bar */}
+              <Reveal delay={300} className="mt-6 grid grid-cols-3 divide-x divide-rule rounded-2xl border border-rule bg-background/70 backdrop-blur px-2 py-5">
+                <HeroStat icon={<TrendingUp className="w-4 h-4 text-ember" />} n="98%" label="Client satisfaction" />
+                <HeroStat icon={<Box className="w-4 h-4 text-[oklch(0.72_0.14_240)]" />} n="12+" label="Projects shipped" />
+                <HeroStat icon={<Zap className="w-4 h-4 text-volt" />} n="24h" label="Reply window" />
+              </Reveal>
             </div>
           </div>
 
           {/* Bottom rail */}
-          <div className="relative grid gap-6 md:grid-cols-[1fr_auto] items-end px-5 sm:px-8 pb-8 -mt-16 sm:-mt-24">
-            <Reveal delay={220} className="max-w-xs">
-              <p className="kicker mb-3">Hello — I&apos;m Krishna</p>
-              <p className="font-display text-lg sm:text-xl leading-[1.05]">
-                AI Engineer &amp; founder of Fox&nbsp;Founder&nbsp;AI, building products that actually ship.
+          <div className="relative border-t border-rule px-5 sm:px-10 py-5 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Currently building</p>
+              <p className="mt-1.5 flex flex-wrap items-center gap-2 text-sm">
+                AI Agents <span className="text-ember">·</span> Automation <span className="text-ember">·</span> Scalable Web Apps
               </p>
-              <a href="#work" className="mt-4 inline-flex items-center gap-2 text-xs kicker text-foreground hover:text-ember transition-colors">
-                <ArrowRight className="w-3.5 h-3.5" /> Studio / Development
-              </a>
-            </Reveal>
-
-            <Reveal delay={340} className="flex flex-wrap gap-3">
-              <StatCard n="98%" label="Client satisfaction" tone="light" />
-              <StatCard n="12+" label="Projects shipped" tone="dark" />
-              <StatCard n="24h" label="Reply window" tone="ember" />
-            </Reveal>
+            </div>
+            <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+              <MapPin className="w-3.5 h-3.5 text-ember" /> Based in Pune, India
+            </span>
           </div>
         </div>
-
-        {/* CTA row */}
-        <Reveal delay={120} className="mt-5 flex flex-wrap items-center gap-3">
-          <a href="#contact" className="btn-volt inline-flex items-center gap-2 px-6 py-3.5 text-sm">
-            Start a project <ArrowUpRight className="w-4 h-4" />
-          </a>
-          <a
-            href="#work"
-            className="inline-flex items-center gap-2 px-6 py-3.5 text-sm rounded-full border border-rule hover:border-foreground hover:bg-surface transition-colors"
-          >
-            See selected work
-          </a>
-          <span className="chip ml-auto">
-            <span className="w-1.5 h-1.5 rounded-full bg-volt" /> Pune, India · UTC+5:30
-          </span>
-        </Reveal>
       </div>
     </section>
   );
 }
 
-function StatCard({ n, label, tone }: { n: string; label: string; tone: "light" | "dark" | "ember" }) {
-  const cls =
-    tone === "light"
-      ? "bg-paper text-background"
-      : tone === "ember"
-        ? "bg-ember text-foreground"
-        : "bg-background text-foreground border border-rule";
+function HeroStat({ icon, n, label }: { icon: React.ReactNode; n: string; label: string }) {
   return (
-    <div className={`rounded-2xl px-5 py-4 min-w-[128px] ${cls}`}>
-      <div className="font-display text-3xl leading-none">{n}</div>
-      <div className="mt-2 text-[10px] font-mono uppercase tracking-[0.18em] opacity-70">{label}</div>
+    <div className="px-3 sm:px-5 text-center sm:text-left">
+      <div className="flex items-center justify-center sm:justify-start gap-2">
+        {icon}
+        <span className="font-display text-2xl sm:text-3xl leading-none">{n}</span>
+      </div>
+      <div className="mt-2 font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.16em] text-muted-foreground">{label}</div>
     </div>
   );
 }
+
 
 /* ───────── Marquee band ───────── */
 
