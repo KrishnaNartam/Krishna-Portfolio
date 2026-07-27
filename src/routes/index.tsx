@@ -577,7 +577,7 @@ function Hero() {
                 </div>
 
                 {/* Rotating seal */}
-                <div className="absolute -left-4 sm:left-auto sm:-right-6 bottom-8 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-background border border-rule grid place-items-center">
+                <div className="absolute right-3 sm:right-5 bottom-6 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-background/90 backdrop-blur border border-rule grid place-items-center">
                   <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full animate-[spin_18s_linear_infinite]" aria-hidden="true">
                     <defs>
                       <path id="sealpath" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0" />
