@@ -1120,7 +1120,15 @@ function Contact() {
                 <p className="text-xs text-success">Thanks — I&apos;ll reply within 24 hours.</p>
               )}
               {status === "error" && (
-                <p className="text-xs text-destructive">{errorMsg || "Something went wrong."}</p>
+                <div className="text-xs text-destructive space-y-2">
+                  <p>{errorMsg || "Couldn't send right now."}</p>
+                  <a
+                    href={`mailto:${EMAIL}?subject=${encodeURIComponent("Project enquiry")}`}
+                    className="inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-foreground transition-colors"
+                  >
+                    Email me directly at {EMAIL} <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                </div>
               )}
             </form>
           </Reveal>
