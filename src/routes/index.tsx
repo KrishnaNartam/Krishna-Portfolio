@@ -567,7 +567,7 @@ function Hero() {
                   <img
                     src={krishnaPortrait}
                     alt="Krishna Nartam, founder of Fox Founder AI"
-                    className="w-full h-auto object-cover object-top grayscale contrast-[1.1]"
+                    className="w-full h-[clamp(320px,48vw,560px)] object-cover object-[center_18%] grayscale contrast-[1.1]"
                     width={1123}
                     height={1401}
                     loading="eager"
