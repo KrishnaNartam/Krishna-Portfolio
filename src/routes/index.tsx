@@ -1046,12 +1046,12 @@ function Contact() {
         <div className="grid lg:grid-cols-12 gap-5">
           <Reveal className="lg:col-span-4">
             <div className="panel h-full p-6 sm:p-8 flex flex-col gap-6">
-              <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-elevated">
+              <div className="rounded-2xl overflow-hidden aspect-[4/5] bg-elevated">
                 <img
                   src={krishnaPortrait}
                   alt="Krishna Nartam"
                   loading="lazy"
-                  className="w-full h-full object-cover grayscale contrast-[1.08]"
+                  className="w-full h-full object-cover object-[50%_18%] grayscale contrast-[1.08]"
                 />
               </div>
               <div>
@@ -1206,10 +1206,9 @@ function Footer() {
           </div>
         </div>
 
-        <div className="relative select-none" aria-hidden="true">
-          <div className="display-mega text-center leading-[0.78] translate-y-[12%]">
-            FOX FOUNDER
-          </div>
+        {/* Oversized wordmark — sits fully inside the footer, no clipped baseline. */}
+        <div className="relative select-none pb-6 sm:pb-8" aria-hidden="true">
+          <div className="display-mega text-center leading-[0.85]">FOX FOUNDER</div>
         </div>
       </div>
     </footer>
