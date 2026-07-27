@@ -500,7 +500,7 @@ function Hero() {
                 </span>
               </Reveal>
 
-              <h1 className="display-mega leading-[0.86] tracking-tight">
+              <h1 className="font-display uppercase text-[clamp(2.9rem,6vw,5.6rem)] leading-[0.86] tracking-[-0.02em]">
                 <MaskLine>AI ENGINEER</MaskLine>
                 <span className="block">
                   <MaskLine delay={100}>
@@ -511,6 +511,7 @@ function Hero() {
                   </MaskLine>
                 </span>
               </h1>
+
 
               <Reveal delay={200} className="mt-7 max-w-md text-base sm:text-lg text-muted-foreground leading-relaxed">
                 AI Engineer &amp; Founder of Fox Founder AI, building products that actually ship and
