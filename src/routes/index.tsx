@@ -1143,10 +1143,14 @@ function Field({
   placeholder?: string;
   type?: string;
 }) {
+  const id = `contact-${name}`;
   return (
     <div>
-      <label className="kicker">{label}</label>
+      <label htmlFor={id} className="kicker">
+        {label}
+      </label>
       <input
+        id={id}
         name={name}
         type={type}
         required
