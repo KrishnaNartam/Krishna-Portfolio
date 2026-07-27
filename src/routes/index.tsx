@@ -405,10 +405,13 @@ function Nav() {
           scrolled ? "bg-surface/85 backdrop-blur-xl border border-rule" : "bg-transparent border border-transparent"
         }`}
       >
-        <a href="#top" className="flex items-center gap-2.5 rounded-full bg-paper text-background pl-2.5 pr-4 py-2">
-          <span className="w-5 h-5 rounded-full bg-ember" />
-          <span className="font-display text-sm tracking-tight leading-none pt-0.5">FOX FOUNDER</span>
+        <a href="#top" className="flex items-center gap-2.5 pl-1 pr-3 py-1.5">
+          <FoxMark className="w-7 h-7 text-ember" />
+          <span className="font-display text-base sm:text-lg tracking-tight leading-none pt-0.5">
+            FOX<span className="text-muted-foreground">FOUNDER</span>
+          </span>
         </a>
+
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
           {NAV.map((n) => (
