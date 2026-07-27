@@ -1028,9 +1028,22 @@ function Contact() {
       );
       setStatus("sent");
       formRef.current.reset();
-    } catch {
+    } catch (err: unknown) {
+      // Surface the mail provider's own reason instead of a generic message —
+      // a bad key or blocked domain is otherwise invisible.
+      const reason =
+        typeof err === "object" && err !== null && "text" in err
+          ? String((err as { text?: unknown }).text ?? "")
+          : err instanceof Error
+            ? err.message
+            : "";
+      console.error("EmailJS send failed:", err);
       setStatus("error");
-      setErrorMsg("Something went wrong. Please email me directly.");
+      setErrorMsg(
+        reason
+          ? `Couldn't send (${reason}). Use the direct email link below.`
+          : "Couldn't send right now. Use the direct email link below.",
+      );
     }
   };
 
