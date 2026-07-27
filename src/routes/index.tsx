@@ -550,14 +550,20 @@ function Hero() {
             <div className="relative">
               <div data-reveal="" className="reveal-clip relative">
                 <div
-                  className="absolute -inset-2 sm:-inset-3 border border-ember/70 pointer-events-none"
+                  className="absolute -inset-2 sm:-inset-3 bg-ember/70 pointer-events-none"
                   style={{ clipPath: "polygon(14% 0, 100% 0, 100% 86%, 86% 100%, 0 100%, 0 14%)" }}
                   aria-hidden="true"
-                />
+                >
+                  <div
+                    className="absolute inset-px bg-surface"
+                    style={{ clipPath: "polygon(14% 0, 100% 0, 100% 86%, 86% 100%, 0 100%, 0 14%)" }}
+                  />
+                </div>
                 <div
                   className="relative overflow-hidden bg-background"
                   style={{ clipPath: "polygon(14% 0, 100% 0, 100% 86%, 86% 100%, 0 100%, 0 14%)" }}
                 >
+
                   <img
                     src={krishnaPortrait}
                     alt="Krishna Nartam, founder of Fox Founder AI"
