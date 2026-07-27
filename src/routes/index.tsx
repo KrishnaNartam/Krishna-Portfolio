@@ -1028,9 +1028,22 @@ function Contact() {
       );
       setStatus("sent");
       formRef.current.reset();
-    } catch {
+    } catch (err: unknown) {
+      // Surface the mail provider's own reason instead of a generic message —
+      // a bad key or blocked domain is otherwise invisible.
+      const reason =
+        typeof err === "object" && err !== null && "text" in err
+          ? String((err as { text?: unknown }).text ?? "")
+          : err instanceof Error
+            ? err.message
+            : "";
+      console.error("EmailJS send failed:", err);
       setStatus("error");
-      setErrorMsg("Something went wrong. Please email me directly.");
+      setErrorMsg(
+        reason
+          ? `Couldn't send (${reason}). Use the direct email link below.`
+          : "Couldn't send right now. Use the direct email link below.",
+      );
     }
   };
 
@@ -1046,12 +1059,12 @@ function Contact() {
         <div className="grid lg:grid-cols-12 gap-5">
           <Reveal className="lg:col-span-4">
             <div className="panel h-full p-6 sm:p-8 flex flex-col gap-6">
-              <div className="rounded-2xl overflow-hidden aspect-[4/3] bg-elevated">
+              <div className="rounded-2xl overflow-hidden aspect-[4/5] bg-elevated">
                 <img
                   src={krishnaPortrait}
                   alt="Krishna Nartam"
                   loading="lazy"
-                  className="w-full h-full object-cover grayscale contrast-[1.08]"
+                  className="w-full h-full object-cover object-[50%_18%] grayscale contrast-[1.08]"
                 />
               </div>
               <div>
@@ -1107,7 +1120,15 @@ function Contact() {
                 <p className="text-xs text-success">Thanks — I&apos;ll reply within 24 hours.</p>
               )}
               {status === "error" && (
-                <p className="text-xs text-destructive">{errorMsg || "Something went wrong."}</p>
+                <div className="text-xs text-destructive space-y-2">
+                  <p>{errorMsg || "Couldn't send right now."}</p>
+                  <a
+                    href={`mailto:${EMAIL}?subject=${encodeURIComponent("Project enquiry")}`}
+                    className="inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-foreground transition-colors"
+                  >
+                    Email me directly at {EMAIL} <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                </div>
               )}
             </form>
           </Reveal>
@@ -1206,10 +1227,9 @@ function Footer() {
           </div>
         </div>
 
-        <div className="relative select-none" aria-hidden="true">
-          <div className="display-mega text-center leading-[0.78] translate-y-[12%]">
-            FOX FOUNDER
-          </div>
+        {/* Oversized wordmark — sits fully inside the footer, no clipped baseline. */}
+        <div className="relative select-none pb-6 sm:pb-8" aria-hidden="true">
+          <div className="display-mega text-center leading-[0.85]">FOX FOUNDER</div>
         </div>
       </div>
     </footer>
