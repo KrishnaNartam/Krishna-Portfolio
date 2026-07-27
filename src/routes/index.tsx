@@ -64,7 +64,11 @@ export const Route = createFileRoute("/")({
           "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4612f96e-caff-4b60-818c-5da948c80fc3/id-preview-e359a325--fa7c7f44-5d5b-4094-af00-7406250592e2.lovable.app-1781935966903.png",
       },
     ],
-    links: [{ rel: "canonical", href: "https://krishnanartam.lovable.app/" }],
+    links: [
+      { rel: "canonical", href: "https://krishnanartam.lovable.app/" },
+      // LCP hero portrait — fetch it in parallel with the HTML parse.
+      { rel: "preload", as: "image", href: krishnaPortrait, fetchpriority: "high" },
+    ],
     scripts: [
       {
         type: "application/ld+json",
