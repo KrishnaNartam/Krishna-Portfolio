@@ -53,7 +53,7 @@
   --rule: oklch(1 0 0 / 0.12);
 
   --ember: oklch(0.67 0.2 40);              /* #ff5a1f */
-  --volt: oklch(0.92 0.21 122);             /* #d6ff3f */
+  --volt: oklch(0.67 0.2 40);               /* FoxFounder orange #ff5a1f */
 
   --card: oklch(0.19 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -265,7 +265,7 @@ html {
 
 @utility btn-volt {
   background: var(--color-volt);
-  color: oklch(0.14 0 0);
+  color: var(--color-foreground);
   border-radius: 99px;
   font-weight: 600;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
@@ -304,8 +304,7 @@ html {
   background: var(--color-volt);
   pointer-events: none;
   z-index: 100;
-  mix-blend-mode: difference;
-  transition: transform 0.13s ease-out, width 0.25s ease, height 0.25s ease;
+    transition: transform 0.13s ease-out, width 0.25s ease, height 0.25s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
