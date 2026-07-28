@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
 import {
   Github,
   Linkedin,
@@ -37,9 +36,6 @@ const foxWordmark = foxWordmarkAsset.url;
 const foxLockupAbsolute = `https://krishnanartam.lovable.app${foxLockupAsset.url}`;
 
 
-const EMAILJS_SERVICE_ID = "service_138mf4y";
-const EMAILJS_TEMPLATE_ID = "template_tzzd9c8";
-const EMAILJS_PUBLIC_KEY = "XIuTaiEJ6Ll6vBf4Z";
 
 const EMAIL = "krishnanartam911@gmail.com";
 const GITHUB = "https://github.com/KrishnaNartam";
@@ -1103,8 +1099,8 @@ function Contact() {
     if (!formRef.current) return;
 
     const fd = new FormData(formRef.current);
-    const name = String(fd.get("from_name") || "").trim();
-    const email = String(fd.get("from_email") || "").trim();
+    const name = String(fd.get("name") || "").trim();
+    const email = String(fd.get("email") || "").trim();
     const message = String(fd.get("message") || "").trim();
 
     if (!name || name.length > 100) {
@@ -1126,24 +1122,27 @@ function Contact() {
     setStatus("sending");
     setErrorMsg("");
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        { from_name: name, from_email: email, message, reply_to: email },
-        { publicKey: EMAILJS_PUBLIC_KEY },
-      );
+      const payload = new FormData();
+      payload.append("access_key", "aaa2aa3d-a7a6-4656-b859-e2e2739c581c");
+      payload.append("subject", "New message from Fox Founder AI portfolio");
+      payload.append("name", name);
+      payload.append("email", email);
+      payload.append("message", message);
+      payload.append("reply_to", email);
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: payload,
+      });
+      const data = (await res.json()) as { success?: boolean; message?: string };
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Submission failed");
+      }
       setStatus("sent");
       formRef.current.reset();
     } catch (err: unknown) {
-      // Surface the mail provider's own reason instead of a generic message —
-      // a bad key or blocked domain is otherwise invisible.
-      const reason =
-        typeof err === "object" && err !== null && "text" in err
-          ? String((err as { text?: unknown }).text ?? "")
-          : err instanceof Error
-            ? err.message
-            : "";
-      console.error("EmailJS send failed:", err);
+      const reason = err instanceof Error ? err.message : "";
+      console.error("Web3Forms send failed:", err);
       setStatus("error");
       setErrorMsg(
         reason
@@ -1188,9 +1187,13 @@ function Contact() {
 
           <Reveal delay={140} className="lg:col-span-8">
             <form ref={formRef} onSubmit={submit} className="panel h-full p-6 sm:p-10 space-y-6">
+              {/* Hidden Web3Forms config */}
+              <input type="hidden" name="access_key" value="aaa2aa3d-a7a6-4656-b859-e2e2739c581c" />
+              <input type="hidden" name="subject" value="New message from Fox Founder AI portfolio" />
+
               <div className="grid sm:grid-cols-2 gap-6">
-                <Field name="from_name" label="Your name" placeholder="Jane Doe" />
-                <Field name="from_email" type="email" label="Email" placeholder="jane@company.com" />
+                <Field name="name" label="Your name" placeholder="Jane Doe" />
+                <Field name="email" type="email" label="Email" placeholder="jane@company.com" />
               </div>
               <div>
                 <label htmlFor="contact-message" className="kicker">
