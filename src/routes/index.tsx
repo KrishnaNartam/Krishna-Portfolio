@@ -417,7 +417,7 @@ function Nav() {
           <FoxMark className="w-7 h-7 text-ember" />
           <span className="font-display text-base sm:text-lg tracking-tight leading-none pt-0.5 flex items-center gap-3.5">
             <span className="text-ember">FOX</span>
-            <span className="text-foreground">FOUNDER</span>
+            <span className="metallic-text">FOUNDER</span>
           </span>
         </a>
 
