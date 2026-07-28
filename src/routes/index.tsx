@@ -22,11 +22,18 @@ import {
 } from "lucide-react";
 
 import krishnaPortraitAsset from "@/assets/krishna-portrait.png.asset.json";
+import foxMarkAsset from "@/assets/foxfounder-mark.png.asset.json";
+import foxWordmarkAsset from "@/assets/foxfounder-wordmark.png.asset.json";
+import foxLockupAsset from "@/assets/foxfounder-lockup.png.asset.json";
 import projResume from "@/assets/proj-resume.jpg";
 import projIiot from "@/assets/proj-iiot.jpg";
 import projAgent from "@/assets/proj-agent.jpg";
 
 const krishnaPortrait = krishnaPortraitAsset.url;
+const foxMark = foxMarkAsset.url;
+const foxWordmark = foxWordmarkAsset.url;
+const foxLockupAbsolute = `https://krishnanartam.lovable.app${foxLockupAsset.url}`;
+
 
 const EMAILJS_SERVICE_ID = "service_138mf4y";
 const EMAILJS_TEMPLATE_ID = "template_tzzd9c8";
