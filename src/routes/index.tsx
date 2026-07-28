@@ -1384,7 +1384,7 @@ function Footer() {
       </div>
 
       <div className="border-t border-rule">
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-8 py-6 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center">
+        <div className="mx-auto max-w-[1500px] px-4 sm:px-8 py-6 relative flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center">
           <p className="text-sm text-muted-foreground">© 2025–2026 Fox Founder AI</p>
           <span className="hidden sm:inline text-ember" aria-hidden="true">
             •
