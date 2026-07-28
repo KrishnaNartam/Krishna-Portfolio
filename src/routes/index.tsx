@@ -413,12 +413,15 @@ function Nav() {
           scrolled ? "bg-surface/85 backdrop-blur-xl border border-rule" : "bg-transparent border border-transparent"
         }`}
       >
-        <a href="#top" className="flex items-center gap-2.5 pl-1 pr-3 py-1.5">
-          <FoxMark className="w-7 h-7 text-ember" />
-          <span className="font-display text-base sm:text-lg tracking-tight leading-none pt-0.5 flex items-center gap-3.5">
-            <span className="text-ember">FOX</span>
-            <span className="metallic-text">FOUNDER</span>
-          </span>
+        <a href="#top" className="flex items-center gap-2 sm:gap-3 pl-1 pr-3 py-1.5">
+          <FoxMark className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 text-ember" />
+          <img
+            src={foxWordmark}
+            alt="Fox Founder"
+            loading="eager"
+            decoding="async"
+            className="h-9 sm:h-10 lg:h-12 w-auto object-contain"
+          />
         </a>
 
 
