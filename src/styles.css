@@ -287,6 +287,15 @@ html {
   }
 }
 
+@utility metallic-text {
+  color: transparent;
+  background: linear-gradient(180deg, oklch(1 0 0) 0%, oklch(0.82 0 0) 52%, oklch(0.62 0 0) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 0 oklch(0.15 0 0 / 0.45);
+}
+
 @utility grid-lines {
   background-image:
     linear-gradient(to right, oklch(1 0 0 / 0.045) 1px, transparent 1px),
