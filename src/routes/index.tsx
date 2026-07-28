@@ -9,6 +9,8 @@ import {
   ArrowUpRight,
   ArrowRight,
   ArrowUp,
+  ChevronRight,
+
   Plus,
   Minus,
   Send,
