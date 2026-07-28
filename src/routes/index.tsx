@@ -1296,47 +1296,112 @@ function Field({
 
 function Footer() {
   return (
-    <footer className="pt-16 border-t border-rule overflow-hidden">
-      <div className="mx-auto max-w-[1500px] px-3 sm:px-5">
-        <div className="grid gap-8 sm:grid-cols-3 pb-10">
-          <div>
-            <div className="kicker mb-4">Quick links</div>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+    <footer className="relative border-t border-rule overflow-hidden bg-background">
+      {/* subtle orange glow on the divider */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px"
+        aria-hidden="true"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, var(--color-ember), transparent)",
+          opacity: 0.55,
+        }}
+      />
+
+      <div className="mx-auto max-w-[1500px] px-4 sm:px-8 pt-14 sm:pt-20 pb-10">
+        <div className="grid gap-12 lg:gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)_minmax(0,0.9fr)] items-start">
+          {/* Quick links */}
+          <div className="lg:pr-8 lg:border-r lg:border-rule">
+            <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-ember">
+              Quick links
+            </div>
+            <div className="mt-3 h-px w-10 bg-ember" />
+            <ul className="mt-7 space-y-4 text-sm">
               {NAV.map((n) => (
                 <li key={n.href}>
-                  <a href={n.href} className="hover:text-ember transition-colors">{n.label}</a>
+                  <a
+                    href={n.href}
+                    className="group inline-flex items-center gap-3 text-foreground/85 hover:text-ember transition-colors"
+                  >
+                    <ChevronRight className="w-4 h-4 text-ember shrink-0 transition-transform group-hover:translate-x-0.5" />
+                    {n.label}
+                  </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="flex sm:justify-center">
-            <a
-              href="#top"
-              aria-label="Back to top"
-              className="w-14 h-14 rounded-full bg-ember flex items-center justify-center hover:-translate-y-1 transition-transform"
-            >
-              <ArrowUp className="w-5 h-5" />
-            </a>
-          </div>
-
-          <div className="sm:text-right">
-            <div className="kicker mb-4">Fox Founder AI</div>
-            <p className="text-sm text-muted-foreground leading-relaxed sm:ml-auto sm:max-w-xs">
+          {/* Brand — centered lockup */}
+          <div className="flex flex-col items-center text-center">
+            <img
+              src={foxWordmark}
+              alt="Fox Founder AI"
+              loading="lazy"
+              decoding="async"
+              className="w-full max-w-[520px] object-contain"
+            />
+            <p className="mt-7 max-w-md text-sm sm:text-base leading-relaxed text-muted-foreground">
               A boutique studio building AI products, automation systems, and Industrial IoT
               dashboards. Founded in Pune, India.
             </p>
-            <p className="mt-4 text-xs text-muted-foreground">
-              © 2025–2026 Fox Founder AI · Krishna Prashant Nartam
+            <div className="mt-8 flex items-center gap-4">
+              {[
+                { href: GITHUB, label: "GitHub", Icon: Github },
+                { href: LINKEDIN, label: "LinkedIn", Icon: Linkedin },
+                { href: `mailto:${EMAIL}`, label: "Email", Icon: Mail },
+              ].map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target={href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel="noreferrer"
+                  className="w-12 h-12 rounded-full border border-rule flex items-center justify-center text-foreground/85 hover:text-ember hover:border-ember transition-colors"
+                >
+                  <Icon className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Company information */}
+          <div className="lg:pl-8 lg:border-l lg:border-rule">
+            <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-ember">
+              Fox Founder AI
+            </div>
+            <div className="mt-3 h-px w-10 bg-ember" />
+            <p className="mt-7 text-sm leading-loose text-muted-foreground">
+              We build intelligent products and automations that solve real-world problems and
+              drive measurable impact.
             </p>
+            <div className="mt-8 h-px w-full bg-rule" />
+            <div className="mt-6 flex items-center gap-3 text-sm">
+              <MapPin className="w-5 h-5 text-ember shrink-0" />
+              <span>Pune, India</span>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Oversized wordmark — sits fully inside the footer, no clipped baseline. */}
-        <div className="relative select-none pb-6 sm:pb-8" aria-hidden="true">
-          <div className="display-mega text-center leading-[0.85]">FOX FOUNDER</div>
+      <div className="border-t border-rule">
+        <div className="mx-auto max-w-[1500px] px-4 sm:px-8 py-6 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center">
+          <p className="text-sm text-muted-foreground">© 2025–2026 Fox Founder AI</p>
+          <span className="hidden sm:inline text-ember" aria-hidden="true">
+            •
+          </span>
+          <p className="text-sm text-muted-foreground">
+            Krishna Prashant Nartam. All rights reserved.
+          </p>
+          <a
+            href="#top"
+            aria-label="Back to top"
+            className="sm:absolute sm:right-8 w-10 h-10 rounded-full border border-rule flex items-center justify-center text-foreground/85 hover:text-ember hover:border-ember transition-colors"
+          >
+            <ArrowUp className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </footer>
   );
+
 }
