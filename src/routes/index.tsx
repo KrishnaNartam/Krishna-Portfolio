@@ -472,13 +472,17 @@ function Nav() {
 
 function FoxMark({ className = "w-7 h-7" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 32 32" className={className} fill="none" aria-hidden="true">
-      <path d="M3 4l7 3.5L16 5l6 2.5L29 4l-2.5 9.5C25 21 21 26.5 16 29 11 26.5 7 21 5.5 13.5L3 4z" fill="currentColor" opacity="0.18" />
-      <path d="M4 5.5l6.5 3.2L16 6.4l5.5 2.3L28 5.5l-2.3 8.6C24.3 20.7 20.7 25.6 16 28c-4.7-2.4-8.3-7.3-9.7-13.9L4 5.5z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-      <path d="M12 14.5l2.5 1.5M20 14.5L17.5 16M16 19.5l-1.6 1.6M16 19.5l1.6 1.6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
+    <img
+      src={foxMark}
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      decoding="async"
+      className={`${className} object-contain`}
+    />
   );
 }
+
 
 function Hero() {
   return (
