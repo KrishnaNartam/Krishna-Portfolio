@@ -9,6 +9,8 @@ import {
   ArrowUpRight,
   ArrowRight,
   ArrowUp,
+  ChevronRight,
+
   Plus,
   Minus,
   Send,
@@ -22,11 +24,18 @@ import {
 } from "lucide-react";
 
 import krishnaPortraitAsset from "@/assets/krishna-portrait.png.asset.json";
+import foxMarkAsset from "@/assets/foxfounder-mark.png.asset.json";
+import foxWordmarkAsset from "@/assets/foxfounder-wordmark.png.asset.json";
+import foxLockupAsset from "@/assets/foxfounder-lockup.png.asset.json";
 import projResume from "@/assets/proj-resume.jpg";
 import projIiot from "@/assets/proj-iiot.jpg";
 import projAgent from "@/assets/proj-agent.jpg";
 
 const krishnaPortrait = krishnaPortraitAsset.url;
+const foxMark = foxMarkAsset.url;
+const foxWordmark = foxWordmarkAsset.url;
+const foxLockupAbsolute = `https://krishnanartam.lovable.app${foxLockupAsset.url}`;
+
 
 const EMAILJS_SERVICE_ID = "service_138mf4y";
 const EMAILJS_TEMPLATE_ID = "template_tzzd9c8";
@@ -61,15 +70,14 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       {
         property: "og:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4612f96e-caff-4b60-818c-5da948c80fc3/id-preview-e359a325--fa7c7f44-5d5b-4094-af00-7406250592e2.lovable.app-1781935966903.png",
+        content: foxLockupAbsolute,
       },
       {
         name: "twitter:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4612f96e-caff-4b60-818c-5da948c80fc3/id-preview-e359a325--fa7c7f44-5d5b-4094-af00-7406250592e2.lovable.app-1781935966903.png",
+        content: foxLockupAbsolute,
       },
     ],
+
     links: [
       { rel: "canonical", href: "https://krishnanartam.lovable.app/" },
       // LCP hero portrait — fetch it in parallel with the HTML parse.
@@ -466,13 +474,17 @@ function Nav() {
 
 function FoxMark({ className = "w-7 h-7" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 32 32" className={className} fill="none" aria-hidden="true">
-      <path d="M3 4l7 3.5L16 5l6 2.5L29 4l-2.5 9.5C25 21 21 26.5 16 29 11 26.5 7 21 5.5 13.5L3 4z" fill="currentColor" opacity="0.18" />
-      <path d="M4 5.5l6.5 3.2L16 6.4l5.5 2.3L28 5.5l-2.3 8.6C24.3 20.7 20.7 25.6 16 28c-4.7-2.4-8.3-7.3-9.7-13.9L4 5.5z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-      <path d="M12 14.5l2.5 1.5M20 14.5L17.5 16M16 19.5l-1.6 1.6M16 19.5l1.6 1.6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
+    <img
+      src={foxMark}
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      decoding="async"
+      className={`${className} object-contain`}
+    />
   );
 }
+
 
 function Hero() {
   return (
@@ -1284,47 +1296,112 @@ function Field({
 
 function Footer() {
   return (
-    <footer className="pt-16 border-t border-rule overflow-hidden">
-      <div className="mx-auto max-w-[1500px] px-3 sm:px-5">
-        <div className="grid gap-8 sm:grid-cols-3 pb-10">
-          <div>
-            <div className="kicker mb-4">Quick links</div>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+    <footer className="relative border-t border-rule overflow-hidden bg-background">
+      {/* subtle orange glow on the divider */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px"
+        aria-hidden="true"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, var(--color-ember), transparent)",
+          opacity: 0.55,
+        }}
+      />
+
+      <div className="mx-auto max-w-[1500px] px-4 sm:px-8 pt-14 sm:pt-20 pb-10">
+        <div className="grid gap-12 lg:gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)_minmax(0,0.9fr)] items-start">
+          {/* Quick links */}
+          <div className="lg:pr-8 lg:border-r lg:border-rule">
+            <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-ember">
+              Quick links
+            </div>
+            <div className="mt-3 h-px w-10 bg-ember" />
+            <ul className="mt-7 space-y-4 text-sm">
               {NAV.map((n) => (
                 <li key={n.href}>
-                  <a href={n.href} className="hover:text-ember transition-colors">{n.label}</a>
+                  <a
+                    href={n.href}
+                    className="group inline-flex items-center gap-3 text-foreground/85 hover:text-ember transition-colors"
+                  >
+                    <ChevronRight className="w-4 h-4 text-ember shrink-0 transition-transform group-hover:translate-x-0.5" />
+                    {n.label}
+                  </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="flex sm:justify-center">
-            <a
-              href="#top"
-              aria-label="Back to top"
-              className="w-14 h-14 rounded-full bg-ember flex items-center justify-center hover:-translate-y-1 transition-transform"
-            >
-              <ArrowUp className="w-5 h-5" />
-            </a>
-          </div>
-
-          <div className="sm:text-right">
-            <div className="kicker mb-4">Fox Founder AI</div>
-            <p className="text-sm text-muted-foreground leading-relaxed sm:ml-auto sm:max-w-xs">
+          {/* Brand — centered lockup */}
+          <div className="flex flex-col items-center text-center">
+            <img
+              src={foxWordmark}
+              alt="Fox Founder AI"
+              loading="lazy"
+              decoding="async"
+              className="w-full max-w-[520px] object-contain"
+            />
+            <p className="mt-7 max-w-md text-sm sm:text-base leading-relaxed text-muted-foreground">
               A boutique studio building AI products, automation systems, and Industrial IoT
               dashboards. Founded in Pune, India.
             </p>
-            <p className="mt-4 text-xs text-muted-foreground">
-              © 2025–2026 Fox Founder AI · Krishna Prashant Nartam
+            <div className="mt-8 flex items-center gap-4">
+              {[
+                { href: GITHUB, label: "GitHub", Icon: Github },
+                { href: LINKEDIN, label: "LinkedIn", Icon: Linkedin },
+                { href: `mailto:${EMAIL}`, label: "Email", Icon: Mail },
+              ].map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target={href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel="noreferrer"
+                  className="w-12 h-12 rounded-full border border-rule flex items-center justify-center text-foreground/85 hover:text-ember hover:border-ember transition-colors"
+                >
+                  <Icon className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Company information */}
+          <div className="lg:pl-8 lg:border-l lg:border-rule">
+            <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-ember">
+              Fox Founder AI
+            </div>
+            <div className="mt-3 h-px w-10 bg-ember" />
+            <p className="mt-7 text-sm leading-loose text-muted-foreground">
+              We build intelligent products and automations that solve real-world problems and
+              drive measurable impact.
             </p>
+            <div className="mt-8 h-px w-full bg-rule" />
+            <div className="mt-6 flex items-center gap-3 text-sm">
+              <MapPin className="w-5 h-5 text-ember shrink-0" />
+              <span>Pune, India</span>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Oversized wordmark — sits fully inside the footer, no clipped baseline. */}
-        <div className="relative select-none pb-6 sm:pb-8" aria-hidden="true">
-          <div className="display-mega text-center leading-[0.85]">FOX FOUNDER</div>
+      <div className="border-t border-rule">
+        <div className="mx-auto max-w-[1500px] px-4 sm:px-8 py-6 relative flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center">
+          <p className="text-sm text-muted-foreground">© 2025–2026 Fox Founder AI</p>
+          <span className="hidden sm:inline text-ember" aria-hidden="true">
+            •
+          </span>
+          <p className="text-sm text-muted-foreground">
+            Krishna Prashant Nartam. All rights reserved.
+          </p>
+          <a
+            href="#top"
+            aria-label="Back to top"
+            className="sm:absolute sm:right-8 w-10 h-10 rounded-full border border-rule flex items-center justify-center text-foreground/85 hover:text-ember hover:border-ember transition-colors"
+          >
+            <ArrowUp className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </footer>
   );
+
 }
