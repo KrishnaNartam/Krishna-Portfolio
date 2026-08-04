@@ -275,11 +275,12 @@ const SKILL_GROUPS: { title: string; items: string[] }[] = [
 ];
 
 const MILESTONES = [
-  { n: "01", org: "Fox Founder AI", what: "Studio founded — AI & automation", year: "2026" },
-  { n: "02", org: "Manufacturing pilot", what: "Realtime OEE rollout on factory floor", year: "2025" },
-  { n: "03", org: "Independent clients", what: "LLM product builds & n8n pipelines", year: "2025" },
-  { n: "04", org: "Self-initiated SaaS", what: "Full-stack product engineering", year: "2024" },
-  { n: "05", org: "SKN College of Engineering", what: "B.E. Mechanical Engineering, Pune", year: "2023" },
+  { n: "01", org: "Fox Founder AI", what: "Studio founded — AI products, automation & IIoT", year: "2026" },
+  { n: "02", org: "Video annotation workbench", what: "Millisecond action segmentation pipeline shipped", year: "2026" },
+  { n: "03", org: "Real estate client", what: "Autonomous WhatsApp lead agent in production", year: "2026" },
+  { n: "04", org: "Manufacturing pilot", what: "Realtime OEE platform live on the factory floor", year: "2025" },
+  { n: "05", org: "Independent clients", what: "LLM product builds & n8n automation pipelines", year: "2025" },
+  { n: "06", org: "GP Nagpur → SKN Pune", what: "Diploma in Mechanical, then B.E. Mechanical", year: "2023" },
 ];
 
 const EDUCATION = [
@@ -289,7 +290,21 @@ const EDUCATION = [
     years: "2023 — 2027",
     detail: "Final year. Bridging mechanical systems thinking with modern software craft.",
   },
+  {
+    degree: "Diploma in Mechanical Engineering",
+    org: "Government Polytechnic, Nagpur",
+    years: "2019 — 2023",
+    detail: "Shop-floor fundamentals, manufacturing processes, and CAD/CAM — the grounding behind the IIoT work.",
+  },
 ];
+
+const CERTIFICATIONS = [
+  { name: "n8n Workflow Automation Specialist", body: "Advanced multi-step workflow and agent orchestration." },
+  { name: "AWS Certified Cloud Practitioner", body: "Cloud architecture, deployment, and cost fundamentals." },
+  { name: "Generative AI & Prompt Engineering", body: "LLM application design and evaluation practice." },
+  { name: "PostgreSQL Database Design", body: "Schema modelling, indexing, and query optimisation." },
+];
+
 
 const STACK_WALL = [
   "OpenAI", "Anthropic", "Gemini", "n8n", "Supabase", "Vercel",
