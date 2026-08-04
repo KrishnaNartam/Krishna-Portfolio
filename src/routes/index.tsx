@@ -168,45 +168,98 @@ const SERVICES = [
 const PROJECTS = [
   {
     n: "01",
-    name: "AI Resume Builder",
+    name: "Video Action Annotation Workbench",
+    tagline: "AI training data · Millisecond action segmentation",
+    problem:
+      "Teams building video models label actions by hand, with drifting timestamps, inconsistent guidelines, and no audit trail on the dataset they ship.",
+    solution:
+      "A web workbench for millisecond-level action segmentation with guideline-driven tagging, a Gemini-powered human-in-the-loop caption review pass, automated overlap and completeness checks, quality scoring, and structured JSON/CSV export.",
+    stack: ["Next.js", "TypeScript", "Supabase", "Gemini API", "PostgreSQL"],
+    year: "2026",
+    duration: "3 months",
+    image: projAgent,
+    github: GITHUB,
+  },
+  {
+    n: "02",
+    name: "AI Real Estate Lead Qualification Agent",
+    tagline: "Autonomous agent · WhatsApp, Calendar & Slack",
+    problem:
+      "Inbound property leads arrive around the clock on WhatsApp and go cold while a human works through the backlog.",
+    solution:
+      "An autonomous n8n + GPT agent with a context-aware Hinglish conversation engine, persistent chat memory, lead scoring, appointment booking, CRM routing, and clean escalation to a human when the case is complex.",
+    stack: ["n8n", "OpenAI GPT", "WhatsApp Cloud API", "Google Calendar", "PostgreSQL", "Slack"],
+    year: "2026",
+    duration: "2 months",
+    image: projResume,
+    github: GITHUB,
+    outcome: "80%+ faster first response · 15+ hours/week of manual triage removed",
+  },
+  {
+    n: "03",
+    name: "Industrial IoT Real-Time OEE Platform",
+    tagline: "Industrial IoT · Live factory telemetry",
+    problem:
+      "Small manufacturers run blind — no live visibility into machine performance, downtime reasons, or throughput.",
+    solution:
+      "An MQTT-fed telemetry platform streaming live OEE, downtime analytics, and shift KPIs to operator screens and phones, backed by REST APIs and n8n workflows for alerting and reporting.",
+    stack: ["React", "Node.js", "MQTT", "PostgreSQL", "n8n"],
+    year: "2025",
+    duration: "3 months",
+    image: projIiot,
+    github: GITHUB,
+    outcome: "Sub-second telemetry sync from shop floor to dashboard",
+  },
+  {
+    n: "04",
+    name: "AI Resume Builder with ATS Optimisation",
     tagline: "SaaS · ATS-ready résumés from one prompt",
     problem:
       "Job seekers rewrite résumés for every posting and still get filtered out by ATS keyword screens.",
     solution:
-      "A single-prompt SaaS that composes ATS-friendly résumés, adapts tone to the role, and exports clean PDFs.",
-    stack: ["Next.js", "FastAPI", "OpenAI", "Supabase"],
+      "A platform that parses candidate detail and generates role-specific, ATS-friendly documents aligned to the job spec, with secure auth, persistent document management, and dynamic PDF export.",
+    stack: ["Next.js", "Node.js", "PostgreSQL", "OpenAI API"],
     year: "2025",
     duration: "2 months",
     image: projResume,
     github: GITHUB,
   },
   {
-    n: "02",
-    name: "Realtime OEE Dashboard",
-    tagline: "Industrial IoT · Live factory telemetry",
-    problem:
-      "Small manufacturers run blind — no live visibility into machine performance, downtime, or throughput.",
-    solution:
-      "An MQTT-fed dashboard streaming live OEE, downtime reasons, and shift analytics to operator TVs and phones.",
-    stack: ["React", "Node.js", "MQTT", "PostgreSQL"],
-    year: "2025",
-    duration: "3 months",
-    image: projIiot,
-    github: GITHUB,
-  },
-  {
-    n: "03",
-    name: "Brand Sentinel",
+    n: "05",
+    name: "AI Brand Content Intelligence Platform",
     tagline: "Multimodal · Pre-publish brand auditing",
     problem:
-      "Brand teams push social posts that drift off-tone, with no early signal before they publish.",
+      "Brand teams push social content that drifts off-tone, with no early signal before it publishes.",
     solution:
-      "A multimodal auditor that scores each post for brand consistency and predicts engagement before it goes live.",
-    stack: ["Next.js", "Gemini", "Python", "Vercel"],
+      "A multimodal auditor pairing Gemini with computer vision scoring engines to grade quality, brand consistency, and engagement potential — then return specific, action-oriented fixes.",
+    stack: ["Next.js", "TypeScript", "Gemini AI", "PostgreSQL"],
     year: "2025",
     duration: "1 month",
     image: projAgent,
     github: GITHUB,
+  },
+];
+
+const ALSO_BUILT = [
+  {
+    name: "Multi-Agent AI Customer Support SaaS",
+    body: "Agentic workflows that route customer queries and run dynamic troubleshooting without a human first touch.",
+  },
+  {
+    name: "DentalFlow AI Queue & Appointments",
+    body: "Automated queue scheduling and patient notification platform for clinics.",
+  },
+  {
+    name: "Multi-Brand Real Estate Lead Gen",
+    body: "Multi-tenant marketing funnels with real-time lead analytics across brands.",
+  },
+  {
+    name: "AI-Powered Event Management",
+    body: "Dynamic registration, schedule builder, and ticketing automation workflows.",
+  },
+  {
+    name: "Desi QnA & Enterprise Concepts",
+    body: "Responsive full-stack web features on React, Node, Express, and MongoDB with optimised schemas for high throughput.",
   },
 ];
 
