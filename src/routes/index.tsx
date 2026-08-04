@@ -210,12 +210,12 @@ const PROJECTS = [
 ];
 
 const SKILL_GROUPS: { title: string; items: string[] }[] = [
-  { title: "AI Engineering", items: ["OpenAI", "Anthropic", "Gemini", "LangChain", "Hugging Face", "TensorFlow", "PyTorch"] },
-  { title: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"] },
-  { title: "Backend", items: ["Python", "FastAPI", "Node.js", "REST", "WebSockets"] },
-  { title: "Data", items: ["PostgreSQL", "Supabase", "MongoDB", "Redis", "MQTT"] },
+  { title: "AI Engineering", items: ["OpenAI", "Anthropic", "Gemini", "LangChain", "Hugging Face", "TensorFlow", "PyTorch", "Prompt Engineering", "Computer Vision"] },
+  { title: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "JavaScript"] },
+  { title: "Backend", items: ["Python", "FastAPI", "Node.js", "REST", "WebSockets", "Java", "C/C++", "Express.js"] },
+  { title: "Data", items: ["PostgreSQL", "Supabase", "MongoDB", "Redis", "MQTT", "Dataset Exporting (JSON/CSV)"] },
   { title: "Automation", items: ["n8n", "Make", "Cron", "Webhooks", "Zapier"] },
-  { title: "Industrial IoT", items: ["MQTT", "Node-RED", "Modbus", "OEE", "Sensor pipelines"] },
+  { title: "Industrial IoT", items: ["MQTT", "Node-RED", "Modbus", "OEE", "Sensor pipelines", "OEE Analytics", "Machine Telemetry", "Quality Control Automation", "CAD/CAM Fundamentals"] },
   { title: "Cloud & DevOps", items: ["AWS", "Vercel", "Cloudflare", "Docker", "GitHub Actions"] },
   { title: "Tools", items: ["Git", "Figma", "Postman", "Linux", "VS Code"] },
 ];
