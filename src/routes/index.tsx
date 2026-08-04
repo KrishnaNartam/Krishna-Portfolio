@@ -1041,7 +1041,50 @@ function Milestones() {
   );
 }
 
+/* ───────── Credentials (certifications + also built) ───────── */
+
+function Credentials() {
+  return (
+    <section id="credentials" className="py-20 lg:py-28 border-t border-rule">
+      <div className="mx-auto max-w-[1500px] px-3 sm:px-5">
+        <SectionHead
+          kicker="Certifications & leadership"
+          title="Credentials"
+          lede="Formal training behind the studio work — plus the systems shipped alongside the flagship builds."
+        />
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {CERTIFICATIONS.map((c, i) => (
+            <Reveal key={c.name} delay={i * 90}>
+              <div className="panel p-6 h-full">
+                <div className="kicker mb-3">0{i + 1}</div>
+                <h3 className="font-display text-xl leading-tight">{c.name}</h3>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{c.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="mt-14">
+          <div className="kicker mb-5">Also built</div>
+          <div className="border-t border-rule">
+            {ALSO_BUILT.map((a, i) => (
+              <Reveal key={a.name} delay={i * 70}>
+                <div className="group grid sm:grid-cols-[1.1fr_2fr] items-start gap-3 sm:gap-6 py-5 border-b border-rule px-2 sm:px-4 rounded-2xl transition-colors hover:bg-surface">
+                  <span className="text-sm sm:text-base transition-colors group-hover:text-ember">{a.name}</span>
+                  <span className="text-sm text-muted-foreground leading-relaxed">{a.body}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ───────── Skills ───────── */
+
 
 function Skills() {
   return (
