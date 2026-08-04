@@ -26,6 +26,7 @@ import krishnaPortraitAsset from "@/assets/krishna-portrait.png.asset.json";
 import foxMarkAsset from "@/assets/foxfounder-mark.png.asset.json";
 import foxWordmarkAsset from "@/assets/foxfounder-wordmark.png.asset.json";
 import foxLockupAsset from "@/assets/foxfounder-lockup.png.asset.json";
+import krishnaCvAsset from "@/assets/krishna-cv.pdf.asset.json";
 import projResume from "@/assets/proj-resume.jpg";
 import projIiot from "@/assets/proj-iiot.jpg";
 import projAgent from "@/assets/proj-agent.jpg";
@@ -130,6 +131,7 @@ const NAV = [
   { label: "Services", href: "#services" },
   { label: "Works", href: "#work" },
   { label: "Skills", href: "#skills" },
+  { label: "Credentials", href: "#credentials" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -167,45 +169,98 @@ const SERVICES = [
 const PROJECTS = [
   {
     n: "01",
-    name: "AI Resume Builder",
+    name: "Video Action Annotation Workbench",
+    tagline: "AI training data · Millisecond action segmentation",
+    problem:
+      "Teams building video models label actions by hand, with drifting timestamps, inconsistent guidelines, and no audit trail on the dataset they ship.",
+    solution:
+      "A web workbench for millisecond-level action segmentation with guideline-driven tagging, a Gemini-powered human-in-the-loop caption review pass, automated overlap and completeness checks, quality scoring, and structured JSON/CSV export.",
+    stack: ["Next.js", "TypeScript", "Supabase", "Gemini API", "PostgreSQL"],
+    year: "2026",
+    duration: "3 months",
+    image: projAgent,
+    github: GITHUB,
+  },
+  {
+    n: "02",
+    name: "AI Real Estate Lead Qualification Agent",
+    tagline: "Autonomous agent · WhatsApp, Calendar & Slack",
+    problem:
+      "Inbound property leads arrive around the clock on WhatsApp and go cold while a human works through the backlog.",
+    solution:
+      "An autonomous n8n + GPT agent with a context-aware Hinglish conversation engine, persistent chat memory, lead scoring, appointment booking, CRM routing, and clean escalation to a human when the case is complex.",
+    stack: ["n8n", "OpenAI GPT", "WhatsApp Cloud API", "Google Calendar", "PostgreSQL", "Slack"],
+    year: "2026",
+    duration: "2 months",
+    image: projResume,
+    github: GITHUB,
+    outcome: "80%+ faster first response · 15+ hours/week of manual triage removed",
+  },
+  {
+    n: "03",
+    name: "Industrial IoT Real-Time OEE Platform",
+    tagline: "Industrial IoT · Live factory telemetry",
+    problem:
+      "Small manufacturers run blind — no live visibility into machine performance, downtime reasons, or throughput.",
+    solution:
+      "An MQTT-fed telemetry platform streaming live OEE, downtime analytics, and shift KPIs to operator screens and phones, backed by REST APIs and n8n workflows for alerting and reporting.",
+    stack: ["React", "Node.js", "MQTT", "PostgreSQL", "n8n"],
+    year: "2025",
+    duration: "3 months",
+    image: projIiot,
+    github: GITHUB,
+    outcome: "Sub-second telemetry sync from shop floor to dashboard",
+  },
+  {
+    n: "04",
+    name: "AI Resume Builder with ATS Optimisation",
     tagline: "SaaS · ATS-ready résumés from one prompt",
     problem:
       "Job seekers rewrite résumés for every posting and still get filtered out by ATS keyword screens.",
     solution:
-      "A single-prompt SaaS that composes ATS-friendly résumés, adapts tone to the role, and exports clean PDFs.",
-    stack: ["Next.js", "FastAPI", "OpenAI", "Supabase"],
+      "A platform that parses candidate detail and generates role-specific, ATS-friendly documents aligned to the job spec, with secure auth, persistent document management, and dynamic PDF export.",
+    stack: ["Next.js", "Node.js", "PostgreSQL", "OpenAI API"],
     year: "2025",
     duration: "2 months",
     image: projResume,
     github: GITHUB,
   },
   {
-    n: "02",
-    name: "Realtime OEE Dashboard",
-    tagline: "Industrial IoT · Live factory telemetry",
-    problem:
-      "Small manufacturers run blind — no live visibility into machine performance, downtime, or throughput.",
-    solution:
-      "An MQTT-fed dashboard streaming live OEE, downtime reasons, and shift analytics to operator TVs and phones.",
-    stack: ["React", "Node.js", "MQTT", "PostgreSQL"],
-    year: "2025",
-    duration: "3 months",
-    image: projIiot,
-    github: GITHUB,
-  },
-  {
-    n: "03",
-    name: "Brand Sentinel",
+    n: "05",
+    name: "AI Brand Content Intelligence Platform",
     tagline: "Multimodal · Pre-publish brand auditing",
     problem:
-      "Brand teams push social posts that drift off-tone, with no early signal before they publish.",
+      "Brand teams push social content that drifts off-tone, with no early signal before it publishes.",
     solution:
-      "A multimodal auditor that scores each post for brand consistency and predicts engagement before it goes live.",
-    stack: ["Next.js", "Gemini", "Python", "Vercel"],
+      "A multimodal auditor pairing Gemini with computer vision scoring engines to grade quality, brand consistency, and engagement potential — then return specific, action-oriented fixes.",
+    stack: ["Next.js", "TypeScript", "Gemini AI", "PostgreSQL"],
     year: "2025",
     duration: "1 month",
     image: projAgent,
     github: GITHUB,
+  },
+];
+
+const ALSO_BUILT = [
+  {
+    name: "Multi-Agent AI Customer Support SaaS",
+    body: "Agentic workflows that route customer queries and run dynamic troubleshooting without a human first touch.",
+  },
+  {
+    name: "DentalFlow AI Queue & Appointments",
+    body: "Automated queue scheduling and patient notification platform for clinics.",
+  },
+  {
+    name: "Multi-Brand Real Estate Lead Gen",
+    body: "Multi-tenant marketing funnels with real-time lead analytics across brands.",
+  },
+  {
+    name: "AI-Powered Event Management",
+    body: "Dynamic registration, schedule builder, and ticketing automation workflows.",
+  },
+  {
+    name: "Desi QnA & Enterprise Concepts",
+    body: "Responsive full-stack web features on React, Node, Express, and MongoDB with optimised schemas for high throughput.",
   },
 ];
 
@@ -221,11 +276,12 @@ const SKILL_GROUPS: { title: string; items: string[] }[] = [
 ];
 
 const MILESTONES = [
-  { n: "01", org: "Fox Founder AI", what: "Studio founded — AI & automation", year: "2026" },
-  { n: "02", org: "Manufacturing pilot", what: "Realtime OEE rollout on factory floor", year: "2025" },
-  { n: "03", org: "Independent clients", what: "LLM product builds & n8n pipelines", year: "2025" },
-  { n: "04", org: "Self-initiated SaaS", what: "Full-stack product engineering", year: "2024" },
-  { n: "05", org: "SKN College of Engineering", what: "B.E. Mechanical Engineering, Pune", year: "2023" },
+  { n: "01", org: "Fox Founder AI", what: "Studio founded — AI products, automation & IIoT", year: "2026" },
+  { n: "02", org: "Video annotation workbench", what: "Millisecond action segmentation pipeline shipped", year: "2026" },
+  { n: "03", org: "Real estate client", what: "Autonomous WhatsApp lead agent in production", year: "2026" },
+  { n: "04", org: "Manufacturing pilot", what: "Realtime OEE platform live on the factory floor", year: "2025" },
+  { n: "05", org: "Independent clients", what: "LLM product builds & n8n automation pipelines", year: "2025" },
+  { n: "06", org: "GP Nagpur → SKN Pune", what: "Diploma in Mechanical, then B.E. Mechanical", year: "2023" },
 ];
 
 const EDUCATION = [
@@ -235,7 +291,21 @@ const EDUCATION = [
     years: "2023 — 2027",
     detail: "Final year. Bridging mechanical systems thinking with modern software craft.",
   },
+  {
+    degree: "Diploma in Mechanical Engineering",
+    org: "Government Polytechnic, Nagpur",
+    years: "2019 — 2023",
+    detail: "Shop-floor fundamentals, manufacturing processes, and CAD/CAM — the grounding behind the IIoT work.",
+  },
 ];
+
+const CERTIFICATIONS = [
+  { name: "n8n Workflow Automation Specialist", body: "Advanced multi-step workflow and agent orchestration." },
+  { name: "AWS Certified Cloud Practitioner", body: "Cloud architecture, deployment, and cost fundamentals." },
+  { name: "Generative AI & Prompt Engineering", body: "LLM application design and evaluation practice." },
+  { name: "PostgreSQL Database Design", body: "Schema modelling, indexing, and query optimisation." },
+];
+
 
 const STACK_WALL = [
   "OpenAI", "Anthropic", "Gemini", "n8n", "Supabase", "Vercel",
@@ -283,6 +353,8 @@ function Portfolio() {
         <About />
         <Work />
         <Milestones />
+        <Credentials />
+
         <Skills />
         <StackWall />
         <Faq />
@@ -432,11 +504,13 @@ function Nav() {
 
         <div className="flex items-center gap-2">
           <a
-            href={`mailto:${EMAIL}?subject=Résumé request`}
+            href={krishnaCvAsset.url}
+            download="Krishna-Nartam-CV.pdf"
             className="btn-ember hidden sm:inline-flex items-center gap-2 text-[13px] px-4 py-2.5"
           >
             <Download className="w-3.5 h-3.5" /> Download CV
           </a>
+
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
@@ -970,7 +1044,50 @@ function Milestones() {
   );
 }
 
+/* ───────── Credentials (certifications + also built) ───────── */
+
+function Credentials() {
+  return (
+    <section id="credentials" className="py-20 lg:py-28 border-t border-rule">
+      <div className="mx-auto max-w-[1500px] px-3 sm:px-5">
+        <SectionHead
+          kicker="Certifications & leadership"
+          title="Credentials"
+          lede="Formal training behind the studio work — plus the systems shipped alongside the flagship builds."
+        />
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {CERTIFICATIONS.map((c, i) => (
+            <Reveal key={c.name} delay={i * 90}>
+              <div className="panel p-6 h-full">
+                <div className="kicker mb-3">0{i + 1}</div>
+                <h3 className="font-display text-xl leading-tight">{c.name}</h3>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{c.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="mt-14">
+          <div className="kicker mb-5">Also built</div>
+          <div className="border-t border-rule">
+            {ALSO_BUILT.map((a, i) => (
+              <Reveal key={a.name} delay={i * 70}>
+                <div className="group grid sm:grid-cols-[1.1fr_2fr] items-start gap-3 sm:gap-6 py-5 border-b border-rule px-2 sm:px-4 rounded-2xl transition-colors hover:bg-surface">
+                  <span className="text-sm sm:text-base transition-colors group-hover:text-ember">{a.name}</span>
+                  <span className="text-sm text-muted-foreground leading-relaxed">{a.body}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ───────── Skills ───────── */
+
 
 function Skills() {
   return (
