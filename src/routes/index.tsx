@@ -504,11 +504,13 @@ function Nav() {
 
         <div className="flex items-center gap-2">
           <a
-            href={`mailto:${EMAIL}?subject=Résumé request`}
+            href={krishnaCvAsset.url}
+            download="Krishna-Nartam-CV.pdf"
             className="btn-ember hidden sm:inline-flex items-center gap-2 text-[13px] px-4 py-2.5"
           >
             <Download className="w-3.5 h-3.5" /> Download CV
           </a>
+
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
