@@ -352,6 +352,8 @@ function Portfolio() {
         <About />
         <Work />
         <Milestones />
+        <Credentials />
+
         <Skills />
         <StackWall />
         <Faq />
