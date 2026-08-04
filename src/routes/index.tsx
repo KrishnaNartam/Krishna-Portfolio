@@ -26,6 +26,7 @@ import krishnaPortraitAsset from "@/assets/krishna-portrait.png.asset.json";
 import foxMarkAsset from "@/assets/foxfounder-mark.png.asset.json";
 import foxWordmarkAsset from "@/assets/foxfounder-wordmark.png.asset.json";
 import foxLockupAsset from "@/assets/foxfounder-lockup.png.asset.json";
+import krishnaCvAsset from "@/assets/krishna-cv.pdf.asset.json";
 import projResume from "@/assets/proj-resume.jpg";
 import projIiot from "@/assets/proj-iiot.jpg";
 import projAgent from "@/assets/proj-agent.jpg";
